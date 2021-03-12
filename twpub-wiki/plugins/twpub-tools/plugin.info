@@ -1,6 +1,0 @@
-{
-	"title": "$:/plugins/immateriel/flex-viewer",
-	"name": "FlexViewer",
-	"description": "Flexible twpub viewer",
-	"list": "readme docs"
-}

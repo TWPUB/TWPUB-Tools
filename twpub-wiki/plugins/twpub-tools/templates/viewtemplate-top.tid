@@ -1,6 +1,0 @@
-title: $:/plugins/immateriel/flex-viewer/viewtemplate/top
-tags: $:/tags/ViewTemplate
-list-before: $:/core/ui/ViewTemplate/body
-
-{{||$:/plugins/immateriel/flex-viewer/templates/extract}}
-

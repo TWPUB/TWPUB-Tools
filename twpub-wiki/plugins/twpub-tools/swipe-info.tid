@@ -1,8 +1,0 @@
-title: $:/plugins/immateriel/flex-viewer/swipe-info
-tags: $:/tags/AboveStory
-
-<div class="twpub-swipe-info twpub-display-block-mobile-only">
-
-{{$:/core/images/chevron-left}} Swipe left for twpubs, swipe right for sidebar {{$:/core/images/chevron-right}}
-
-</div>

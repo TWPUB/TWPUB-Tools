@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="application-name" content="TiddlyWiki Plugin Library" />
+<meta name="application-version" content="v0.0.0" />
+<meta name="copyright" content="Copyright 2015 Jeremy Ruston" />
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<title>Plugin Library</title>
+<script>
+var assetList = [
+    {
+        "list": "readme errors cover text",
+        "version": "v0.0.1",
+        "plugin-type": "plugin",
+        "type": "application/json",
+        "epub-title": "Intertwingled",
+        "name": "TWPUB",
+        "title": "$:/plugins/twpub/6ae7495ce342ee75",
+        "description": "Intertwingled",
+        "converter-version": "0.1.0",
+        "epub-creator": "Douglas R. Dechow and Daniele C. Struppa",
+        "conversion-errors": "0",
+        "count-chunks": "1938",
+        "count-images": "47",
+        "cover-image": "$:/plugins/twpub/6ae7495ce342ee75/images/OEBPS/A978-3-319-16925-5_CoverFigure.jpg",
+        "readme": "|epub-title |''Intertwingled'' |\n|epub-creator |''Douglas R. Dechow and Daniele C. Struppa'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''1938'' |\n|count-images |''47'' |",
+        "requires-reload": "no"
+    },
+    {
+        "list": "readme errors cover text",
+        "version": "v0.0.1",
+        "plugin-type": "plugin",
+        "type": "application/json",
+        "epub-title": "Great Expectations",
+        "name": "TWPUB",
+        "title": "$:/plugins/twpub/ad7d2dfd1cdaeb2b",
+        "description": "Great Expectations",
+        "converter-version": "0.1.0",
+        "epub-creator": "Charles Dickens",
+        "conversion-errors": "0",
+        "count-chunks": "4183",
+        "count-images": "17",
+        "readme": "|epub-title |''Great Expectations'' |\n|epub-creator |''Charles Dickens'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''4183'' |\n|count-images |''17'' |",
+        "requires-reload": "no"
+    },
+    {
+        "list": "readme errors cover text",
+        "version": "v0.0.1",
+        "plugin-type": "plugin",
+        "type": "application/json",
+        "epub-title": "La conscience des animaux",
+        "name": "TWPUB",
+        "title": "$:/plugins/twpub/830f3efb85afd034",
+        "description": "La conscience des animaux",
+        "converter-version": "0.1.0",
+        "epub-creator": "P. Le Neindre, M. Dunier, R. Larrère, P. Prunet",
+        "conversion-errors": "0",
+        "count-chunks": "832",
+        "count-images": "13",
+        "cover-image": "$:/plugins/twpub/830f3efb85afd034/images/OEBPS/Images/couv.jpg",
+        "readme": "|epub-title |''La conscience des animaux'' |\n|epub-creator |''P. Le Neindre, M. Dunier, R. Larrère, P. Prunet'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''832'' |\n|count-images |''13'' |",
+        "requires-reload": "no"
+    },
+    {
+        "list": "readme errors cover text",
+        "version": "v0.0.1",
+        "plugin-type": "plugin",
+        "type": "application/json",
+        "epub-title": "Arsène Lupin gentleman cambrioleur",
+        "name": "TWPUB",
+        "title": "$:/plugins/twpub/322d77430a929152",
+        "description": "Arsène Lupin gentleman cambrioleur",
+        "converter-version": "0.1.0",
+        "epub-creator": "Maurice Leblanc",
+        "conversion-errors": "0",
+        "count-chunks": "2475",
+        "count-images": "4",
+        "cover-image": "$:/plugins/twpub/322d77430a929152/images/Images/cover.jpg",
+        "readme": "|epub-title |''Arsène Lupin gentleman cambrioleur'' |\n|epub-creator |''Maurice Leblanc'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''2475'' |\n|count-images |''4'' |",
+        "requires-reload": "no"
+    },
+    {
+        "list": "readme errors cover text",
+        "version": "v0.0.1",
+        "plugin-type": "plugin",
+        "type": "application/json",
+        "epub-title": "La panification au levain naturelHors Collection - Glossaire des savoirs",
+        "name": "TWPUB",
+        "title": "$:/plugins/twpub/bd798cb95480ec9c",
+        "description": "La panification au levain naturelHors Collection - Glossaire des savoirs",
+        "converter-version": "0.1.0",
+        "epub-creator": ", , , ",
+        "conversion-errors": "281",
+        "count-chunks": "2526",
+        "count-images": "89",
+        "cover-image": "$:/plugins/twpub/bd798cb95480ec9c/images/OEBPS/Images/couv.jpg",
+        "readme": "|epub-title |''La panification au levain naturelHors Collection - Glossaire des savoirs'' |\n|epub-creator |'', , , '' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''281'' |\n|count-chunks |''2526'' |\n|count-images |''89'' |",
+        "requires-reload": "no"
+    }
+];
+
+/*\
+title: $:/plugins/tiddlywiki/pluginlibrary/libraryserver.js
+type: application/javascript
+module-type: library
+
+A simple HTTP-over-window.postMessage implementation of a standard TiddlyWeb-compatible server. It uses real HTTP to load the individual tiddler JSON files.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+// Listen for window messages
+window.addEventListener("message",function listener(event){
+	console.log("plugin library: Received message from",event.origin);
+	console.log("plugin library: Message content",event.data);
+	switch(event.data.verb) {
+		case "GET":
+			if(event.data.url === "recipes/library/tiddlers.json") {
+				// Route for recipes/library/tiddlers.json
+				event.source.postMessage({
+					verb: "GET-RESPONSE",
+					status: "200",
+					cookies: event.data.cookies,
+					url: event.data.url,
+					type: "application/json",
+					body: JSON.stringify(assetList,null,4)
+				},"*");
+			} else if(event.data.url.indexOf("recipes/library/tiddlers/") === 0) {
+				var url = "recipes/library/tiddlers/" + encodeURIComponent(removePrefix(event.data.url,"recipes/library/tiddlers/"));
+				// Route for recipes/library/tiddlers/<uri-encoded-tiddler-title>.json
+				httpGet(url,function(err,responseText) {
+					if(err) {
+						event.source.postMessage({
+							verb: "GET-RESPONSE",
+							status: "404",
+							cookies: event.data.cookies,
+							url: event.data.url,
+							type: "text/plain",
+							body: "Not found"
+						},"*");
+					} else {
+						event.source.postMessage({
+							verb: "GET-RESPONSE",
+							status: "200",
+							cookies: event.data.cookies,
+							url: event.data.url,
+							type: "application/json",
+							body: responseText
+						},"*");
+					}
+				});
+			} else {
+				event.source.postMessage({
+					verb: "GET-RESPONSE",
+					status: "404",
+					cookies: event.data.cookies,
+					url: event.data.url,
+					type: "text/plain",
+					body: "Not found"
+				},"*");
+			}
+			break;
+	}
+},false);
+
+// Helper to remove string prefixes
+function removePrefix(string,prefix) {
+	if(string.indexOf(prefix) === 0) {
+		return string.substr(prefix.length);
+	} else {
+		return string;
+	}
+}
+
+// Helper for HTTP GET
+function httpGet(url,callback) {
+	var http = new XMLHttpRequest();
+	http.open("GET",url,true);
+	http.onreadystatechange = function() {
+		if(http.readyState == 4 && http.status == 200) {
+			callback(null,http.responseText);
+		}
+	};
+	http.send();
+}
+
+})();
+
+</script>
+</head>
+<body><h1>HelloThere</h1><p>This is the TiddlyWiki plugin library. It is not intended to be opened directly in the browser.</p><p>See <a href="https://tiddlywiki.com/" target="_blank">https://tiddlywiki.com/</a> for details of how to install plugins.</p></body>
+</html>
