@@ -1,0 +1,28 @@
+name: Build and Deploy TWPUB Website
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v1
+      - name: Run Tests
+        run: npm test
+      - name: Build Site
+        run: npm run build
+      - name: Deploy Content
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.DEPLOYMENT_TOKEN }}
+          EXTERNAL_REPOSITORY: TWPUB/twpub.github.io
+          PUBLISH_BRANCH: main
+          PUBLISH_DIR: ./
+        with:
+          commitMessage: ${{ github.event.head_commit.message }}
