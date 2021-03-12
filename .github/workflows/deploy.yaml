@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false 
       - name: Install dependencies
         run: npm install
       - name: Run Tests
@@ -20,11 +22,8 @@ jobs:
       - name: Build Site
         run: npm run build
       - name: Deploy Content
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.DEPLOYMENT_TOKEN }}
-          EXTERNAL_REPOSITORY: TWPUB/twpub.github.io
-          PUBLISH_BRANCH: main
-          PUBLISH_DIR: ./
+        uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
-          commitMessage: ${{ github.event.head_commit.message }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: ./
