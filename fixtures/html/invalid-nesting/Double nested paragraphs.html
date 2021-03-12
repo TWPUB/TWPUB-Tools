@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Double nested paragraphs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script id="expectedResults" type="application/json">
+[
+    {
+        "text": "<p>\n    One\n    </p>"
+    },
+    {
+        "text": "<p>\n        Two\n    </p>"
+    },
+    {
+        "text": "\n    Three\n"
+    }
+]
+</script>
+</head>
+<body>
+<p>
+    One
+    <p>
+        Two
+    </p>
+    Three
+</p>
+</body></html>

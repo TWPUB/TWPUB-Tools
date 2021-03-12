@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Test badly nested spans/divs 1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script id="expectedResults" type="application/json">
+[
+    {
+        "text": "<div><a>Something</a></div>"
+    },
+    {
+        "text": "\n<span><a></a></span>",
+        "anchorIds": [
+            "linklink"
+        ]
+    },
+    {
+        "text": "<span><a><div>Lorem Ipsum</div></a></span>"
+    },
+    {
+        "text": "<span><a>\n</a>\n</span>\n\n"
+    }
+]
+</script>
+</head>
+<body>
+<div><a>Something</a></div>
+<span><a id="linklink"><div>Lorem Ipsum</div>
+</a>
+</span>
+</body></html>

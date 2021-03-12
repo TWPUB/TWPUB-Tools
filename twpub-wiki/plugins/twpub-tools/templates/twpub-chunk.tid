@@ -1,0 +1,8 @@
+title: $:/plugins/immateriel/flex-viewer/templates/twpub/chunk
+
+\whitespace trim
+<a id=<<currentTiddler>> class={{{ [[twpub-chunk-frame]] [<currentTiddler>is[tiddler]then[twpub-chunk-selected]] +[join[ ]] }}}>
+	<div class="twpub-chunk-content">
+		<$transclude mode="inline"/>
+	</div>
+</a>

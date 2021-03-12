@@ -1,0 +1,6 @@
+title: $:/plugins/immateriel/flex-viewer/edittemplate/top
+tags: $:/tags/EditTemplate
+list-before: $:/core/ui/EditTemplate/body
+
+{{||$:/plugins/immateriel/flex-viewer/templates/extract}}
+

@@ -1,0 +1,7 @@
+caption: TWPUB Demo Library
+tags: $:/tags/PluginLibrary
+title: $:/TwpubDemoPluginLibrary
+url: ./library/
+library-type: twpub
+
+Demo library of TWPUBs

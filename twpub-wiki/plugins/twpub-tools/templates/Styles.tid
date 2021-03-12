@@ -1,0 +1,253 @@
+title: $:/plugins/immateriel/flex-viewer/Styles
+tags: [[$:/tags/Stylesheet]]
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
+
+/* Layout rules that make things work */
+
+.flextemplate-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: stretch;
+	height: 100vh;
+}
+
+.flextemplate-container .toolbar {
+	flex-grow: 0;
+}
+
+.flextemplate-container .main {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+.flextemplate-container .twpub {
+	flex-basis: 0;
+	flex-grow: 1;
+	overflow: scroll;
+}
+
+.flextemplate-container .river {
+	flex-basis: 0;
+	flex-grow: 1;
+	overflow: scroll;
+}
+
+.flextemplate-container .sidebar {
+	flex-basis: 0;
+	flex-grow: 1;
+	overflow: scroll;
+}
+
+/* Overrides of the core Vanilla or Snow White themes */
+
+.flextemplate-container nav.tc-menubar {
+	position: static;
+	width: 100%;
+}
+
+/* Adjust width of things that were previously hardcoded */
+
+.flextemplate-container .river .tc-tiddler-frame {
+	width: 100%;
+}
+
+/* Margins and padding to make things nice */
+
+.flextemplate-container .twpub {
+}
+
+.flextemplate-container .twpub-frame {
+	position: relative;
+	background-color: <<colour tiddler-background>>;
+	border-right: 1px solid <<colour muted-foreground>>;
+}
+
+.flextemplate-container .twpub .twpub-toolbar {
+	position: sticky;
+	left: 0;
+	right: 0;
+	top: 0;
+	text-align: center;
+	z-index: 2000;
+	border-bottom: 1px solid <<colour message-border>>;
+	background-color: <<colour message-background>>;
+	color: <<colour message-foreground>>;
+}
+
+.flextemplate-container .twpub .twpub-header {
+	padding: 1em 1em 0 1em;
+	background-color: <<colour background>>;
+	border-bottom: 1px solid <<colour muted-foreground>>;
+}
+
+.flextemplate-container .twpub .twpub-chunk-frame {
+	border-left: 1em solid transparent;
+	border-right: 1em solid transparent;
+}
+
+.flextemplate-container .twpub .twpub-chunk-frame.twpub-chunk-selected {
+	border-left: 1em solid #ffeecd;
+	border-right: 1em solid #ffeecd;
+}
+
+.flextemplate-container .river {
+	padding: 2em 1em 0 2em;
+}
+
+.flextemplate-container .sidebar {
+	padding: 2em 2em 0 1em;
+}
+
+/* Dropdown formatting */
+
+.flextemplate-container .twpub .twpub-body {
+	position: relative;
+}
+
+/* twpub formatting */
+
+.flextemplate-container .twpub {
+	font-family: Georgia,Times,Times New Roman,serif;
+}
+
+.flextemplate-container .twpub .twpub-cover-thumbnail img {
+	float: right;
+	max-height: 3em;
+}
+
+.flextemplate-container .twpub img {
+	max-width: 100%;
+	height: auto;
+}
+
+.flextemplate-container .twpub .twpub-chunk-frame {
+	display: block;
+	position: relative;
+}
+
+.flextemplate-container .twpub .twpub-chunk-frame:hover .twpub-chunk-content {
+	background: #fcfcf8;
+}
+
+/* twpub extracts */
+
+.twpub-extract-list {
+	padding: 0;
+}
+
+.twpub-extract-item {
+	list-style: none;
+	border: 1px solid #000;
+	background-color: #F8F8FE;
+	padding: 0 1em 1em 1em;
+	margin-bottom: 1em;
+}
+
+.twpub-extract-item-toolbar {
+	text-align: right;
+}
+
+.twpub-extract-item-body {
+	font-family: Georgia,Times,Times New Roman,serif;
+}
+
+.twpub-extract-item-end {
+	clear: both;
+}
+
+/* Swipe info */
+
+.twpub-swipe-info {
+	font-size: 12px;
+	line-height: 18px;
+	text-align: center;
+	border: 1px solid #badbcc;
+	border-radius: 8px;
+	padding: 0 1em 0 1em;
+	margin: 1em;
+	color: #0f5132;
+	fill: #0f5132;
+	background-color: #d1e7dd;
+    vertical-align: middle;
+}
+
+.twpub-swipe-info svg {
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+}
+
+/* Navigation */
+
+.twpub .tc-navigating {
+	animation: flash 500ms ease-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+	0% { transform: translate(1px, 1px) rotate(0deg); background-color: <<colour alert-background>>; }
+	10% { transform: translate(-1px, -2px) rotate(-1deg); background-color: <<colour alert-background>>; }
+	20% { transform: translate(-3px, 0px) rotate(1deg); background-color: <<colour alert-background>>; }
+	30% { transform: translate(3px, 2px) rotate(0deg); background-color: <<colour alert-background>>; }
+	40% { transform: translate(1px, -1px) rotate(1deg); background-color: <<colour alert-background>>; }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); background-color: <<colour background>>; }
+	60% { transform: translate(-3px, 1px) rotate(0deg); background-color: <<colour background>>; }
+	70% { transform: translate(3px, 1px) rotate(-1deg); background-color: <<colour background>>; }
+	80% { transform: translate(-1px, -1px) rotate(1deg); background-color: <<colour background>>; }
+	90% { transform: translate(1px, 2px) rotate(0deg); background-color: <<colour background>>; }
+	100% { transform: translate(1px, -2px) rotate(-1deg); background-color: <<colour alert-background>>; }
+}
+
+
+@keyframes flash {
+	0% { background-color: <<colour alert-background>>;}
+	50% { background-color: <<colour background>>;}
+	100% { background-color: <<colour alert-background>>;}
+}
+
+
+/*
+Mobile
+*/
+
+.twpub-display-block-mobile-only {
+	display: none;
+}
+
+@media (max-width: 425px) {
+
+	.twpub-display-block-mobile-only {
+		display: block;
+	}
+
+	.flextemplate-container .main {
+		display: flex;
+		scroll-snap-type: x mandatory;
+		overflow-x: scroll;
+	}
+
+	.flextemplate-container .twpub,
+	.flextemplate-container .river,
+	.flextemplate-container .sidebar {
+		flex-basis: initial;
+		flex-grow: 0;
+		flex-shrink: 0;
+		width: 100vw;
+		padding: 0;
+		overflow-y: scroll;
+		scroll-snap-align: start;
+	}
+
+	.flextemplate-container .sidebar {
+		padding: 14px;
+	}
+
+}
+
+}

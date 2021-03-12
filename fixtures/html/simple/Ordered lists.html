@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Ordered lists</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script id="expectedResults" type="application/json">
+[
+    {
+        "text": "<ol>\n    </ol>"
+    },
+    {
+        "text": "<ol><li value=\"1\">One</li></ol>"
+    },
+    {
+        "text": "<ol>\n    Half\n    </ol>"
+    },
+    {
+        "text": "<ol><li value=\"7\">Two</li></ol>"
+    },
+    {
+        "text": "<ol>\n    </ol>"
+    },
+    {
+        "text": "<ol><li value=\"8\" style=\"font-style: italic;\">Three</li></ol>"
+    },
+    {
+        "text": "<ol>\n</ol>"
+    }
+]
+</script>
+</head>
+<body>
+<ol>
+    <li>One</li>
+    Half
+    <li value="7">Two</li>
+    <li style="font-style:italic;">Three</li>
+</ol>
+</body>
+</html>

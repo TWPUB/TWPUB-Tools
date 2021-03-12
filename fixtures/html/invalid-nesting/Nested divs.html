@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Nested divs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script id="expectedResults" type="application/json">
+[
+    {
+        "text": "<div>\n    One\n    </div>"
+    },
+    {
+        "text": "<div><div>\n        Two\n    </div></div>"
+    },
+    {
+        "text": "<div>\n    Three\n</div>"
+    },
+    {
+        "text": "<div><div>Four</div></div>"
+    }
+]
+</script>
+</head>
+<body>
+<div>
+    One
+    <div>
+        Two
+    </div>
+    Three
+</div>
+<div><div>Four</div></div>
+</body></html>
