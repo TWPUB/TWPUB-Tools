@@ -2,5 +2,5 @@
 	"title": "$:/plugins/immateriel/twpub-tools",
 	"name": "TWPUB Tools",
 	"description": "TiddlyWiki Tools for TWPUBs",
-	"list": "readme docs"
+	"list": "readme docs spec"
 }

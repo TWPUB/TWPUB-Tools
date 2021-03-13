@@ -1,10 +1,12 @@
 title: HelloThere
 
-!! Welcome to twpub
+!! Welcome to TWPUB
 
-twpub is a new format for electronic publications that makes it easier to annotate, arrange and appreciate the content.
+{{$:/plugins/immateriel/twpub-tools/readme}}
 
-!!! Currently loaded twpubs
+See [[documentation|$:/plugins/immateriel/twpub-tools/docs]] and [[specification|$:/plugins/immateriel/twpub-tools/spec]]
+
+!!! Currently loaded TWPUBs
 
 <$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" emptyMessage="(none -- [[load TWPUBs from a library|TWPUB Libraries]])">
 <$set name="plugin-type" value={{!!plugin-type}}>

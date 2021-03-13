@@ -1,0 +1,94 @@
+title: $:/plugins/immateriel/twpub-tools/spec
+
+The TWPUB format is a special type of TiddlyWiki [[plugin]]. Note that the `.json` file extension is needed for TiddlyWiki to correctly parse the file.
+
+! Plugin Fields
+
+The plugin tiddler itself has the following fields:
+
+|!Field |!Description |
+|cover-image |Title of the tiddler containing the cover image for the TWPUB |
+|description |The description of the TWPUB (extracted from the `dc:title` metadata field of the original EPUB) |
+|epub-creator |The creator of the TWPUB (extracted from the `dc:creator` metadata field of the original EPUB) |
+|epub-title |The description of the TWPUB (extracted from the `dc:title` metadata field of the original EPUB) |
+|list |`readme cover text` - the list of the tabs to be shown in the plugin viewer |
+|name |`TWPUB` to identify TWPUBs in the plugin viewer|
+|plugin-type |`plugin` |
+|title |The title of the plugin formed from `$:/plugins/twpub/` suffixed with the first 16 characters of the hex representation of the SHA-1 hash of the original EPUB file |
+|type |`application/json` |
+
+! Plugin Tiddlers
+
+The titles of the tiddlers within the plugin are all prefixed with the title of the plugin itself:
+
+|!Title |!Description |
+|`<plugin-title>/cover` |A tab for the plugin info viewer to display the cover artwork |
+|`<plugin-title>/errors` |A tab for the plugin info viewer to display any errors from the conversion process |
+|`<plugin-title>/images/<image-href>` |Images named with the HREF used in the original EPUB file |
+|`<plugin-title>/readme` |A tab for the plugin info viewer to describe the TWPUB |
+|`<plugin-title>/stylesheets` |All the processed stylesheets in a single file  |
+|`<plugin-title>/text` |A tab for the plugin info viewer to show the text of the TWPUB |
+|`<plugin-title>/text/<chunk-index>` |Text chunks identified by a 9-digit zero padded index (ie, `000000000`, `000000001` etc) |
+|`<plugin-title>/toc/<entry-id>` |Table-of-contents entries identified by the ID used in the original EPUB file |
+
+!! Images
+
+No special processing occurs for images; they are copied verbatim from the original EPUB file.
+
+!! Stylesheets
+
+The stylesheet tiddler has the following fields:
+
+|!Field |!Description |
+|title |Title in the format `<plugin-title>/stylesheets` |
+|text |Text of the stylesheets (see below) |
+|type |`text/css` |
+|role |`stylesheet` |
+
+
+Stylesheets from the original EPUB file are copied with the following changes:
+
+* Unknown CSS properties are omitted
+* Every selector is prefixed with a class name `twpub-<twpub-hash>-<stylesheet-href-hash>` where:
+** `<twpub-hash>` is the 16-character SHA-1 hash of the contents of the original EPUB file
+** `<stylesheet-href-hash>` is a 6-character SHA-1 hash of the HREF of the stylesheet within the original EPUB file
+
+The additional, stylesheet-specific class selector allows the stylesheets for multiple publications to be loaded at once. (It has the side effect of preventing rules that target the `<html>` and `<body>` elements from being applied).
+
+!! Text
+
+The text chunks of the publication have the following fields:
+
+|!Field |!Description |
+|title |Title in the format `<plugin-title>/text/<chunk-index>` |
+|text |Text of the chunk (see below) |
+|type |`text/vnd.twpub` |
+|role |`text` |
+
+They are processed in the following ways:
+
+* Each slice is wrapped with a `<div>` with classes corresponding to the stylesheet scoping class for each attached stylesheet
+* Unknown HTML elements are omitted
+* The `<$link>` widget is used for internal links. The link target is converted to the title of the corresponding text chunk of the publication
+* The `<$image>` widget is used for internal images
+* The content type `text/vnd.twpub` is used for the text chunks, meaning that they are only allowed to have HTML tags plus the basic widget syntax
+
+!! TOC (Table of Contents)
+
+Table of contents tiddlers have the following fields:
+
+|!Field |!Description |
+|title |Title of the TOC tiddler |
+|caption |Text to be displayed for the TOC entry |
+|tags |The title of the parent TOC entry (`<plugin-title>/toc` is used for top level entries) |
+|target |The title of the text tiddler corresponding to the target of the TOC entry |
+|list |Ordered list of the titles of child TOC entries |
+|role |`toc` |
+
+The table of contents tiddlers are structured so that they can be used with the core TiddlyWiki `toc` macro. For example:
+
+```
+<div class="tc-table-of-contents">
+<<toc "$:/plugins/twpub/45113b3419ea96b4/toc">>
+</div>
+```
