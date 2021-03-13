@@ -1,4 +1,4 @@
-title: $:/plugins/immateriel/flex-viewer/templates/extract
+title: $:/plugins/immateriel/twpub-tools/templates/extract
 
 \define link-actions()
 <$action-sendmessage $message="tm-scroll" selector={{{ [<navigateTo>escapecss[]addprefix[#]] }}}/>

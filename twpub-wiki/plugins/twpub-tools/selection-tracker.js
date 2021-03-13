@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/tiddlywiki/flex-viewer/selection-tracker.js
+title: $:/plugins/tiddlywiki/twpub-tools/selection-tracker.js
 type: application/javascript
 module-type: startup
 
@@ -165,7 +165,7 @@ SelectionTracker.prototype.performSelectionActions = function(options) {
 		// Override the chunks to add the dynannotate code if they are still shadow tiddlers
 		if(!$tw.wiki.tiddlerExists(chunk.title)) {
 			$tw.wiki.addTiddler(new $tw.Tiddler(existingTiddler,$tw.wiki.getModificationFields(),{
-				text: $tw.wiki.getTiddlerText("$:/plugins/immateriel/flex-viewer/templates/new-chunk").replace("****INSERTION**POINT****",existingTiddler.fields.text),
+				text: $tw.wiki.getTiddlerText("$:/plugins/immateriel/twpub-tools/templates/new-chunk").replace("****INSERTION**POINT****",existingTiddler.fields.text),
 				tags: ["$:/tags/TwpubAnnotated"]
 			}));
 		}

@@ -1,4 +1,4 @@
-title: $:/plugins/immateriel/flex-viewer/templates/Main
+title: $:/plugins/immateriel/twpub-tools/templates/Main
 tags: $:/tags/FlexTemplate/Component
 
 <div class="flextemplate-container">
@@ -8,7 +8,7 @@ tags: $:/tags/FlexTemplate/Component
 	<main class="main">
 		<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]">
 			<aside class="twpub">
-				<$transclude tiddler="$:/plugins/immateriel/flex-viewer/templates/twpub" mode="inline"/>
+				<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub" mode="inline"/>
 			</aside>
 		</$list>
 		<article class="river">

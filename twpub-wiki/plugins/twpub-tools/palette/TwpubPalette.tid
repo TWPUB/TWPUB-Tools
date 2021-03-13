@@ -1,6 +1,6 @@
-title: $:/plugins/immateriel/flex-viewer/TwpubPalette
-name: Twpub Viewer Palette
-description: Custom palette for the Twpub viewer
+title: $:/plugins/immateriel/twpub-tools/TWPUBPalette
+name: TWPUB Viewer Palette
+description: Custom palette for the TWPUB viewer
 tags: $:/tags/Palette
 type: application/x-tiddler-dictionary
 

@@ -1,8 +1,8 @@
-title: $:/plugins/immateriel/flex-viewer/docs
+title: $:/plugins/immateriel/twpub-tools/docs
 
 ! Components
 
-The flex-viewer plugin comprises the following components:
+The twpub-tools plugin comprises the following components:
 
 * A set of templates for rendering twpubs within TiddlyWiki
 * A custom parser for `text/vnd.twpub` text that recognises a subset of TiddlyWiki's usual wikitext

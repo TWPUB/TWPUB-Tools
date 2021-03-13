@@ -1,6 +1,6 @@
 {
-	"title": "$:/plugins/immateriel/flex-viewer",
-	"name": "FlexViewer",
-	"description": "Flexible twpub viewer",
+	"title": "$:/plugins/immateriel/twpub-tools",
+	"name": "TWPUB Tools",
+	"description": "TiddlyWiki Tools for TWPUBs",
 	"list": "readme docs"
 }
