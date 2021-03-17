@@ -63,6 +63,14 @@ npm run build
 
 The output files will be in `./output`.
 
+## Clean
+
+Removes the build output in `./output` and the temporary files in `./tmp`.
+
+```
+npm run clean
+```
+
 ## Usage of ''epub2twpub''
 
 To run the ''epub2twpub'' converter:
