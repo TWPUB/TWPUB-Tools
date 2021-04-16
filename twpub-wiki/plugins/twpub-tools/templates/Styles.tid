@@ -17,30 +17,40 @@ tags: [[$:/tags/Stylesheet]]
 	flex-grow: 0;
 }
 
+.flextemplate-container .column-config {
+	flex-grow: 0;
+    flex-shrink: 0;
+	background: #fbff9b;
+    z-index: 10000;
+}
+
 .flextemplate-container .main {
 	flex-grow: 1;
+}
+
+.flextemplate-container .main,
+.flextemplate-container .column-config-top-inner {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: stretch;
 	overflow: hidden;
+	<<box-shadow "0px 4px 6px 2px rgba(0,0,0,0.25)">>
+}
+
+.flextemplate-container .column-config-bottom-inner {
+	<<box-shadow "0px -4px 6px 2px rgba(0,0,0,0.25)">>
 }
 
 .flextemplate-container .twpub {
-	flex-basis: 0;
-	flex-grow: 1;
 	overflow: scroll;
 }
 
 .flextemplate-container .river {
-	flex-basis: 0;
-	flex-grow: 1;
 	overflow: scroll;
 }
 
 .flextemplate-container .sidebar {
-	flex-basis: 0;
-	flex-grow: 1;
 	overflow: scroll;
 }
 
@@ -58,6 +68,40 @@ tags: [[$:/tags/Stylesheet]]
 }
 
 /* Margins and padding to make things nice */
+
+.flextemplate-container .column-config-top-inner {
+	border-bottom: 2px solid black;
+}
+
+.flextemplate-container .column-config-top-inner > div {
+	border-right: 2px solid black;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+}
+
+.flextemplate-container .column-config-top-inner > div:last-child {
+	border-right: none;
+}
+
+.flextemplate-container .column-config-top-inner .column-config-top-column-label {
+	text-align: center;
+	font-weight: bold;
+}
+
+.flextemplate-container .column-config-bottom {
+	text-align: center;
+}
+
+.flextemplate-container .column-config-bottom-inner {
+	border-top: 2px solid black;
+}
+
+.flextemplate-container .column-config-bottom-info,
+.flextemplate-container .column-config-bottom-buttons {
+	text-align: left;
+	display: inline-block;
+	margin: 1em;
+}
 
 .flextemplate-container .twpub {
 }
@@ -96,11 +140,11 @@ tags: [[$:/tags/Stylesheet]]
 	border-right: 1em solid #ffeecd;
 }
 
-.flextemplate-container .river {
+.flextemplate-container .river-inner {
 	padding: 2em 1em 0 2em;
 }
 
-.flextemplate-container .sidebar {
+.flextemplate-container .sidebar-inner {
 	padding: 2em 2em 0 1em;
 }
 
@@ -159,6 +203,39 @@ tags: [[$:/tags/Stylesheet]]
 
 .twpub-extract-item-end {
 	clear: both;
+}
+
+/* Column config */
+
+.tc-column-config-maquette-wrapper {
+	padding: 0.25em;
+	display: flex;
+}
+
+.tc-column-config-maquette-box {
+	background: black;
+	color: white;
+	width: 100%;
+    margin: 0.25em;
+    height: 25px;
+}
+
+/* Forms */
+
+.tc-form-two-up {
+	display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 0.5em;
+    padding: 0.5em;
+}
+
+.tc-form-two-up .tc-form-label {
+    grid-column: 1 / 2;
+	text-align: right;
+}
+
+.tc-form-two-up .tc-form-item {
+    grid-column: 2 / 3;
 }
 
 /* Swipe info */
@@ -251,3 +328,4 @@ Mobile
 }
 
 }
+

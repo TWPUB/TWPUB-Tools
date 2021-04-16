@@ -9,6 +9,13 @@ See [[documentation|$:/plugins/immateriel/twpub-tools/docs]] and [[specification
 !!! Currently loaded TWPUBs
 
 <$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" emptyMessage="(none -- [[load TWPUBs from a library|TWPUB Libraries]])">
+
+<$button>
+<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
+Create TWPUB column
+</$button>
+
+
 <$set name="plugin-type" value={{!!plugin-type}}>
 <$set name="default-popup-state" value="yes">
 <$set name="qualified-state" value=<<qualify "$:/state/plugin-info">>>

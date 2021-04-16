@@ -5,29 +5,23 @@ tags: $:/tags/FlexTemplate/Component
 	<header class="toolbar">
 		{{$:/plugins/tiddlywiki/menubar/menu}}
 	</header>
+	<header class="column-config column-config-top">
+		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Top}}
+	</header>
 	<main class="main">
-		<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]">
-			<aside class="twpub">
-				<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub" mode="inline"/>
-			</aside>
+		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]]">
+			<$list filter="[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="ignore">
+                <div style={{{ [[flex-basis:]] =[<currentTiddler>get[flex-basis]addsuffix[px]else[0]] =[[;flex-grow: ]] =[<currentTiddler>get[flex-grow]else[1]] =[[;flex-shrink: ]] =[<currentTiddler>get[flex-shrink]else[0]] =[[;overflow: scroll;]]  +[join[]] }}} class={{{ [<currentTiddler>get[template]get[class]] }}}>
+					<$vars template={{!!template}}>
+						<$tiddler tiddler={{!!tiddler}}>
+							<$transclude tiddler=<<template>> mode="inline"/>
+						</$tiddler>
+					</$vars>
+				</div>
+			</$list>
 		</$list>
-		<article class="river">
-			<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
-				<$transclude/>
-			</$list>
-			<$list filter="[list[$:/StoryList]]" history="$:/HistoryList" template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
-			<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
-				<$transclude/>
-			</$list>
-		</article>
-		<aside class="sidebar">
-			<$messagecatcher type="tm-scroll">
-				<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBarSegment]!has[draft.of]]" variable="listItem">
-					<$reveal type="nomatch" state=<<config-title>> text="hide"  tag="div">
-						<$transclude tiddler=<<listItem>> mode="block"/>
-					</$reveal>
-				</$list>
-			</$messagecatcher>
-		</aside>
 	</main>
+	<header class="column-config column-config-bottom">
+		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Bottom}}
+	</header>
 </div>

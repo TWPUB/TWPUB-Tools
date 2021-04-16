@@ -1,0 +1,13 @@
+title: $:/plugins/immateriel/twpub-tools/templates/Columns/River
+class: river
+caption: Story River
+
+<div class="river-inner">
+    <$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
+        <$transclude/>
+    </$list>
+    <$list filter="[list[$:/StoryList]]" history="$:/HistoryList" template={{$:/config/ui/ViewTemplate}} editTemplate={{$:/config/ui/EditTemplate}} storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+    <$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
+        <$transclude/>
+    </$list>
+</div>
