@@ -8,10 +8,10 @@ tags: $:/tags/FlexTemplate/Component
 	<header class="column-config column-config-top">
 		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Top}}
 	</header>
-	<main class="main">
+	<main class="main column-container">
 		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]]">
 			<$list filter="[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="ignore">
-                <div style={{{ [[flex-basis:]] =[<currentTiddler>get[flex-basis]addsuffix[px]else[0]] =[[;flex-grow: ]] =[<currentTiddler>get[flex-grow]else[1]] =[[;flex-shrink: ]] =[<currentTiddler>get[flex-shrink]else[0]] =[[;overflow: scroll;]]  +[join[]] }}} class={{{ [<currentTiddler>get[template]get[class]] }}}>
+                <div class={{{ [<currentTiddler>get[template]get[class]] }}}>
 					<$vars template={{!!template}}>
 						<$tiddler tiddler={{!!tiddler}}>
 							<$transclude tiddler=<<template>> mode="inline"/>
