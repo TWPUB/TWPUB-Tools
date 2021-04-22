@@ -1,10 +1,9 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 
-<$link tag="div" class="twpub-badge">
-<$button class="twpub-badge-icon" tag="div">
-<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
+<$button popup=<<qualify "$:/state/popup/twpub-badge">> class="twpub-badge">
+<div class="twpub-badge-icon">
 {{$:/plugins/immateriel/twpub-tools/twpub-icon}}
-</$button>
+</div>
 <div class="twpub-badge-text">
 <div class="twpub-badge-title">
 <$text text={{!!epub-title}}/>
@@ -18,4 +17,19 @@ title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 <$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/>
 </$list>
 </div>
+</$button>
+<$reveal state=<<qualify "$:/state/popup/twpub-badge">> type="popup" position="below" tag="div" class="twpub-badge-dropdown" animate="yes" retain="yes">
+<div class="tc-drop-down">
+<$button class="tc-btn-invisible">
+<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
+Read in new column
+</$button>
+<$link class="tc-btn-invisible" tag="button">
+Open TWPub tiddler
 </$link>
+<$button class="tc-btn-invisible">
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+Delete this TWPub
+</$button>
+</div>
+</$reveal>

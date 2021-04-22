@@ -336,14 +336,18 @@ tags: [[$:/tags/Stylesheet]]
 /* Badge */
 
 .twpub-badge-listing {
+	position: relative;
 	padding: 0.5em 1em;
 	border-radius: 8px;
 	<<box-shadow "inset 0 1px 8px rgba(0, 0, 0, 0.15)">>
 }
 
 .twpub-badge {
+	width: 100%;
+	text-align: left;
 	border: 1px solid <<color muted-foreground>>;
 	background: <<colour background>>;
+	fill: <<color muted-foreground>>;
 	padding: 0.5em;
 	display: flex;
     align-items: center;
@@ -352,12 +356,23 @@ tags: [[$:/tags/Stylesheet]]
     border-radius: 4px;
 }
 
-.twpub-badge-icon {
-    padding-right: 0.5em;
-	fill: <<color muted-foreground>>;
+.twpub-badge.tc-popup-handle,
+.twpub-badge:hover {
+	background: <<colour primary>>;
+	color: <<colour background>>;
+	fill: <<color background>>;
 }
 
-.twpub-badge-icon svg {
+.twpub-badge-icon {
+    padding-right: 0.5em;
+}
+
+.twpub-badge:hover .twpub-badge-icon {
+}
+
+.twpub-badge .twpub-badge-icon svg {
+	width: 2em;
+	height: 2em;
 	vertical-align: middle;
 }
 
@@ -385,3 +400,6 @@ tags: [[$:/tags/Stylesheet]]
     vertical-align: middle;
 }
 
+.twpub-badge-dropdown {
+	width: 100%;
+}
