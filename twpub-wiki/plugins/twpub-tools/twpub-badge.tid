@@ -1,9 +1,10 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 
 <$link tag="div" class="twpub-badge">
-<div class="twpub-badge-icon">
+<$button class="twpub-badge-icon" tag="div">
+<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
 {{$:/plugins/immateriel/twpub-tools/twpub-icon}}
-</div>
+</$button>
 <div class="twpub-badge-text">
 <div class="twpub-badge-title">
 <$text text={{!!epub-title}}/>

@@ -335,6 +335,12 @@ tags: [[$:/tags/Stylesheet]]
 
 /* Badge */
 
+.twpub-badge-listing {
+	padding: 0.5em 1em;
+	border-radius: 8px;
+	<<box-shadow "inset 0 1px 8px rgba(0, 0, 0, 0.15)">>
+}
+
 .twpub-badge {
 	border: 1px solid <<color muted-foreground>>;
 	background: <<colour background>>;
@@ -342,7 +348,7 @@ tags: [[$:/tags/Stylesheet]]
 	display: flex;
     align-items: center;
 	<<box-shadow "1px 1px 5px rgba(0, 0, 0, 0.3)">>
-    margin-bottom: 1em;
+    margin: 0.5em 0;
     border-radius: 4px;
 }
 
@@ -374,7 +380,7 @@ tags: [[$:/tags/Stylesheet]]
 }
 
 .twpub-badge-cover img {
-	height: 2em;
+	height: 4em;
 	width: auto;
     vertical-align: middle;
 }
