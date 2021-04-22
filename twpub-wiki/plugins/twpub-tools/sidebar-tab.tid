@@ -1,0 +1,6 @@
+title: $:/plugins/immateriel/twpub-tools/sidebar-tab
+tags: $:/tags/SideBar
+caption: TWPubs
+
+<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" emptyMessage="(none -- [[load TWPUBs from a library|TWPUB Libraries]])" template="$:/plugins/immateriel/twpub-tools/templates/twpub-badge">
+</$list>

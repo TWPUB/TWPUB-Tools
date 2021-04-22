@@ -1,0 +1,20 @@
+title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
+
+<$link tag="div" class="twpub-badge">
+<div class="twpub-badge-icon">
+{{$:/plugins/immateriel/twpub-tools/twpub-icon}}
+</div>
+<div class="twpub-badge-text">
+<div class="twpub-badge-title">
+<$text text={{!!epub-title}}/>
+</div>
+<div class="twpub-badge-author">
+<$text text={{!!epub-creator}}/>
+</div>
+</div>
+<div class="twpub-badge-cover">
+<$list filter="[<currentTiddler>has[cover-image]]" variable="ignore">
+<$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/>
+</$list>
+</div>
+</$link>
