@@ -24,9 +24,10 @@ title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 <$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
 Read in new column
 </$button>
-<$link class="tc-btn-invisible" tag="button">
+<$button class="tc-btn-invisible">
+<$action-navigate $to=<<currentTiddler>>/>
 Open TWPub tiddler
-</$link>
+</$button>
 <$button class="tc-btn-invisible">
 <$action-deletetiddler $tiddler=<<currentTiddler>>/>
 Delete this TWPub
