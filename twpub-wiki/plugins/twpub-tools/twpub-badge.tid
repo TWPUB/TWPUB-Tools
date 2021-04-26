@@ -19,6 +19,7 @@ title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 </div>
 </$button>
 <$reveal state=<<qualify "$:/state/popup/twpub-badge">> type="popup" position="below" tag="div" class="twpub-badge-dropdown" animate="yes" retain="yes">
+<div class="tc-drop-down-wrapper">
 <div class="tc-drop-down">
 <$button class="tc-btn-invisible">
 <$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
@@ -32,5 +33,6 @@ Open TWPub tiddler
 <$action-deletetiddler $tiddler=<<currentTiddler>>/>
 Delete this TWPub
 </$button>
+</div>
 </div>
 </$reveal>
