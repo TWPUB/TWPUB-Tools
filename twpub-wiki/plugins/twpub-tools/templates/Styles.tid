@@ -3,8 +3,8 @@ tags: [[$:/tags/Stylesheet]]
 
 \define column-layout()
 <$vars is-column-enabled="[lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]">
-	<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]filter<is-column-enabled>]" index="index">
-		`.column-container > *:nth-child(`<$text text={{{ [<index>add[1]] }}}/>`) {
+	<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]filter<is-column-enabled>]" counter="counter">
+		`.column-container > *:nth-child(`<$text text=<<counter>>/>`) {
 		flex-basis:` <$text text={{{ [<currentTiddler>get[flex-basis]addsuffix[px]else[0]] }}}/>`;
 		flex-grow:` <$text text={{{ [<currentTiddler>get[flex-grow]else[1]] }}}/>`;
 		flex-shrink:` <$text text={{{ [<currentTiddler>get[flex-shrink]else[0]] }}}/>`;
