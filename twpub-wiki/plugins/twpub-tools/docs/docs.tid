@@ -8,6 +8,10 @@ TWPUBs are structured as ~TiddlyWiki 5 plugins: a collection of shadow tiddlers 
 
 While minimal viewing capabilities are built into each TWPUB, ~TiddlyWiki plugins can be used to gain additional features, such as annotation and bookmarking.
 
+! TWPub Development
+
+TWPub is being developed on GitHub: https://github.com/TWPUB/TWPUB-Tools
+
 ! Format
 
 Books are represented as a ''sequence of independent chunks'':
