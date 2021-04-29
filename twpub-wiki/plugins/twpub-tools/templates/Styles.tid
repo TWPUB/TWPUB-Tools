@@ -416,3 +416,7 @@ tags: [[$:/tags/Stylesheet]]
 	color: <<colour download-foreground>>;
 	fill: <<colour download-foreground>>;
 }
+
+.twpub-library-button svg {
+	vertical-align: bottom;
+}

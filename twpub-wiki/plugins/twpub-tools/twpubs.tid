@@ -9,7 +9,7 @@ icon: $:/plugins/immateriel/twpub-tools/twpub-list
 <$button class="twpub-library-button">
 <$action-sendmessage $message="tm-load-plugin-library" url={{!!url}} infoTitlePrefix="$:/temp/RemoteAssetInfo/"/>
 <$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/twpub-plugin-listing" currentTiddler=<<currentTiddler>>/>
-Load from ''<$transclude tiddler=<<currentTiddler>> field="caption"/>''
+{{$:/core/images/spiral}} Load from ''<$transclude tiddler=<<currentTiddler>> field="caption"/>''
 </$button>
 </div>
 </$list>
