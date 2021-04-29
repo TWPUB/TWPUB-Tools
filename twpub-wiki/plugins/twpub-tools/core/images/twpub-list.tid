@@ -1,7 +1,7 @@
 title: $:/plugins/immateriel/twpub-tools/twpub-list
 tags: $:/tags/Image
 
-<svg width="22pt" height="22pt" class="tc-image-layout-button tc-image-button" viewBox="0 0 128 128">
+<svg width="22pt" height="22pt" class="tc-image-twpub-list-button tc-image-button" viewBox="0 0 128 128">
     <rect x="4" y="0" width="22.5" height="112" rx="6"></rect>
     <rect x="35.625" y="16" width="18.5" height="96" rx="5"></rect>
     <rect transform="translate(65.500000, 61.000000) rotate(-4.000000) translate(-65.500000, -61.000000) " x="60.25" y="10" width="10.5" height="102" rx="3"></rect>
