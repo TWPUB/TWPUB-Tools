@@ -3,7 +3,4 @@ tags: $:/tags/SideBarSegment
 list-after: $:/core/ui/SideBarSegments/search
 caption: TWPubs
 
-<div class="twpub-badge-listing">
-<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" emptyMessage="(none -- [[load TWPUBs from a library|TWPUB Libraries]])" template="$:/plugins/immateriel/twpub-tools/templates/twpub-badge" storyview="pop">
-</$list>
-</div>
+{{$:/TWPubs}}

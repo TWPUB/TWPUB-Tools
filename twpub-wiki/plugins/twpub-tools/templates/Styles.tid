@@ -403,3 +403,16 @@ tags: [[$:/tags/Stylesheet]]
 .twpub-badge-dropdown {
 	width: 100%;
 }
+
+/* Library */
+
+.twpub-library-button {
+    padding: 4px 8px;
+    margin: 4px 0;
+	border: none;
+	cursor: pointer;
+	background: <<colour download-background>>;
+	border-radius: 1em;
+	color: <<colour download-foreground>>;
+	fill: <<colour download-foreground>>;
+}
