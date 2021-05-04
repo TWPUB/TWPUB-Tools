@@ -1,8 +1,10 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 
 <$button popup=<<qualify "$:/state/popup/twpub-badge">> class="twpub-badge">
-<div class="twpub-badge-icon">
-{{$:/plugins/immateriel/twpub-tools/twpub-icon}}
+<div class="twpub-badge-cover">
+<$list filter="[<currentTiddler>has[cover-image]]" variable="ignore" emptyMessage="{{$:/plugins/immateriel/twpub-tools/default-book-cover}}">
+<$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/>
+</$list>
 </div>
 <div class="twpub-badge-text">
 <div class="twpub-badge-title">
@@ -11,11 +13,6 @@ title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 <div class="twpub-badge-author">
 <$text text={{!!epub-creator}}/>
 </div>
-</div>
-<div class="twpub-badge-cover">
-<$list filter="[<currentTiddler>has[cover-image]]" variable="ignore">
-<$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/>
-</$list>
 </div>
 </$button>
 <$reveal state=<<qualify "$:/state/popup/twpub-badge">> type="popup" position="below" tag="div" class="twpub-badge-dropdown" animate="yes" retain="yes">

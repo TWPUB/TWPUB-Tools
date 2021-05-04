@@ -378,7 +378,7 @@ tags: [[$:/tags/Stylesheet]]
 
 .twpub-badge-text {
 	display: flex;
-    padding-right: 0.5em;
+    padding-left: 0.5em;
     flex-grow: 1;
 	flex-direction: column;
 }
@@ -398,10 +398,6 @@ tags: [[$:/tags/Stylesheet]]
 	height: 4em;
 	width: auto;
     vertical-align: middle;
-}
-
-.twpub-badge-dropdown {
-	width: 100%;
 }
 
 /* Library */
