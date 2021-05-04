@@ -1,5 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/twpub-plugin-listing
-footer: <$button message="tm-close-tiddler"><$action-sendmessage $message="tm-unload-plugin-library" url={{!!url}}/><$action-deletetiddler $filter="[prefix[$:/temp/ServerConnection/$(PluginLibraryURL)$]][prefix[$:/temp/RemoteAssetInfo/$(PluginLibraryURL)$]]"/>Cancel</$button>
+footer: <$button message="tm-close-tiddler"><$action-sendmessage $message="tm-unload-plugin-library" url={{!!url}}/><$action-deletetiddler $filter="[prefix[$:/temp/ServerConnection/$(PluginLibraryURL)$]][prefix[$:/temp/RemoteAssetInfo/$(PluginLibraryURL)$]]"/>Close</$button>
 subtitle: <$transclude field="caption"/>
 
 \import $:/core/ui/ControlPanel/Modals/AddPlugins
