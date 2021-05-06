@@ -416,3 +416,14 @@ tags: [[$:/tags/Stylesheet]]
 .twpub-library-button svg {
 	vertical-align: bottom;
 }
+
+/* Search results */
+
+.twpub-search-results {
+    white-space: normal;
+}
+
+.twpub-search-results a.tc-tiddlylink.twpub-search-result {
+    padding: 0.5em 0;
+    border-radius: 0.25em;
+}
