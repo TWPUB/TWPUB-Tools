@@ -15,6 +15,7 @@
   "scripts": {
     "test": "node epub2twpub/test.js",
     "start": "npm run build && npx http-server ./output",
+    "start-with-global-tiddlywiki": "tiddlywiki ./twpub-wiki --output ./output --rendertiddler  $:/core/save/all index.html text/plain && npx http-server ./output",
     "build": "./bin/slice-epubs-and-build-wiki.sh ./epubs ./tmp/twpubs && ./bin/build-twpub-library.sh ./tmp/twpubs ./output/library && ./bin/build-wiki.sh ./output",
     "clean": "./bin/clean.sh"
   }
