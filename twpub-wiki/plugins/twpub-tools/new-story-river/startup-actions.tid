@@ -1,0 +1,16 @@
+title: $:/plugins/immateriel/twpub-tools/startup-actions
+tags: $:/tags/StartupAction/Browser
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
+
+<$vars initFilter={{{ [<storyConfigurationTiddler>get[default-tiddlers]get[text]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+
+<$importvariables filter=<<storyDefinitionTiddler>>>
+
+<$transclude tiddler=<<storyDefinitionTiddler>> field="init-actions"/>
+
+</$importvariables>
+
+</$vars>
+
+</$list>

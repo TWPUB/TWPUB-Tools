@@ -1,0 +1,90 @@
+title: $:/plugins/immateriel/twpub-tools/twpub-story-definition
+caption: TWPub Story River
+tm-navigate: <<navigate-actions>>
+init-actions: <<init-actions>>
+class: twpub
+
+\define tv-action-refresh-policy() always
+
+\define navigate-actions()
+<!--
+
+Navigate to a tiddler
+
+storyConfigurationTiddler: title of tiddler containing story configuration
+event-paramObject-currentTiddler: title of tiddler that is target of navigation
+event-navigateTo: alias for event-paramObject-currentTiddler for backwards compatibility
+event-paramObject-template: template to be used
+event-paramObject-* other optional variables to be provided to the story entry
+
+-->
+<$action-sendmessage $message="tm-scroll" selector={{{ [<event-paramObject-currentTiddler>escapecss[]addprefix[#]] }}}/>
+\end
+
+\define init-actions()
+<!--
+
+Initialise the story
+
+storyConfigurationTiddler: title of tiddler containing story configuration
+initFilter: filter identifying initial tiddlers to navigate to
+
+-->
+\end
+
+\define story-river-content()
+<$tiddler tiddler={{{ [<storyConfigurationTiddler>get[story-twpub]] }}}>
+    <div class="twpub-frame">
+        <div class="twpub-toolbar">
+            <$button class="tc-btn-invisible">
+                <$action-sendmessage $message="tm-scroll" selector={{{ [<currentTiddler>escapecss[]addprefix[#]] }}}/>
+                <$text text={{!!description}}/>
+            </$button>
+        </div>
+        <div class="twpub-header">
+            <a id=<<currentTiddler>>></a>
+            <$list filter="[<currentTiddler>has[cover-image]]" variable="ignore">
+                <span class="twpub-cover-thumbnail"><$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/></span>
+            </$list>
+            <$vars state=<<qualify "$:/state/twpub/toc/open">>>
+                <h1>
+                    <$reveal type="nomatch" state=<<state>> text="show">
+                        <$button set=<<state>> setTo="show" class="tc-btn-invisible">{{$:/core/images/right-arrow}}</$button>
+                    </$reveal>
+                    <$reveal type="match" state=<<state>> text="show">
+                        <$button set=<<state>> setTo="hide" class="tc-btn-invisible">{{$:/core/images/down-arrow}}</$button>
+                    </$reveal>
+                    <$link><$text text={{!!description}}/></$link>
+                </h1>
+                <$reveal type="match" state=<<state>> text="show">
+                    <$linkcatcher actions=<<link-actions>>>
+                        <div class="tc-table-of-contents">
+                            <$macrocall $name="toc" tag={{{ [<currentTiddler>addsuffix[/toc]] }}}/>
+                        </div>
+                    </$linkcatcher>
+                </$reveal>
+            </$vars>
+            <div style="clear:both;"/>
+        </div>
+        <div class="twpub-body">
+            <$set name="popup-state" value=<<qualify "$:/state/twpub-popup">>>
+                <$set name="popup-title" value={{{ [<popup-state>addsuffix[-title]] }}}>
+                    <$eventcatcher events="click" selector="a[id].twpub-chunk-frame" actions-click=<<body-click-actions>> tag="div">
+                        <$reveal type="popup" state=<<popup-state>> tag="div" class="tc-twpub-popup" position="above" updatePopupPosition="yes" animate="yes">
+                            <div class="tc-drop-down tc-popup-keep">
+                                This is the popup, and you have clicked on<hr><$link to={{{ [<popup-title>get[text]] }}}><$text text={{{ [<popup-title>get[text]] }}}/></$link>
+                            </div>
+                        </$reveal>
+                        <div data-selection-actions-title="$:/plugins/tiddlywiki/twpub-tools/SelectionTrackerActions">
+                            <$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
+                                <$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+                            </$vars>
+                        </div>
+                    </$eventcatcher>
+                </$set>
+            </$set>
+        </div>
+    </div>
+</$tiddler>
+\end
+

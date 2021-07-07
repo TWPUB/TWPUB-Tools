@@ -1,0 +1,4 @@
+title: $:/config/PageColumns/NewRiver2
+tags: $:/tags/PageLayout/MainColumn
+template: $:/plugins/immateriel/twpub-tools/story
+story-configuration: $:/config/stories/secondary

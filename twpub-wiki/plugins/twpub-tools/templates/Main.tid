@@ -9,11 +9,11 @@ tags: $:/tags/FlexTemplate/Component
 		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Top}}
 	</header>
 	<main class="main column-container">
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]]">
-			<$list filter="[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="ignore">
-                <div class={{{ [<currentTiddler>get[template]get[class]] }}}>
-					<$vars template={{!!template}}>
-						<$tiddler tiddler={{!!tiddler}}>
+		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]]" variable="columnConfigTiddler">
+			<$list filter="[<columnConfigTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="ignore">
+                <div class={{{ [<columnConfigTiddler>get[template]get[class]] }}}>
+					<$vars template={{{ [<columnConfigTiddler>get[template]] }}}>
+						<$tiddler tiddler={{{ [<columnConfigTiddler>get[tiddler]] }}}>
 							<$transclude tiddler=<<template>> mode="inline"/>
 						</$tiddler>
 					</$vars>

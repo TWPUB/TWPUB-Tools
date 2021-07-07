@@ -2,6 +2,10 @@ title: HelloThere
 
 !! Welcome to TWPUB
 
+Custom variable: <$text text=<<custom>>/>
+
 {{$:/plugins/immateriel/twpub-tools/readme}}
 
-See [[documentation|$:/plugins/immateriel/twpub-tools/docs]] and [[specification|$:/plugins/immateriel/twpub-tools/spec]]
+See [[documentation|$:/plugins/immateriel/twpub-tools/docs]] and [[specification|$:/plugins/immateriel/twpub-tools/spec]].
+
+And [[Experimental Story Handling]]

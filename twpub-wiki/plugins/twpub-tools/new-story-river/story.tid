@@ -1,0 +1,71 @@
+title: $:/plugins/immateriel/twpub-tools/story
+class: river
+caption: New Story River
+
+\whitespace trim
+
+\define generic-handler()
+<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
+\end
+
+\define navigate-handler()
+<$action-log/>
+<$vars
+	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}>
+	<$list filter="[<event-shiftKey>match[false]]" variable="ignore">
+		<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
+	</$list>
+	<$list filter="[<event-shiftKey>match[true]]" variable="ignore">
+		<$action-setfield $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} target=<<event-paramObject-currentTiddler>>/>
+		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-navigateFromClientLeft>] =[[,]] =[<event-navigateFromClientTop>] =[[,]] =[<event-navigateFromClientWidth>] =[[,]] =[<event-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
+		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-navigateFromClientLeft>] =[[,]] =[<event-navigateFromClientTop>] =[[,]] =[<event-navigateFromClientWidth>] =[[,]] =[<event-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
+	</$list>
+</$vars>
+\end
+
+\define navigation-popup-actions()
+<$vars event-paramObject-currentTiddler=<<target>>>
+	<$vars storyConfigurationTiddler=<<currentTiddler>>>
+		<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+			<$importvariables filter=<<storyDefinitionTiddler>>>
+				<$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
+			</$importvariables>
+		</$vars>
+	</$vars>
+</$vars>
+\end
+
+\define navigation-popup()
+<$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
+	<$vars target={{{ [<stateTitle>get[target]] }}}>
+		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
+			<div class="tc-drop-down">
+				Navigating to:<$text text=<<target>>/>
+				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
+					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
+						<$text text={{!!caption}}/>
+					</$button>
+				</$list>
+			</div>
+		</$reveal>
+	</$vars>
+</$vars>
+\end
+
+<$vars storyConfigurationTiddler={{{ [<columnConfigTiddler>get[story-configuration]] }}}>
+	<$vars storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+		<$importvariables filter=<<storyDefinitionTiddler>>>
+			<div class="river-inner">
+				<$messagecatcher
+					$tm-navigate=<<navigate-handler>>
+					$tm-close-tiddler=<<generic-handler>>
+					$tm-edit-tiddler=<<generic-handler>>
+					$tm-save-tiddler=<<generic-handler>>
+				>
+					<<navigation-popup>>
+					<<story-river-content>>
+				</$messagecatcher>
+			</div>
+		</$importvariables>
+	</$vars>
+</$vars>
