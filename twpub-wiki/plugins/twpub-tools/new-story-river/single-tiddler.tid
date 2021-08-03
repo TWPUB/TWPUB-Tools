@@ -25,7 +25,7 @@ event-paramObject-* other optional variables to be provided to the story entry
 	storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
 	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
 >
-	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyListTitle>] }}} var-custom="This is a custom variable">
+	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyListTitle>] }}}>
 		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-]removeprefix[event-paramObject-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-]getvariable[]]"/>
 		<$set name="value" filter="[list<historyListTitle>] =[<createTiddler-title>]">
 			<$action-setfield $tiddler=<<historyListTitle>> list=<<value>>/>
