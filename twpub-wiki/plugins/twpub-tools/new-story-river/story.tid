@@ -27,8 +27,10 @@ caption: New Story River
 <$vars event-paramObject-currentTiddler=<<target>>>
 	<$vars storyConfigurationTiddler=<<currentTiddler>>>
 		<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-			<$importvariables filter=<<storyDefinitionTiddler>>>
-				<$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
+			<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+				<$importvariables filter=<<storyDefinitionTiddler>>>
+					<$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
+				</$importvariables>
 			</$importvariables>
 		</$vars>
 	</$vars>
@@ -41,6 +43,9 @@ caption: New Story River
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<target>>/>
+				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
+					<$transclude tiddler=<<target>> mode="block"/>
+				</div>
 				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
 					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
 						<$text text={{!!caption}}/>
@@ -54,18 +59,20 @@ caption: New Story River
 
 <$vars storyConfigurationTiddler={{{ [<columnConfigTiddler>get[story-configuration]] }}}>
 	<$vars storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-		<$importvariables filter=<<storyDefinitionTiddler>>>
-			<div class="river-inner">
-				<$messagecatcher
-					$tm-navigate=<<navigate-handler>>
-					$tm-close-tiddler=<<generic-handler>>
-					$tm-edit-tiddler=<<generic-handler>>
-					$tm-save-tiddler=<<generic-handler>>
-				>
-					<<navigation-popup>>
-					<<story-river-content>>
-				</$messagecatcher>
-			</div>
+		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+			<$importvariables filter=<<storyDefinitionTiddler>>>
+				<div class="river-inner">
+					<$messagecatcher
+						$tm-navigate=<<navigate-handler>>
+						$tm-close-tiddler=<<generic-handler>>
+						$tm-edit-tiddler=<<generic-handler>>
+						$tm-save-tiddler=<<generic-handler>>
+					>
+						<<navigation-popup>>
+						<<story-river-content>>
+					</$messagecatcher>
+				</div>
+			</$importvariables>
 		</$importvariables>
 	</$vars>
 </$vars>

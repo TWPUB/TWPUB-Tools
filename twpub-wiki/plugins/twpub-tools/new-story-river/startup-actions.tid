@@ -5,9 +5,13 @@ tags: $:/tags/StartupAction/Browser
 
 <$vars initFilter={{{ [<storyConfigurationTiddler>get[default-tiddlers]get[text]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 
+<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+
 <$importvariables filter=<<storyDefinitionTiddler>>>
 
 <$transclude tiddler=<<storyDefinitionTiddler>> field="init-actions"/>
+
+</$importvariables>
 
 </$importvariables>
 
