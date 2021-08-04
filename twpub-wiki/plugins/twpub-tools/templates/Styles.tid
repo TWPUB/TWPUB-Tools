@@ -152,7 +152,6 @@ tags: [[$:/tags/Stylesheet]]
 }
 
 .flextemplate-container .twpub-frame {
-	position: relative;
 	background-color: <<colour tiddler-background>>;
 	border-right: 1px solid <<colour muted-foreground>>;
 }
@@ -194,10 +193,6 @@ tags: [[$:/tags/Stylesheet]]
 }
 
 /* Dropdown formatting */
-
-.flextemplate-container .twpub-frame .twpub-body {
-	position: relative;
-}
 
 /* twpub formatting */
 

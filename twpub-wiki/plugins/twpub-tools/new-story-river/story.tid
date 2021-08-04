@@ -9,22 +9,30 @@ caption: New Story River
 \end
 
 \define navigate-handler()
-<$action-log/>
 <$vars
-	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}>
-	<$list filter="[<event-shiftKey>match[false]]" variable="ignore">
+	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
+	event-paramObject-template={{{ [<event-template>!is[blank]else<event-paramObject-template>] }}}
+	event-paramObject-shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
+	event-paramObject-navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
+	event-paramObject-navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}
+	event-paramObject-navigateFromClientWidth={{{ [<event-navigateFromClientWidth>!is[blank]else<event-paramObject-navigateFromClientWidth>] }}}
+	event-paramObject-navigateFromClientHeight={{{ [<event-navigateFromClientHeight>!is[blank]else<event-paramObject-navigateFromClientHeight>] }}}
+>
+<$action-log message="In navigate-handler" event-paramObject-template=<<event-paramObject-template>>/>
+<$action-log/>
+	<$list filter="[<event-paramObject-shiftKey>match[false]]" variable="ignore">
 		<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
 	</$list>
-	<$list filter="[<event-shiftKey>match[true]]" variable="ignore">
-		<$action-setfield $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} target=<<event-paramObject-currentTiddler>>/>
-		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-navigateFromClientLeft>] =[[,]] =[<event-navigateFromClientTop>] =[[,]] =[<event-navigateFromClientWidth>] =[[,]] =[<event-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
-		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-navigateFromClientLeft>] =[[,]] =[<event-navigateFromClientTop>] =[[,]] =[<event-navigateFromClientWidth>] =[[,]] =[<event-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
+	<$list filter="[<event-paramObject-shiftKey>match[true]]" variable="ignore">
+		<$action-setfield $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} target=<<event-paramObject-currentTiddler>> template=<<event-paramObject-template>>/>
+		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
+		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
 	</$list>
 </$vars>
 \end
 
 \define navigation-popup-actions()
-<$vars event-paramObject-currentTiddler=<<target>>>
+<$vars event-paramObject-currentTiddler=<<target>> event-paramObject-template=<<template>>>
 	<$vars storyConfigurationTiddler=<<currentTiddler>>>
 		<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 			<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
@@ -39,7 +47,7 @@ caption: New Story River
 
 \define navigation-popup()
 <$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
-	<$vars target={{{ [<stateTitle>get[target]] }}}>
+	<$vars target={{{ [<stateTitle>get[target]] }}} template={{{ [<stateTitle>get[template]] }}}>
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<target>>/>

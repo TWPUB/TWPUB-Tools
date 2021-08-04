@@ -19,12 +19,14 @@ event-paramObject-template: template to be used
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->
+<$action-log message="In classic navigate-actions" event-paramObject-template=<<event-paramObject-template>>/>
+<$action-log/>
 <$vars
     event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
     storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
     historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
 >
-    <$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyListTitle>] }}}>
+    <$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyListTitle>] }}} var-template=<<event-paramObject-template>>>
         <$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-]removeprefix[event-paramObject-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-]getvariable[]]"/>
         <$set name="value" filter="[list<historyListTitle>] =[<createTiddler-title>]">
             <$action-setfield $tiddler=<<historyListTitle>> list=<<value>>/>
