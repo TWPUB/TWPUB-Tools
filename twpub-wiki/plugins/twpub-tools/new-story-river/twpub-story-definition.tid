@@ -37,8 +37,8 @@ initFilter: filter identifying initial tiddlers to navigate to
 	$message="tm-navigate"
 	currentTiddler=<<dom-id>>
 	shiftKey="true"
-	navigateFromClientLeft=<<event-fromcatcherparent-posx>>
-	navigateFromClientTop=<<event-fromcatcherparent-posy>>
+	navigateFromClientLeft=<<event-fromviewport-posx>>
+	navigateFromClientTop=<<event-fromviewport-posy>>
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
 	template="$:/core/templates/plain-text-tiddler"
