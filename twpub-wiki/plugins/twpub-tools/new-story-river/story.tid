@@ -51,14 +51,15 @@ caption: New Story River
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<target>>/>
-				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
-					<$transclude tiddler=<<target>> mode="block"/>
-				</div>
 				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
 					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
 						<$text text={{!!caption}}/>
 					</$button>
 				</$list>
+				<hr>
+				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
+					<$transclude tiddler=<<target>> mode="block"/>
+				</div>
 			</div>
 		</$reveal>
 	</$vars>
