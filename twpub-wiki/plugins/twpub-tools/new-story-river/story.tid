@@ -24,7 +24,7 @@ caption: New Story River
 		<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
 	</$list>
 	<$list filter="[<event-paramObject-shiftKey>match[true]]" variable="ignore">
-		<$action-setfield $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} target=<<event-paramObject-currentTiddler>> template=<<event-paramObject-template>>/>
+		<$action-setfield $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} target=<<event-paramObject-currentTiddler>> template=<<event-paramObject-template>> bodyTemplate=<<event-paramObject-bodyTemplate>>/>
 		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
 		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
 	</$list>
@@ -32,7 +32,7 @@ caption: New Story River
 \end
 
 \define navigation-popup-actions()
-<$vars event-paramObject-currentTiddler=<<target>> event-paramObject-template=<<template>>>
+<$vars event-paramObject-currentTiddler=<<target>> event-paramObject-template=<<template>> event-paramObject-bodyTemplate=<<bodyTemplate>>>
 	<$vars storyConfigurationTiddler=<<currentTiddler>>>
 		<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 			<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
@@ -47,7 +47,7 @@ caption: New Story River
 
 \define navigation-popup()
 <$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
-	<$vars target={{{ [<stateTitle>get[target]] }}} template={{{ [<stateTitle>get[template]] }}}>
+	<$vars target={{{ [<stateTitle>get[target]] }}} template={{{ [<stateTitle>get[template]] }}} bodyTemplate={{{ [<stateTitle>get[bodyTemplate]] }}}>
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<target>>/>

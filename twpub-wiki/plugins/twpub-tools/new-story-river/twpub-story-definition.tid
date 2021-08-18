@@ -41,12 +41,8 @@ initFilter: filter identifying initial tiddlers to navigate to
 	navigateFromClientTop=<<event-fromviewport-posy>>
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
-	template="$:/core/templates/plain-text-tiddler"
+	bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"
 />
-\end
-
-\define linkcatcher-actions()
-<$action-navigate $to=<<navigateTo>> template="$:/core/templates/plain-text-tiddler"/>
 \end
 
 \define story-river-content()
