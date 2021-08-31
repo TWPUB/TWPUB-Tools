@@ -5,11 +5,7 @@ tags: $:/tags/ViewTemplate
 
 <$list filter="[all[current]!has[plugin-type]!field:hide-body[yes]]">
 
-<$transclude tiddler={{{ [[bodyTemplate]is[variable]getvariable[]else<currentTiddler>] }}}>
-
-<$transclude tiddler="$:/language/MissingTiddler/Hint"/>
-
-</$transclude>
+<$transclude tiddler={{{ [[bodyTemplate]is[variable]getvariable[]] ~[<currentTiddler>is[tiddler]] ~[<currentTiddler>is[shadow]] ~$:/language/MissingTiddler/Hint}}}/>
 
 </$list>
 
