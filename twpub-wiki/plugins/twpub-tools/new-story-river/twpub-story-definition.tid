@@ -70,11 +70,9 @@ initFilter: filter identifying initial tiddlers to navigate to
 					<$link><$text text={{!!description}}/></$link>
 				</h1>
 				<$reveal type="match" state=<<state>> text="show">
-					<$linkcatcher actions=<<link-actions>>>
-						<div class="tc-table-of-contents">
-							<$macrocall $name="toc" tag={{{ [<currentTiddler>addsuffix[/toc]] }}}/>
-						</div>
-					</$linkcatcher>
+					<div class="tc-table-of-contents">
+						<$macrocall $name="toc" tag={{{ [<currentTiddler>addsuffix[/toc]] }}}/>
+					</div>
 				</$reveal>
 			</$vars>
 			<div style="clear:both;"/>
