@@ -1,0 +1,58 @@
+title: $:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body
+
+Number of context chunks: <$text text=<<numberOfContextChunks>>/>
+
+<$button>
+<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value={{{ [[numberOfContextChunks]is[variable]<numberOfContextChunks>else[0]subtract[1]max[0]] }}}/>
+less
+</$button><$button>
+<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value="0"/>
+none
+</$button>
+<$button>
+<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value={{{ [[numberOfContextChunks]is[variable]<numberOfContextChunks>else[0]add[1]] }}}/>
+more
+</$button>
+
+<$list filter="[<currentTiddler>shadowsource[]has[epub-title]]" variable="twpub">
+	<div class="twpub-extract-item-toolbar">
+		<span class="twpub-extract-item-toolbar-item">
+			<$linkcatcher actions=<<link-actions>>>
+				<$button to=<<currentTiddler>> class="tc-btn-invisible">
+					{{$:/core/images/open-window}}
+				</$button>
+			</$linkcatcher>
+		</span>
+		<span class="twpub-extract-item-toolbar-item">
+			<$button to=<<twpub>> class="tc-btn-invisible">
+				{{$:/core/images/plugin-generic-plugin}}
+			</$button>
+		</span>
+	</div>
+
+	<$vars currentChunkNumber={{{ [<currentTiddler>split[/]nth[6]else[0]] }}}>
+		<$vars startChunkNumber={{{ [<currentChunkNumber>subtract<numberOfContextChunks>max[0]] }}} endChunkNumber={{{ [<currentChunkNumber>subtract[1]] }}}>
+			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
+				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
+					<div style="border:1px solid black; padding: 1em;">
+						<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
+					</div>
+				</$list>
+			</$list>
+		</$vars>
+		<div style="border:1px solid black; padding: 1em; background-color:#e6e6ff;">
+			<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
+		</div>
+		<$vars startChunkNumber={{{ [<currentChunkNumber>add[1]] }}} endChunkNumber={{{ [<currentChunkNumber>add<numberOfContextChunks>] }}}>
+			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
+				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
+					<div style="border:1px solid black; padding: 1em;">
+						<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
+					</div>
+				</$list>
+			</$list>
+		</$vars>
+	</$vars>
+
+
+</$list>

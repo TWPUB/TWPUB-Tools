@@ -41,7 +41,7 @@ initFilter: filter identifying initial tiddlers to navigate to
 	navigateFromClientTop=<<event-fromviewport-posy>>
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
-	bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"
+	bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
 />
 \end
 
