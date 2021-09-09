@@ -2,6 +2,8 @@ title: HelloThere
 
 !! Welcome to TWPUB
 
+<$drawcanvas tiddler="$:/plugins/immateriel/twpub-tools/docs" width=400 height=1100/>
+
 Custom variable: <$text text=<<custom>>/>
 
 {{$:/plugins/immateriel/twpub-tools/readme}}
