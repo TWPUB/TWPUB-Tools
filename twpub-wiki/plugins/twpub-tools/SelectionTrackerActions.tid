@@ -1,4 +1,4 @@
-title: $:/plugins/tiddlywiki/twpub-tools/SelectionTrackerActions
+title: $:/plugins/immateriel/twpub-tools/SelectionTrackerActions
 
 <$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 	<$action-navigate $to=<<modifiedTiddler>>/>

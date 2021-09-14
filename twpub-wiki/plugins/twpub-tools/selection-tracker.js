@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/tiddlywiki/twpub-tools/selection-tracker.js
+title: $:/plugins/immateriel/twpub-tools/selection-tracker.js
 type: application/javascript
 module-type: startup
 
