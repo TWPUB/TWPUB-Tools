@@ -34,19 +34,19 @@ more
 		<$vars startChunkNumber={{{ [<currentChunkNumber>subtract<numberOfContextChunks>max[0]] }}} endChunkNumber={{{ [<currentChunkNumber>subtract[1]] }}}>
 			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
 				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
-					<div style="border:1px solid black; padding: 1em;">
+					<div style="border-bottom:1px solid black; padding: 1em 0;">
 						<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
 					</div>
 				</$list>
 			</$list>
 		</$vars>
-		<div style="border:1px solid black; padding: 1em; background-color:#e6e6ff;">
+		<div style="padding: 1em 0; background-color:#e6e6ff;">
 			<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
 		</div>
 		<$vars startChunkNumber={{{ [<currentChunkNumber>add[1]] }}} endChunkNumber={{{ [<currentChunkNumber>add<numberOfContextChunks>] }}}>
 			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
 				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
-					<div style="border:1px solid black; padding: 1em;">
+					<div style="border-top:1px solid black; padding: 1em 0;">
 						<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
 					</div>
 				</$list>
