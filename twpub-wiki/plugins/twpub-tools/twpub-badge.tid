@@ -19,7 +19,9 @@ title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 <div class="tc-drop-down-wrapper">
 <div class="tc-drop-down">
 <$button class="tc-btn-invisible">
-<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/plugins/immateriel/twpub-tools/templates/twpub" tiddler=<<currentTiddler>>/>
+<$action-createtiddler $basetitle="$:/config/Stories/New" tags="$:/tags/Story" caption="New story" story-definition="$:/plugins/immateriel/twpub-tools/twpub-story-definition" story-twpub=<<currentTiddler>>>
+<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" caption="New column" template="$:/plugins/immateriel/twpub-tools/story" story-configuration=<<createTiddler-title>>/>
+</$action-createtiddler>
 Read in new column
 </$button>
 <$button class="tc-btn-invisible">
