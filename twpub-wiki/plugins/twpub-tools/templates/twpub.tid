@@ -25,12 +25,12 @@ class: twpub
 		</$list>
 		<$vars state=<<qualify "$:/state/twpub/toc/open">>>
 			<h1>
-					<$reveal type="nomatch" state=<<state>> text="show">
-						<$button set=<<state>> setTo="show" class="tc-btn-invisible">{{$:/core/images/right-arrow}}</$button>
-					</$reveal>
-					<$reveal type="match" state=<<state>> text="show">
-						<$button set=<<state>> setTo="hide" class="tc-btn-invisible">{{$:/core/images/down-arrow}}</$button>
-					</$reveal>
+				<$reveal type="nomatch" state=<<state>> text="show">
+					<$button set=<<state>> setTo="show" class="tc-btn-invisible">{{$:/core/images/right-arrow}}</$button>
+				</$reveal>
+				<$reveal type="match" state=<<state>> text="show">
+					<$button set=<<state>> setTo="hide" class="tc-btn-invisible">{{$:/core/images/down-arrow}}</$button>
+				</$reveal>
 				<$link><$text text={{!!description}}/></$link>
 			</h1>
 			<$reveal type="match" state=<<state>> text="show">
