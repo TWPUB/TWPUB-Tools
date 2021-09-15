@@ -1,5 +1,4 @@
 title: $:/plugins/immateriel/twpub-tools/story
-class: river
 caption: New Story River
 
 \whitespace trim
@@ -70,7 +69,7 @@ caption: New Story River
 	<$vars storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
 			<$importvariables filter=<<storyDefinitionTiddler>>>
-				<div class="river-inner">
+				<div class={{{ [<storyDefinitionTiddler>get[class]] }}}>
 					<$messagecatcher
 						$tm-navigate=<<navigate-handler>>
 						$tm-close-tiddler=<<generic-handler>>

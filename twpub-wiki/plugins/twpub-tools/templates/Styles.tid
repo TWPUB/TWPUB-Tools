@@ -162,7 +162,6 @@ tags: [[$:/tags/Stylesheet]]
 	right: 0;
 	top: 0;
 	text-align: center;
-	z-index: 2000;
 	border-bottom: 1px solid <<colour message-border>>;
 	background-color: <<colour message-background>>;
 	color: <<colour message-foreground>>;
@@ -212,7 +211,6 @@ tags: [[$:/tags/Stylesheet]]
 
 .flextemplate-container .twpub-frame .twpub-chunk-frame {
 	display: block;
-	position: relative;
 }
 
 .flextemplate-container .twpub-frame .twpub-chunk-frame:hover .twpub-chunk-content {
