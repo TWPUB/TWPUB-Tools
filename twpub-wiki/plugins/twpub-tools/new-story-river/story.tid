@@ -8,6 +8,11 @@ caption: New Story River
 \end
 
 \define navigate-handler()
+<!--
+
+Traps navigate events within the story river
+
+-->
 <$vars
 	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
 	event-paramObject-template={{{ [<event-template>!is[blank]else<event-paramObject-template>] }}}
@@ -31,6 +36,11 @@ caption: New Story River
 \end
 
 \define navigation-popup-actions()
+<!--
+
+Handles clicks within the navigation popup menu
+
+-->
 <$vars event-paramObject-currentTiddler=<<target>> event-paramObject-template=<<template>> event-paramObject-bodyTemplate=<<bodyTemplate>>>
 	<$vars storyConfigurationTiddler=<<currentTiddler>>>
 		<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
@@ -45,6 +55,11 @@ caption: New Story River
 \end
 
 \define navigation-popup()
+<!--
+
+Renders the navigation popup menu
+
+-->
 <$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
 	<$vars target={{{ [<stateTitle>get[target]] }}} template={{{ [<stateTitle>get[template]] }}} bodyTemplate={{{ [<stateTitle>get[bodyTemplate]] }}}>
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
