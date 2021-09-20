@@ -67,7 +67,12 @@ PageScroller.prototype.scrollIntoView = function(element,callback) {
 
 PageScroller.prototype.scrollSelectorIntoView = function(baseElement,selector,callback) {
 	baseElement = baseElement || document.body;
-	var element = baseElement.querySelector(selector);
+	var element;
+	try {
+		element = baseElement.querySelector(selector);
+	} catch(e) {
+		// Ignore bad selectors
+	}
 	if(element) {
 		this.scrollIntoView(element,callback);
 	}
