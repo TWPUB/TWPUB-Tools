@@ -52,7 +52,7 @@ class: twpub
 							This is the popup, and you have clicked on<hr><$link to={{{ [<popup-title>get[text]] }}}><$text text={{{ [<popup-title>get[text]] }}}/></$link>
 						</div>
 					</$reveal>
-					<div data-selection-actions-title="$:/plugins/tiddlywiki/twpub-tools/SelectionTrackerActions">
+					<div data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions">
 						<$linkcatcher actions=<<link-actions>>>
 							<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
 								<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>

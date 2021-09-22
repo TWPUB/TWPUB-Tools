@@ -1,6 +1,23 @@
 title: $:/plugins/immateriel/twpub-tools/SelectionTrackerActions
 
-<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-	<$action-navigate $to=<<modifiedTiddler>>/>
-	<$action-log/>
-</$navigator>
+<$vars storyConfigurationTiddler={{{ [all[shadows+tiddlers]tag[$:/tags/Story]] }}}>
+
+<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+
+<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+
+<$importvariables filter=<<storyDefinitionTiddler>>>
+
+<$vars event-paramObject-currentTiddler=<<modifiedTiddler>> event-paramObject-template="$:/core/ui/EditTemplate">
+
+<$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
+
+</$vars>
+
+</$importvariables>
+
+</$importvariables>
+
+</$vars>
+
+</$vars>
