@@ -24,7 +24,7 @@ Traps navigate events within the story river
 >
 <$action-log message="In navigate-handler" event-paramObject-template=<<event-paramObject-template>>/>
 <$action-log/>
-	<$list filter="[<event-paramObject-shiftKey>match[false]]" variable="ignore">
+	<$list filter="[<event-paramObject-shiftKey>!match[true]]" variable="ignore">
 		<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
 	</$list>
 	<$list filter="[<event-paramObject-shiftKey>match[true]]" variable="ignore">
