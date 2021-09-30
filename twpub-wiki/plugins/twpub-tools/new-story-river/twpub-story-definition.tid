@@ -99,8 +99,13 @@ initFilter: filter identifying initial tiddlers to navigate to
 				<$set name="popup-title" value={{{ [<popup-state>addsuffix[-title]] }}}>
 					<$eventcatcher events="click" selector="a[id].twpub-chunk-frame" actions-click=<<body-click-actions>> tag="div">
 						<div data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions">
-							<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
-								<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+							<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}} filter={{{ [<storyConfigurationTiddler>get[story-filter]] }}}>
+								<$list filter="[<storyConfigurationTiddler>has[story-filter]]" variable="ignore">
+									<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]filter<filter>]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+								</$list>
+								<$list filter="[<storyConfigurationTiddler>!has[story-filter]]" variable="ignore">
+									<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+								</$list>
 							</$vars>
 						</div>
 					</$eventcatcher>
