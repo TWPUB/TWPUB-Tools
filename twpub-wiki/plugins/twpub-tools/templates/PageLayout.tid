@@ -6,6 +6,14 @@ description: TWPub Tools Custom Page Layout
 \whitespace trim
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
 
+\define body()
+<$dropzone enable=<<tv-enable-drag-and-drop>>>
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="listItem">
+		<$transclude tiddler=<<listItem>> mode="inline"/>
+	</$list>
+</$dropzone>
+\end
+
 <$vars
 	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
 	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
@@ -15,23 +23,9 @@ description: TWPub Tools Custom Page Layout
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}
 >
-
-<div class="tc-layout-flextemplate">
-
-<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-
-<$dropzone enable=<<tv-enable-drag-and-drop>>>
-
-<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="listItem">
-
-<$transclude tiddler=<<listItem>> mode="inline"/>
-
-</$list>
-
-</$dropzone>
-
-</$navigator>
-
-</div>
-
+	<div class="tc-layout-flextemplate">
+		<$importvariables filter="$:/plugins/immateriel/twpub-tools/Navigator">
+			<$macrocall $name="navigator-handler" content=<<body>>/>
+		</$importvariables>
+	</div>
 </$vars>

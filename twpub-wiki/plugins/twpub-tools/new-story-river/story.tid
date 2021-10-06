@@ -4,80 +4,16 @@ caption: New Story River
 \whitespace trim
 
 \define generic-handler()
-<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
-\end
-
-\define navigate-handler()
 <!--
-
-Traps navigate events within the story river
-
+Generic message handler that passes the message on but adds the story configuration and definition tiddlers
 -->
-<$vars
-	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
-	event-paramObject-template={{{ [<event-template>!is[blank]else<event-paramObject-template>] }}}
-	event-paramObject-shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
-	event-paramObject-navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
-	event-paramObject-navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}
-	event-paramObject-navigateFromClientWidth={{{ [<event-navigateFromClientWidth>!is[blank]else<event-paramObject-navigateFromClientWidth>] }}}
-	event-paramObject-navigateFromClientHeight={{{ [<event-navigateFromClientHeight>!is[blank]else<event-paramObject-navigateFromClientHeight>] }}}
->
-<$action-log message="In navigate-handler" event-paramObject-template=<<event-paramObject-template>>/>
-<$action-log/>
-	<$list filter="[<event-paramObject-shiftKey>!match[true]]" variable="ignore">
-		<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
-	</$list>
-	<$list filter="[<event-paramObject-shiftKey>match[true]]" variable="ignore">
-		<$action-setfield $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} target=<<event-paramObject-currentTiddler>> template=<<event-paramObject-template>> bodyTemplate=<<event-paramObject-bodyTemplate>>/>
-		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
-		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
-	</$list>
-</$vars>
-\end
-
-\define navigation-popup-actions()
-<!--
-
-Handles clicks within the navigation popup menu
-
--->
-<$vars event-paramObject-currentTiddler=<<target>> event-paramObject-template=<<template>> event-paramObject-bodyTemplate=<<bodyTemplate>>>
-	<$vars storyConfigurationTiddler=<<currentTiddler>>>
-		<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-			<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
-				<$importvariables filter=<<storyDefinitionTiddler>>>
-					<$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
-				</$importvariables>
-			</$importvariables>
-		</$vars>
-	</$vars>
-</$vars>
-\end
-
-\define navigation-popup()
-<!--
-
-Renders the navigation popup menu
-
--->
-<$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
-	<$vars target={{{ [<stateTitle>get[target]] }}} template={{{ [<stateTitle>get[template]] }}} bodyTemplate={{{ [<stateTitle>get[bodyTemplate]] }}}>
-		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
-			<div class="tc-drop-down">
-				Navigating to:<$text text=<<target>>/>
-				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
-					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
-						<$text text={{!!caption}}/>
-					</$button>
-				</$list>
-				<hr>
-				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
-					<$transclude tiddler=<<target>> mode="block"/>
-				</div>
-			</div>
-		</$reveal>
-	</$vars>
-</$vars>
+<$action-sendmessage
+	$message=<<event-type>>
+	storyConfigurationTiddler=<<storyConfigurationTiddler>>
+	storyDefinitionTiddler=<<storyDefinitionTiddler>>
+	$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"
+	$values="=[<list-event-paramObject>enlist-input[]addprefix[event-paramObject-]getvariable[]] =[<list-event>enlist-input[]addprefix[event-]getvariable[]]"
+/>
 \end
 
 <$vars storyConfigurationTiddler={{{ [<columnConfigTiddler>get[story-configuration]] }}}>
@@ -86,7 +22,7 @@ Renders the navigation popup menu
 			<$importvariables filter=<<storyDefinitionTiddler>>>
 				<div class={{{ [<storyDefinitionTiddler>get[class]] }}}>
 					<$messagecatcher
-						$tm-navigate=<<navigate-handler>>
+						$tm-navigate=<<generic-handler>>
 						$tm-close-tiddler=<<generic-handler>>
 						$tm-edit-tiddler=<<generic-handler>>
 						$tm-save-tiddler=<<generic-handler>>
