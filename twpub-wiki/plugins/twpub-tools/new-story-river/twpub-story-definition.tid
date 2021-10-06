@@ -17,7 +17,7 @@ event-paramObject-template: template to be used
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->
-<$action-sendmessage $message="tm-scroll" selector={{{ [<event-paramObject-navigateTo>escapecss[]addprefix[#]] }}}/>
+<$action-sendmessage $message="tm-scroll" selector={{{ [<event-paramObject-currentTiddler>escapecss[]addprefix[#]] }}}/>
 \end
 
 \define init-actions()
@@ -36,7 +36,7 @@ initFilter: filter identifying initial tiddlers to navigate to
 <$action-log/>
 <$action-sendmessage
 	$message="tm-navigate"
-	navigateTo=<<event-navigateTo>>
+	currentTiddler=<<event-navigateTo>>
 	shiftKey=<<event-shiftKey>>
 	navigateFromClientLeft=<<event-navigateFromClientLeft>>
 	navigateFromClientTop=<<event-navigateFromClientTop>>
