@@ -9,6 +9,12 @@ Generic message handler that passes the message on but adds the story configurat
 -->
 <$action-sendmessage
 	$message=<<event-type>>
+	currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
+	shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
+	navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
+	navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}
+	navigateFromClientWidth={{{ [<event-navigateFromClientWidth>!is[blank]else<event-paramObject-navigateFromClientWidth>] }}}
+	navigateFromClientHeight={{{ [<event-navigateFromClientHeight>!is[blank]else<event-paramObject-navigateFromClientHeight>] }}}
 	storyConfigurationTiddler=<<storyConfigurationTiddler>>
 	storyDefinitionTiddler=<<storyDefinitionTiddler>>
 	$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"

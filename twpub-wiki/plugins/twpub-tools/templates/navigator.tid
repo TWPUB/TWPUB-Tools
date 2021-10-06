@@ -14,7 +14,7 @@ Traps navigate events within the story river
 -->
 <$vars
 	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}}
-	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-navigateTo>] }}}
+	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
 	event-paramObject-template={{{ [<event-template>!is[blank]else<event-paramObject-template>] }}}
 	event-paramObject-shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
 	event-paramObject-navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
@@ -87,7 +87,6 @@ Renders the navigation popup menu
 \define navigator-handler(content)
 <$messagecatcher
 	$tm-navigate=<<navigate-handler>>
-	$tm-new-navigate=<<new-navigate-handler>>
 	$tm-close-tiddler=<<generic-handler>>
 	$tm-edit-tiddler=<<generic-handler>>
 	$tm-save-tiddler=<<generic-handler>>
