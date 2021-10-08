@@ -3,7 +3,17 @@ title: $:/plugins/immateriel/twpub-tools/Navigator
 \define tv-action-refresh-policy() always
 
 \define generic-handler()
-<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
+<$vars storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}} >
+	<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+<$action-log message="In navigator generic-handler"/>
+<$action-log/>
+		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+			<$importvariables filter=<<storyDefinitionTiddler>>>
+				<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
+			</$importvariables>
+		</$importvariables>
+	</$vars>
+</$vars>
 \end
 
 \define navigate-handler()

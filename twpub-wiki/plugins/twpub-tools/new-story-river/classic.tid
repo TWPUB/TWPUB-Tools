@@ -82,12 +82,14 @@ event-tiddlerTitle: title of tiddler that is to be edited
 <$vars
 	storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
 	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
-	title=<<event-tiddlerTitle>>
+	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
+<$action-log msg="In classic edit-tiddler-actions"/>
+<$action-log/>
 	<$wikify name="confirmation-message" text={{$:/language/ConfirmEditShadowTiddler}}>
-		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<event-tiddlerTitle>is[shadow]!is[tiddler]then[yes]else[no]] }}}>
-			<$action-createtiddler $basetitle={{{ [<event-tiddlerTitle>addprefix[Draft of ']addsuffix[']] }}} $template=<<event-tiddlerTitle>> draft.of=<<event-tiddlerTitle>> draft.title=<<event-tiddlerTitle>>>
-				<$list filter="[list<storyListTitle>] :filter[field:var-currentTiddler<event-tiddlerTitle>]" variable="storyItemTiddler">
+		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<title>is[shadow]!is[tiddler]then[yes]else[no]] }}}>
+			<$action-createtiddler $basetitle={{{ [<title>addprefix[Draft of ']addsuffix[']] }}} $template=<<title>> draft.of=<<title>> draft.title=<<title>>>
+				<$list filter="[list<storyListTitle>] :filter[field:var-currentTiddler<title>]" variable="storyItemTiddler">
 					<$action-setfield $tiddler=<<storyItemTiddler>> var-currentTiddler=<<createTiddler-title>> var-template="$:/core/ui/EditTemplate"/>
 					<!-- POSSIBLY SHOULD NAVIGATE TO THE TIDDLER AS WELL HERE -->
 				</$list>
