@@ -9,7 +9,7 @@ Generic message handler that passes the message on but adds the story configurat
 -->
 <$action-sendmessage
 	$message=<<event-type>>
-	currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
+	var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
 	shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
 	navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
 	navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}

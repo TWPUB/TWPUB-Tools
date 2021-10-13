@@ -15,19 +15,19 @@ init-actions: <<init-actions>>
 Navigate to a tiddler
 
 storyConfigurationTiddler: title of tiddler containing story configuration
-event-paramObject-currentTiddler: title of tiddler that is target of navigation
-event-navigateTo: alias for event-paramObject-currentTiddler for backwards compatibility
+event-paramObject-var-currentTiddler: title of tiddler that is target of navigation
+event-navigateTo: alias for event-paramObject-var-currentTiddler for backwards compatibility
 event-paramObject-template: template to be used
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->
 <$vars
-	event-paramObject-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-currentTiddler>] }}}
+	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
 	storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
 	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
 >
 	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyListTitle>] }}}>
-		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-]removeprefix[event-paramObject-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-]getvariable[]]"/>
+		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-var-]removeprefix[event-paramObject-var-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-var-]getvariable[]]"/>
 		<$set name="value" filter="[list<historyListTitle>] =[<createTiddler-title>]">
 			<$action-setfield $tiddler=<<historyListTitle>> list=<<value>>/>
 		</$set>

@@ -17,7 +17,7 @@ event-paramObject-template: template to be used
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->
-<$action-sendmessage $message="tm-scroll" selector={{{ [<event-paramObject-currentTiddler>escapecss[]addprefix[#]] }}}/>
+<$action-sendmessage $message="tm-scroll" selector={{{ [<event-paramObject-var-currentTiddler>escapecss[]addprefix[#]] }}}/>
 \end
 
 \define init-actions()
@@ -36,26 +36,26 @@ initFilter: filter identifying initial tiddlers to navigate to
 <$action-log/>
 <$action-sendmessage
 	$message="tm-navigate"
-	currentTiddler=<<event-navigateTo>>
+	var-currentTiddler=<<event-navigateTo>>
 	shiftKey=<<event-shiftKey>>
 	navigateFromClientLeft=<<event-navigateFromClientLeft>>
 	navigateFromClientTop=<<event-navigateFromClientTop>>
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
-	bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
+	var-bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
 />
 \end
 
 \define body-click-actions()
 <$action-sendmessage
 	$message="tm-navigate"
-	currentTiddler=<<dom-id>>
+	var-currentTiddler=<<dom-id>>
 	shiftKey="true"
 	navigateFromClientLeft=<<event-fromviewport-posx>>
 	navigateFromClientTop=<<event-fromviewport-posy>>
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
-	bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
+	var-bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
 />
 \end
 

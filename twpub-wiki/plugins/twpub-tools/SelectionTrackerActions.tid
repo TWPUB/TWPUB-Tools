@@ -8,7 +8,7 @@ title: $:/plugins/immateriel/twpub-tools/SelectionTrackerActions
 
 <$importvariables filter=<<storyDefinitionTiddler>>>
 
-<$vars event-paramObject-currentTiddler=<<modifiedTiddler>> event-paramObject-template="$:/core/ui/EditTemplate">
+<$vars event-paramObject-var-currentTiddler=<<modifiedTiddler>> event-paramObject-template="$:/core/ui/EditTemplate">
 
 <$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
 
