@@ -67,8 +67,8 @@ SetMultipleVariablesWidget.prototype.refresh = function(changedTiddlers) {
     var filterNames = this.getAttribute("$names",""),
         filterValues = this.getAttribute("$values",""),
         variableNames = this.wiki.filterTiddlers(filterNames,this),
-        variableNames = this.wiki.filterTiddlers(filterValues,this);
-    if(!$tw.utils.isArrayEqual(filterNames,variableNames) || !$tw.utils.isArrayEqual(filterValues,variableNames)) {
+        variableValues = this.wiki.filterTiddlers(filterValues,this);
+    if(!$tw.utils.isArrayEqual(this.variableNames,variableNames) || !$tw.utils.isArrayEqual(this.variableValues,variableValues)) {
         this.refreshSelf();
         return true;
     }
