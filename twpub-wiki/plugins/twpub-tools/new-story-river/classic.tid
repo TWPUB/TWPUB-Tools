@@ -125,7 +125,7 @@ initFilter: filter identifying initial tiddlers to navigate to
 <div class="river-inner">
 	<$list filter="[list<storyListTitle>]" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}>
 		<$vars storyItemTiddler=<<currentTiddler>> storyTiddler={{{ [<currentTiddler>get[var-currentTiddler]] }}} templateTiddler={{{ [<currentTiddler>get[var-template]else[$:/core/ui/ViewTemplate]] }}}>
-			<$setmultiplevariables $names="[<currentTiddler>fields[]removeprefix[var-]]" $values="[<currentTiddler>fields[]prefix[var-]getfield<currentTiddler>]">
+			<$setmultiplevariables $names="[<currentTiddler>fields[]removeprefix[var-]]" $values="[<currentTiddler>fields[]prefix[var-]] :map[[..currentTiddler]get<currentTiddler>]">
 				<$tiddler tiddler=<<storyTiddler>>>
 					<$transclude tiddler=<<templateTiddler>>/>
 				</$tiddler>
