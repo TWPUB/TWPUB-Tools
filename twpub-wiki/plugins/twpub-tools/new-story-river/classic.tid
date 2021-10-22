@@ -60,8 +60,11 @@ event-tiddlerTitle: title of tiddler that is to be closed
 <$vars
 	storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
 	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
+	event-paramObject-tiddlerTitle={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
-	<$list filter="[list<storyListTitle>] :filter[field:var-currentTiddler<event-tiddlerTitle>]" variable="storyItemTiddler">
+<$action-log message="In classic close-tiddler-actions"/>
+<$action-log/>
+	<$list filter="[list<storyListTitle>] :filter[field:var-currentTiddler<event-paramObject-tiddlerTitle>]" variable="storyItemTiddler">
 		<$action-log removing=<<storyItemTiddler>>/>
 		<$set name="value" filter="[list<storyListTitle>] -[<storyItemTiddler>]">
 			<$action-setfield $tiddler=<<storyListTitle>> list=<<value>>/>
