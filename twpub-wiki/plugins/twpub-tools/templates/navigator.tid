@@ -75,7 +75,7 @@ Renders the navigation popup menu
 
 -->
 <$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
-	<$setmultiplevariables $names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]" $values="[<stateTitle>fields[]prefix[var-]]  :map[[stateTitle]get<currentTiddler>]">
+	<$setmultiplevariables $names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]" $values="[<stateTitle>fields[]prefix[var-]]  :map[<stateTitle>get<currentTiddler>]">
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<event-paramObject-var-currentTiddler>>/>
