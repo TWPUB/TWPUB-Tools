@@ -4,7 +4,7 @@ caption: {{$:/plugins/immateriel/twpub-tools/twpub-list}} TWPubs
 description: TWPub Listing
 
 \whitespace trim
-<$button class={{{ [<tv-config-toolbar-class>] [[$:/config/ColumnConfig/Visibility]get[text]else[hide]match[show]then[tc-selected]] +[join[ ]] }}}>
+<$button class={{{ [<tv-config-toolbar-class>] +[join[ ]] }}}>
 <$action-navigate $to="$:/TWPubs"/>
 <$list filter="[<tv-config-toolbar-icons>match[yes]]">
 {{$:/plugins/immateriel/twpub-tools/twpub-list}}
@@ -13,5 +13,3 @@ description: TWPub Listing
 <span class="tc-btn-text"><$text text="TWPub Listing"/></span>
 </$list>
 </$button>
-
-
