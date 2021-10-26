@@ -95,13 +95,15 @@ Renders the navigation popup menu
 \end
 
 \define navigator-handler(content)
-<$messagecatcher
-	$tm-navigate=<<navigate-handler>>
-	$tm-close-tiddler=<<generic-handler>>
-	$tm-edit-tiddler=<<generic-handler>>
-	$tm-save-tiddler=<<generic-handler>>
->
-	<<navigation-popup>>
-	<<__content__>>
-</$messagecatcher>
+<$vars tv-action-refresh-policy="once">
+	<$messagecatcher
+		$tm-navigate=<<navigate-handler>>
+		$tm-close-tiddler=<<generic-handler>>
+		$tm-edit-tiddler=<<generic-handler>>
+		$tm-save-tiddler=<<generic-handler>>
+	>
+		<<navigation-popup>>
+		<<__content__>>
+	</$messagecatcher>
+</$vars>
 \end
