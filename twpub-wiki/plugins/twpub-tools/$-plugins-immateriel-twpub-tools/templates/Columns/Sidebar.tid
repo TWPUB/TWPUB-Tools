@@ -1,0 +1,13 @@
+caption: Sidebar
+class: sidebar
+title: $:/plugins/immateriel/twpub-tools/templates/Columns/Sidebar
+
+<div class="sidebar-inner">
+    <$messagecatcher type="tm-scroll">
+        <$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBarSegment]!has[draft.of]]" variable="listItem">
+            <$reveal type="nomatch" state=<<config-title>> text="hide"  tag="div">
+                <$transclude tiddler=<<listItem>> mode="block"/>
+            </$reveal>
+        </$list>
+    </$messagecatcher>
+</div>

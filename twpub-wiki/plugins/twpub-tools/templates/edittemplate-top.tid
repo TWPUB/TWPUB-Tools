@@ -1,6 +1,0 @@
-title: $:/plugins/immateriel/twpub-tools/edittemplate/top
-tags: $:/tags/EditTemplate
-list-before: $:/core/ui/EditTemplate/body
-
-{{||$:/plugins/immateriel/twpub-tools/templates/extract}}
-

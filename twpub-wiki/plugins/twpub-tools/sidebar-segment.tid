@@ -1,6 +1,0 @@
-title: $:/plugins/immateriel/twpub-tools/sidebar-segment
-tags: $:/tags/SideBarSegment
-list-after: $:/core/ui/SideBarSegments/search
-caption: TWPubs
-
-{{$:/TWPubs}}

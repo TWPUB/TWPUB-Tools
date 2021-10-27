@@ -1,7 +1,0 @@
-title: $:/config/stories/secondary
-tags: $:/tags/Story
-caption: Secondary Story
-story-definition: $:/core/ui/storyrivers/single-tiddler
-list-tiddler: $:/StoryList/Secondary
-history-tiddler: $:/HistoryList/Secondary
-default-tiddlers: $:/plugins/immateriel/twpub-tools/default-tiddlers2

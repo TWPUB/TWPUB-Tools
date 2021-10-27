@@ -1,7 +1,0 @@
-title: $:/config/stories/main
-tags: $:/tags/Story
-caption: Main Story
-story-definition: $:/core/ui/storyrivers/classic
-list-tiddler: $:/StoryList/Main
-history-tiddler: $:/HistoryList/Main
-default-tiddlers: $:/plugins/immateriel/twpub-tools/default-tiddlers

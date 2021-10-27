@@ -1,0 +1,50 @@
+caption: Stories
+tags: $:/tags/SideBar
+title: $:/plugins/immateriel/twpub-tools/sidebar/stories
+
+\define link-to-field(fieldname)
+<$link to={{{ [<currentTiddler>get<__fieldname__>] }}}><$text text={{{ [<currentTiddler>get<__fieldname__>] }}}/></$link>
+\end
+
+\define show-tiddler(exclude)
+<table class="tc-view-field-table">
+<tbody>
+<$list filter="[all[current]fields[]!sort[title]] title +[reverse[]] -[subfilter<__exclude__>]" variable="field">
+<tr class="tc-view-field">
+<td class="tc-view-field-name">
+<$text text=<<field>>/>
+</td>
+<td class="tc-view-field-value">
+<$link to={{{ [<currentTiddler>get<field>] }}}>
+<$text text={{{ [<currentTiddler>get<field>] }}}/>
+</$link>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+\end
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]">
+
+!!! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
+
+<<show-tiddler "tags">>
+
+!!!! Story List
+
+<$tiddler tiddler={{!!list-tiddler}}>
+<$list filter="[list<currentTiddler>]">
+<<show-tiddler exclude:"caption tags created modified">>
+</$list>
+</$tiddler>
+
+!!!! History List
+
+<$tiddler tiddler={{!!history-tiddler}}>
+<$list filter="[list<currentTiddler>]">
+<<show-tiddler exclude:"caption tags created modified">>
+</$list>
+</$tiddler>
+
+</$list>
