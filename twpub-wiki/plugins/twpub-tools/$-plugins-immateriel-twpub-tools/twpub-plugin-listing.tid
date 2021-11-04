@@ -6,6 +6,11 @@ title: $:/plugins/immateriel/twpub-tools/twpub-plugin-listing
 
 \define display-plugin-info(type)
 <div class="twpub-badge">
+<div class="twpub-badge-cover">
+<$list filter="[<assetInfo>has[cover-image-url]]" variable="ignore" emptyMessage="{{$:/plugins/immateriel/twpub-tools/default-book-cover}}">
+<img src={{{ [<assetInfo>get[cover-image-url]] }}}/>
+</$list>
+</div>
 <div class="twpub-badge-text">
 <div class="twpub-badge-title">
 <$text text={{{ [<assetInfo>get[epub-title]] }}}/>

@@ -34,10 +34,19 @@ const twpubPluginFilepaths = fs.readdirSync(twpubPath)
 const pluginMetadata = [];
 
 for(const filepath of twpubPluginFilepaths) {
-	const pluginData = JSON.parse(fs.readFileSync(filepath,"utf8"));
-	pluginMetadata.push(Object.assign({},pluginData,{text: undefined}));
 	const outputFilePath = path.resolve(outputPath,"recipes","library","tiddlers");
 	fs.mkdirSync(outputFilePath,{recursive:true});
+	const pluginData = JSON.parse(fs.readFileSync(filepath,"utf8"));
+	const coverImageTitle = pluginData["cover-image"];
+	const payloadData = JSON.parse(pluginData.text);
+	const coverImageTiddler = payloadData.tiddlers[coverImageTitle];
+	if(coverImageTiddler) {
+		const coverImageExtension = coverImageTiddler.type.split("/")[1];
+		const coverImageFilename = path.resolve(outputFilePath,encodeURIComponent(pluginData.title) + "." + coverImageExtension);
+		fs.writeFileSync(coverImageFilename,coverImageTiddler.text,"base64");
+		pluginData["cover-image-url"] = encodeURIComponent(path.relative(outputPath,coverImageFilename));
+	}
+	pluginMetadata.push(Object.assign({},pluginData,{text: undefined}));
 	fs.writeFileSync(path.resolve(outputFilePath,encodeURIComponent(pluginData.title) + ".json"),JSON.stringify(pluginData));
 
 }
