@@ -1,0 +1,4 @@
+title: $:/plugins/immateriel/twpub-tools/TiddlerIconFilter
+tags: $:/tags/TiddlerIconFilter
+
+[shadowsource[]has[epub-title]get[cover-image]] [has[epub-title]get[cover-image]]
