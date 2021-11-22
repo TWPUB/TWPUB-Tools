@@ -31,21 +31,6 @@ initFilter: filter identifying initial tiddlers to navigate to
 -->
 \end
 
-\define header-link-handler()
-<$action-log msg="This"/>
-<$action-log/>
-<$action-sendmessage
-	$message="tm-navigate"
-	var-currentTiddler=<<event-navigateTo>>
-	shiftKey=<<event-shiftKey>>
-	navigateFromClientLeft=<<event-navigateFromClientLeft>>
-	navigateFromClientTop=<<event-navigateFromClientTop>>
-	navigateFromClientWidth=20
-	navigateFromClientHeight=20
-	var-bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
-/>
-\end
-
 \define body-click-actions()
 <$action-sendmessage
 	$message="tm-navigate"
@@ -55,7 +40,6 @@ initFilter: filter identifying initial tiddlers to navigate to
 	navigateFromClientTop=<<event-fromviewport-posy>>
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
-	var-bodyTemplate="$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body"
 />
 \end
 
@@ -84,11 +68,9 @@ initFilter: filter identifying initial tiddlers to navigate to
 					<$link><$text text={{!!description}}/></$link>
 				</h1>
 				<$reveal type="match" state=<<state>> text="show">
-					<$messagecatcher $tm-navigate=<<header-link-handler>>>
-						<div class="tc-table-of-contents">
-							<$macrocall $name="toc" tag={{{ [<currentTiddler>addsuffix[/toc]] }}}/>
-						</div>
-					</$messagecatcher>
+					<div class="tc-table-of-contents">
+						<$macrocall $name="toc" tag={{{ [<currentTiddler>addsuffix[/toc]] }}}/>
+					</div>
 				</$reveal>
 			</$vars>
 			<div style="clear:both;"/>
