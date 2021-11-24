@@ -13,7 +13,6 @@ Navigate to a tiddler
 
 storyConfigurationTiddler: title of tiddler containing story configuration
 event-paramObject-navigateTo: title of tiddler that is target of navigation
-event-paramObject-template: template to be used
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->

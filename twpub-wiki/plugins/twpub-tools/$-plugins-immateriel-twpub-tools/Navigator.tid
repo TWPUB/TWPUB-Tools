@@ -25,7 +25,6 @@ Traps navigate events within the story river
 <$vars
 	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}}
 	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
-	event-paramObject-template={{{ [<event-template>!is[blank]else<event-paramObject-template>] }}}
 	event-paramObject-shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
 	event-paramObject-navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
 	event-paramObject-navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}
@@ -33,7 +32,7 @@ Traps navigate events within the story river
 	event-paramObject-navigateFromClientHeight={{{ [<event-navigateFromClientHeight>!is[blank]else<event-paramObject-navigateFromClientHeight>] }}}
 >
 <$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-<$action-log message="In navigate-handler" event-paramObject-template=<<event-paramObject-template>>/>
+<$action-log message="In navigate-handler"/>
 <$action-log/>
 	<$list filter="[<event-paramObject-shiftKey>!match[true]]" variable="ignore">
 		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>

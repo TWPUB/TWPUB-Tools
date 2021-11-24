@@ -1,16 +1,16 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body
 
-Number of context chunks: <$text text=<<numberOfContextChunks>>/>
+Number of context chunks: <$text text={{{ [<storyItemTiddler>get[var-numberOfContextChunks]] }}}/>
 
 <$button>
-<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value={{{ [[numberOfContextChunks]is[variable]<numberOfContextChunks>else[0]subtract[1]max[0]] }}}/>
+<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value={{{ [<storyItemTiddler>get[var-numberOfContextChunks]else[0]subtract[1]max[0]] }}}/>
 less
 </$button><$button>
 <$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value="0"/>
 none
 </$button>
 <$button>
-<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value={{{ [[numberOfContextChunks]is[variable]<numberOfContextChunks>else[0]add[1]] }}}/>
+<$action-setfield $tiddler=<<storyItemTiddler>> $field="var-numberOfContextChunks" $value={{{ [<storyItemTiddler>get[var-numberOfContextChunks]else[0]add[1]] }}}/>
 more
 </$button>
 
@@ -30,7 +30,7 @@ more
 		</span>
 	</div>
 
-	<$vars currentChunkNumber={{{ [<currentTiddler>split[/]nth[6]else[0]] }}}>
+	<$vars currentChunkNumber={{{ [<currentTiddler>split[/]nth[6]else[0]] }}} numberOfContextChunks={{{ [<storyItemTiddler>get[var-numberOfContextChunks]else[0]] }}}>
 		<$vars startChunkNumber={{{ [<currentChunkNumber>subtract<numberOfContextChunks>max[0]] }}} endChunkNumber={{{ [<currentChunkNumber>subtract[1]] }}}>
 			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
 				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
