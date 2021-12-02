@@ -22,22 +22,24 @@ Generic message handler that passes the message on but adds the story configurat
 />
 \end
 
-<$vars storyConfigurationTiddler={{{ [<columnConfigTiddler>get[story-configuration]] }}}>
-	<$vars storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
-			<$importvariables filter=<<storyDefinitionTiddler>>>
-				<div class={{{ [<storyDefinitionTiddler>get[class]] }}}>
-					<$messagecatcher
-						$tm-navigate=<<generic-handler>>
-						$tm-close-tiddler=<<generic-handler>>
-						$tm-edit-tiddler=<<generic-handler>>
-						$tm-save-tiddler=<<generic-handler>>
-					>
-						<<navigation-popup>>
-						<<story-river-content>>
-					</$messagecatcher>
-				</div>
-			</$importvariables>
+<$let
+	storyConfigurationTiddler={{{ [<columnConfigTiddler>get[story-configuration]] }}}
+	storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
+	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
+>
+	<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+		<$importvariables filter=<<storyDefinitionTiddler>>>
+			<div class={{{ [<storyDefinitionTiddler>get[class]] }}}>
+				<$messagecatcher
+					$tm-navigate=<<generic-handler>>
+					$tm-close-tiddler=<<generic-handler>>
+					$tm-edit-tiddler=<<generic-handler>>
+					$tm-save-tiddler=<<generic-handler>>
+				>
+					<<navigation-popup>>
+					<<story-river-content>>
+				</$messagecatcher>
+			</div>
 		</$importvariables>
-	</$vars>
-</$vars>
+	</$importvariables>
+</$let>
