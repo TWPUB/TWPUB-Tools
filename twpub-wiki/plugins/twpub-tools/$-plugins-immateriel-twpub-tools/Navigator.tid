@@ -22,16 +22,20 @@ title: $:/plugins/immateriel/twpub-tools/Navigator
 Traps navigate events within the story river
 
 -->
-<$vars
-	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}}
-	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+<$let
 	event-paramObject-shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
+	event-paramObject-altKey={{{ [<event-altKey>!is[blank]else<event-paramObject-altKey>] }}}
+	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+>
+<$let
+	defaultStoryConfigurationTiddler={{{ [<event-paramObject-var-currentTiddler>]  :cascade[all[shadows+tiddlers]tag[$:/tags/DefaultStoryFilter]get[text]] }}}
+	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[<defaultStoryConfigurationTiddler>] }}}
 	event-paramObject-navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
 	event-paramObject-navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}
 	event-paramObject-navigateFromClientWidth={{{ [<event-navigateFromClientWidth>!is[blank]else<event-paramObject-navigateFromClientWidth>] }}}
 	event-paramObject-navigateFromClientHeight={{{ [<event-navigateFromClientHeight>!is[blank]else<event-paramObject-navigateFromClientHeight>] }}}
+	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
 >
-<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 <$action-log message="In navigate-handler"/>
 <$action-log/>
 	<$list filter="[<event-paramObject-shiftKey>!match[true]]" variable="ignore">
@@ -46,8 +50,8 @@ Traps navigate events within the story river
 		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
 		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
 	</$list>
-</$vars>
-</$vars>
+</$let>
+</$let>
 \end
 
 \define navigation-popup-actions()
