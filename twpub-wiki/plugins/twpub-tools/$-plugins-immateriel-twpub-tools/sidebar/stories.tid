@@ -47,26 +47,4 @@ Navigations will target the secondary default story river if the <kbd>alt</kbd> 
 
 <<show-story-river-chooser "$:/config/SecondaryDefaultStoryRiver">>
 
-<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]">
-
-!!! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
-
-<<show-tiddler "tags">>
-
-!!!! Story List
-
-<$tiddler tiddler={{!!list-tiddler}}>
-<$list filter="[list<currentTiddler>]">
-<<show-tiddler exclude:"caption tags created modified">>
-</$list>
-</$tiddler>
-
-!!!! History List
-
-<$tiddler tiddler={{!!history-tiddler}}>
-<$list filter="[list<currentTiddler>]">
-<<show-tiddler exclude:"caption tags created modified">>
-</$list>
-</$tiddler>
-
-</$list>
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]]" template="$:/plugins/immateriel/twpub-tools/sidebar/story" default={{{ [all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]] }}}/>
