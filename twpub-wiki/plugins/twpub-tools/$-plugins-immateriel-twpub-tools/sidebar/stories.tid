@@ -2,29 +2,6 @@ caption: Stories
 tags: $:/tags/SideBar
 title: $:/plugins/immateriel/twpub-tools/sidebar/stories
 
-\define link-to-field(fieldname)
-<$link to={{{ [<currentTiddler>get<__fieldname__>] }}}><$text text={{{ [<currentTiddler>get<__fieldname__>] }}}/></$link>
-\end
-
-\define show-tiddler(exclude)
-<table class="tc-view-field-table">
-<tbody>
-<$list filter="[all[current]fields[]!sort[title]] title +[reverse[]] -[subfilter<__exclude__>]" variable="field">
-<tr class="tc-view-field">
-<td class="tc-view-field-name">
-<$text text=<<field>>/>
-</td>
-<td class="tc-view-field-value">
-<$link to={{{ [<currentTiddler>get<field>] }}}>
-<$text text={{{ [<currentTiddler>get<field>] }}}/>
-</$link>
-</td>
-</tr>
-</$list>
-</tbody>
-</table>
-\end
-
 \define show-story-river-chooser(tiddler)
 <$select tiddler=<<__tiddler__>>>
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/Story]]">
@@ -33,6 +10,35 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/stories
 </option>
 </$list>
 </$select>
+\end
+
+\define create-story-river-actions()
+<$let storyDefinitionTiddler={{{ [<stateStoryRiverDefinition>is[tiddler]get[text]else<defaultStoryDefinitionTiddler>] }}}>
+	<$action-createtiddler $basetitle="$:/temp/new-story-river" story-definition=<<storyDefinitionTiddler>>>
+		<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/create" storyDefinitionTiddler=<<storyDefinitionTiddler>> storyConfigurationTiddler=<<createTiddler-title>>/>
+	</$action-createtiddler>
+</$let>
+\end
+
+\define create-story-river()
+<$let
+	defaultStoryDefinitionTiddler={{{ [all[tiddlers+shadows]tag[$:/tags/StoryRiverDefinition]] }}}
+	stateStoryRiverDefinition=<<qualify "$:/temp/twpub/new-story-river-definition">>
+>
+
+Type: <$select tiddler=<<stateStoryRiverDefinition>> default=<<defaultStoryDefinitionTiddler>>>
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/StoryRiverDefinition]]">
+<option value=<<currentTiddler>>>
+<$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
+</option>
+</$list>
+</$select>
+
+<$button actions=<<create-story-river-actions>>>
+Create
+</$button>
+
+</$let>
 \end
 
 !!! Primary Default Story River
@@ -47,4 +53,11 @@ Navigations will target the secondary default story river if the <kbd>alt</kbd> 
 
 <<show-story-river-chooser "$:/config/SecondaryDefaultStoryRiver">>
 
+!!! Create New Story River
+
+<<create-story-river>>
+
+!!! Story Rivers
+
 <$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]]" template="$:/plugins/immateriel/twpub-tools/sidebar/story" default={{{ [all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]] }}}/>
+

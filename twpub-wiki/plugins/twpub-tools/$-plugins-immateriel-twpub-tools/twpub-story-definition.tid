@@ -3,6 +3,8 @@ class: twpub
 init-actions: <<init-actions>>
 title: $:/plugins/immateriel/twpub-tools/twpub-story-definition
 tm-navigate: <<navigate-actions>>
+tags: $:/tags/StoryRiverDefinition
+edit-template: $:/plugins/immateriel/twpub-tools/twpub-story-definition-editor
 
 \define tv-action-refresh-policy() always
 

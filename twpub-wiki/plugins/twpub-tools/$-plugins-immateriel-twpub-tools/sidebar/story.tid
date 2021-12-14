@@ -28,13 +28,13 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
 !!! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
 
-<<show-tiddler "tags">>
+<<show-tiddler exclude:"">>
 
 !!!! Story List
 
 <$tiddler tiddler={{!!list-tiddler}}>
 <$list filter="[list<currentTiddler>]">
-<<show-tiddler exclude:"caption tags created modified">>
+<<show-tiddler exclude:"caption created modified">>
 </$list>
 </$tiddler>
 
@@ -42,7 +42,7 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
 <$tiddler tiddler={{!!history-tiddler}}>
 <$list filter="[list<currentTiddler>]">
-<<show-tiddler exclude:"caption tags created modified">>
+<<show-tiddler exclude:"caption created modified">>
 </$list>
 </$tiddler>
 

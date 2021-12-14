@@ -6,6 +6,7 @@ title: $:/core/ui/storyrivers/single-tiddler
 tm-close-tiddler: <<close-tiddler-actions>>
 tm-edit-tiddler: <<edit-tiddler-actions>>
 tm-navigate: <<navigate-actions>>
+tags: $:/tags/StoryRiverDefinition
 
 \define tv-action-refresh-policy() always
 
