@@ -7,6 +7,7 @@ tm-close-tiddler: <<close-tiddler-actions>>
 tm-edit-tiddler: <<edit-tiddler-actions>>
 tm-navigate: <<navigate-actions>>
 tags: $:/tags/StoryRiverDefinition
+edit-template: $:/core/ui/storyrivers/classic-edit
 
 \define tv-action-refresh-policy() always
 

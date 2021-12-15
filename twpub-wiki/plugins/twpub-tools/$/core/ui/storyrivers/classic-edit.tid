@@ -1,4 +1,5 @@
 title: $:/core/ui/storyrivers/classic-edit
 
-This is the template for editting classic story rivers
+Default tiddlers: 
 
+<$edit-text tiddler=<<storyConfigurationTiddler>> field="@default-tiddlers" tag="textarea" class="tc-edit-texteditor"/>
