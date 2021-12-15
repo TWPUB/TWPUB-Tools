@@ -1,6 +1,5 @@
 caption: Secondary Story
 history-tiddler: $:/HistoryList/Secondary
-list-tiddler: $:/StoryList/Secondary
 @default-tiddlers: $:/Manager $:/Acknowledgements $:/config/TiddlerInfo/Mode
 story-definition: $:/core/ui/storyrivers/single-tiddler
 tags: $:/tags/Story

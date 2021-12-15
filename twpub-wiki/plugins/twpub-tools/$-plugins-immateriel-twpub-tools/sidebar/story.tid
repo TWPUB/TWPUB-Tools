@@ -32,11 +32,9 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
 !!!! Story List
 
-<$tiddler tiddler={{!!list-tiddler}}>
-<$list filter="[list<currentTiddler>]">
+<$list filter="[enlist{!!@story-list}]">
 <<show-tiddler exclude:"caption created modified">>
 </$list>
-</$tiddler>
 
 !!!! History List
 

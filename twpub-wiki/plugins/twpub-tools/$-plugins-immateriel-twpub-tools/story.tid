@@ -25,7 +25,6 @@ Generic message handler that passes the message on but adds the story configurat
 
 <$let
 	storyConfigurationTiddler={{{ [<columnConfigTiddler>get[story-configuration]] }}}
-	storyListTitle={{{ [<storyConfigurationTiddler>get[list-tiddler]] }}}
 	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
 >
 	<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
