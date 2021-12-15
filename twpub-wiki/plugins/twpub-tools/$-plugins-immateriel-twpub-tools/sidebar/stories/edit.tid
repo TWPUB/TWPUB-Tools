@@ -1,5 +1,5 @@
-title: $:/plugins/immateriel/twpub-tools/sidebar/stories/create
-subtitle: Create New Story River: <$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>
+title: $:/plugins/immateriel/twpub-tools/sidebar/stories/edit
+subtitle: ''<$text text=<<prompt>>/>'': <$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>
 
 Caption: <$edit-text tiddler=<<storyConfigurationTiddler>> field="caption" />
 

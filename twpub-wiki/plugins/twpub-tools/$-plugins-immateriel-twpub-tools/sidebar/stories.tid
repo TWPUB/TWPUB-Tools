@@ -15,7 +15,7 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/stories
 \define create-story-river-actions()
 <$let storyDefinitionTiddler={{{ [<stateStoryRiverDefinition>is[tiddler]get[text]else<defaultStoryDefinitionTiddler>] }}}>
 	<$action-createtiddler $basetitle="$:/temp/new-story-river" story-definition=<<storyDefinitionTiddler>>>
-		<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/create" storyDefinitionTiddler=<<storyDefinitionTiddler>> storyConfigurationTiddler=<<createTiddler-title>>/>
+		<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit" storyDefinitionTiddler=<<storyDefinitionTiddler>> storyConfigurationTiddler=<<createTiddler-title>> mode="create" prompt="Create New Story River"/>
 	</$action-createtiddler>
 </$let>
 \end

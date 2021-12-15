@@ -24,9 +24,17 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 </table>
 \end
 
+\define edit-story-river-actions()
+<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit" storyDefinitionTiddler={{!!story-definition}} storyConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit New Story River"/>
+\end
+
 <$tiddler tiddler=<<currentTab>>>
 
 !!! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
+
+<$button actions=<<edit-story-river-actions>>>
+Edit
+</$button>
 
 <<show-tiddler exclude:"">>
 
