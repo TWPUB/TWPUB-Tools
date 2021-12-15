@@ -1,6 +1,5 @@
 caption: Main Story
 @default-tiddlers: HelloThere $:/AdvancedSearch $:/ControlPanel
-history-tiddler: $:/HistoryList/Main
 story-definition: $:/core/ui/storyrivers/classic
 tags: $:/tags/Story
 title: $:/config/stories/main

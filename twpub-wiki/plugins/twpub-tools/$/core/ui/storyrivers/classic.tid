@@ -25,12 +25,11 @@ event-paramObject-* other optional variables to be provided to the story entry
 <$action-log/>
 <$vars
 	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
-	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
 >
 	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyConfigurationTiddler>] }}}>
 		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-var-]removeprefix[event-paramObject-var-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-var-]getvariable[]]"/>
-		<$set name="value" filter="[list<historyListTitle>] =[<createTiddler-title>]">
-			<$action-setfield $tiddler=<<historyListTitle>> list=<<value>>/>
+		<$set name="value" filter="[<storyConfigurationTiddler>get[@history-list]enlist-input[]] =[<createTiddler-title>]">
+			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=<<value>>/>
 		</$set>
 		<$vars storyPosition={{{ [<storyConfigurationTiddler>get[@story-list]enlist-input[]] :filter[matchtiddler<createTiddler-title>] }}}>
 			<$list filter="[<storyPosition>match[]]" variable="ignore">
@@ -58,7 +57,6 @@ event-tiddlerTitle: title of tiddler that is to be closed
 
 -->
 <$vars
-	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
 	event-paramObject-tiddlerTitle={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
 <$action-log message="In classic close-tiddler-actions"/>
@@ -82,7 +80,6 @@ event-tiddlerTitle: title of tiddler that is to be edited
 
 -->
 <$vars
-	historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}
 	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
 <$action-log msg="In classic edit-tiddler-actions"/>
@@ -109,13 +106,11 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 initFilter: filter identifying initial tiddlers to navigate to
 
 -->
-<$vars historyListTitle={{{ [<storyConfigurationTiddler>get[history-tiddler]] }}}>
-	<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=""/>
-	<$action-setfield $tiddler=<<historyListTitle>> list=""/>
-	<$list filter=<<initFilter>> variable="event-paramObject-var-currentTiddler">
-		<<navigate-actions>>
-	</$list>
-</$vars>
+<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=""/>
+<$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=""/>
+<$list filter=<<initFilter>> variable="event-paramObject-var-currentTiddler">
+	<<navigate-actions>>
+</$list>
 \end
 
 \define story-river-content()
