@@ -103,13 +103,14 @@ event-tiddlerTitle: title of tiddler that is to be edited
 Initialise the story
 
 storyConfigurationTiddler: title of tiddler containing story configuration
-initFilter: filter identifying initial tiddlers to navigate to
 
 -->
 <$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=""/>
 <$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=""/>
-<$list filter=<<initFilter>> variable="event-paramObject-var-currentTiddler">
-	<<navigate-actions>>
+<$list filter="[<storyConfigurationTiddler>has[@default-tiddlers]]" variable="ignore">
+	<$list filter={{{ [<storyConfigurationTiddler>get[@default-tiddlers]] }}} variable="event-paramObject-var-currentTiddler">
+		<<navigate-actions>>
+	</$list>
 </$list>
 \end
 

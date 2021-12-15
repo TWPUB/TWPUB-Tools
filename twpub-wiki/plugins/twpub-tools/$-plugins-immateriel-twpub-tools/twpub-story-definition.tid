@@ -27,7 +27,6 @@ event-paramObject-* other optional variables to be provided to the story entry
 Initialise the story
 
 storyConfigurationTiddler: title of tiddler containing story configuration
-initFilter: filter identifying initial tiddlers to navigate to
 
 -->
 \end

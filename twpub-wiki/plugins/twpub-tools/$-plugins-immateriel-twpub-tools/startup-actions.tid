@@ -3,7 +3,7 @@ title: $:/plugins/immateriel/twpub-tools/startup-actions
 
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
 
-<$vars initFilter={{{ [<storyConfigurationTiddler>get[@default-tiddlers]] }}} storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 
 <$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
 
