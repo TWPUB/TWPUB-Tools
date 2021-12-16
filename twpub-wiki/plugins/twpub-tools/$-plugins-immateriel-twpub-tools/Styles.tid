@@ -421,3 +421,17 @@ title: $:/plugins/immateriel/twpub-tools/Styles
     padding: 0.5em 0;
     border-radius: 0.25em;
 }
+
+/* Image gallery */
+
+.twpub-image-gallery-item-wrapper {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+}
+
+.twpub-image-gallery-item {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
