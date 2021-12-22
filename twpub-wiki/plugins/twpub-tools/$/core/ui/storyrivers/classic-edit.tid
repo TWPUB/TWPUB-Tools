@@ -1,11 +1,13 @@
 title: $:/core/ui/storyrivers/classic-edit
 
-\define actions-open-tiddlers-drop()
-<$action-listops $tiddler=<<storyConfigurationTiddler>> $field="@story-list" $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+\define actions-open-tiddlers-drop(field)
+<$list filter="[<actionTiddler>]" variable="ignore">
+<$action-listops $tiddler=<<storyConfigurationTiddler>> $field="$field$" $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+</$list>
 \end
 
-\define open-tiddlers-droppable-item(item)
-<$droppable actions=<<actions-open-tiddlers-drop>> enable=<<tv-allow-drag-and-drop>>>
+\define open-tiddlers-droppable-item(item,field)
+<$droppable actions=<<actions-open-tiddlers-drop field:"$field$">> enable=<<tv-allow-drag-and-drop>>>
 <div class="tc-droppable-placeholder"/>
 <div>
 $item$
@@ -13,9 +15,9 @@ $item$
 </$droppable>
 \end
 
-\define open-tiddler-item()
+\define open-tiddler-item(field)
 <$button tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
-<$action-listops $tiddler=<<storyConfigurationTiddler>> $field="@story-list" $subfilter="-[<currentTiddler>]"/>
+<$action-listops $tiddler=<<storyConfigurationTiddler>> $field="$field$" $subfilter="-[<currentTiddler>]"/>
 {{$:/core/images/close-button}}
 </$button>
 <$link to={{!!title}}>
@@ -23,15 +25,11 @@ $item$
 </$link>
 \end
 
-\define close-all-tiddlers-item()
-<$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=""/>close all</$button>
+\define close-all-tiddlers-item(field)
+<$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> $field="$field$"/>close all</$button>
 \end
 
 \define actions-open-tiddlers-link()
-<$action-log messusage="I AM HERE!"/>
-<$action-log/>
-
-<$action-log var-currentTiddler={{{ [<navigateTo>get[var-currentTiddler]] }}} />
 <$action-sendmessage
 	$message="tm-navigate"
 	var-currentTiddler={{{ [<event-navigateTo>get[var-currentTiddler]] }}}
@@ -43,23 +41,31 @@ $item$
 />
 \end
 
+\define list-tiddlers(field,postfilter)
+<div class="tc-sidebar-tab-open">
+<$messagecatcher $tm-navigate=<<actions-open-tiddlers-link>>>
+<$list filter="[<storyConfigurationTiddler>get<__field__>enlist-input[]] $postfilter$">
+<div class="tc-sidebar-tab-open-item">
+<$macrocall $name="open-tiddlers-droppable-item" field="$field$" item=<<open-tiddler-item field:"$field$">>/>
+</div>
+</$list>
+<$tiddler tiddler="">
+<div>
+<$macrocall $name="open-tiddlers-droppable-item" field="$field$" item=<<close-all-tiddlers-item field:"$field$">>/>
+</div>
+</$tiddler>
+</$messagecatcher>
+</div>
+\end
+
 Default tiddlers: 
 
 <$edit-text tiddler=<<storyConfigurationTiddler>> field="@default-tiddlers" tag="textarea" class="tc-edit-texteditor"/>
 
 Open tiddlers:
 
-<div class="tc-sidebar-tab-open">
-<$messagecatcher $tm-navigate=<<actions-open-tiddlers-link>>>
-<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]">
-<div class="tc-sidebar-tab-open-item">
-<$macrocall $name="open-tiddlers-droppable-item" item=<<open-tiddler-item>>/>
-</div>
-</$list>
-<$tiddler tiddler="">
-<div>
-<$macrocall $name="open-tiddlers-droppable-item" item=<<close-all-tiddlers-item>>>/>
-</div>
-</$tiddler>
-</$messagecatcher>
-</div>
+<<list-tiddlers field:"@story-list">>
+
+History:
+
+<<list-tiddlers field:"@history-list" postfilter:"+[reverse[]]">>
