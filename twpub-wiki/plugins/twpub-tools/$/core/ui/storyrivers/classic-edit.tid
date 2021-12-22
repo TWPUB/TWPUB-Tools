@@ -19,7 +19,7 @@ $item$
 {{$:/core/images/close-button}}
 </$button>
 <$link to={{!!title}}>
-<$view field="title"/>
+<$view field="var-currentTiddler"><$view field="title"/></$view>
 </$link>
 \end
 
