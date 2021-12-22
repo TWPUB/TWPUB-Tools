@@ -34,7 +34,7 @@ Default tiddlers:
 Open tiddlers:
 
 <div class="tc-sidebar-tab-open">
-<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]" storyview="pop">
+<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]">
 <div class="tc-sidebar-tab-open-item">
 <$macrocall $name="open-tiddlers-droppable-item" item=<<open-tiddler-item>>/>
 </div>
