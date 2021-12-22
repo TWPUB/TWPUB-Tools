@@ -27,6 +27,22 @@ $item$
 <$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=""/>close all</$button>
 \end
 
+\define actions-open-tiddlers-link()
+<$action-log messusage="I AM HERE!"/>
+<$action-log/>
+
+<$action-log var-currentTiddler={{{ [<navigateTo>get[var-currentTiddler]] }}} />
+<$action-sendmessage
+	$message="tm-navigate"
+	var-currentTiddler={{{ [<event-navigateTo>get[var-currentTiddler]] }}}
+	shiftKey=<<event-shiftKey>>
+	navigateFromClientLeft=<<event-navigateFromClientLeft>>
+	navigateFromClientTop=<<event-navigateFromClientTop>>
+	navigateFromClientWidth=20
+	navigateFromClientHeight=20
+/>
+\end
+
 Default tiddlers: 
 
 <$edit-text tiddler=<<storyConfigurationTiddler>> field="@default-tiddlers" tag="textarea" class="tc-edit-texteditor"/>
@@ -34,6 +50,7 @@ Default tiddlers:
 Open tiddlers:
 
 <div class="tc-sidebar-tab-open">
+<$messagecatcher $tm-navigate=<<actions-open-tiddlers-link>>>
 <$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]">
 <div class="tc-sidebar-tab-open-item">
 <$macrocall $name="open-tiddlers-droppable-item" item=<<open-tiddler-item>>/>
@@ -44,4 +61,5 @@ Open tiddlers:
 <$macrocall $name="open-tiddlers-droppable-item" item=<<close-all-tiddlers-item>>>/>
 </div>
 </$tiddler>
+</$messagecatcher>
 </div>
