@@ -30,11 +30,22 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
 <$tiddler tiddler=<<currentTab>>>
 
+<$let storyDefinitionTiddler={{!!story-definition}}
+	storyConfigurationTiddler=<<currentTiddler>>>
+
 !!! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
 
 <$button actions=<<edit-story-river-actions>>>
 Edit
 </$button>
+
+<$transclude tiddler={{{ [<storyDefinitionTiddler>get[edit-template]] }}}>
+
+(No visible options for story rivers of the type "<$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>")
+
+</$transclude>
+
+<hr>
 
 <<show-tiddler exclude:"created modified">>
 
@@ -50,4 +61,7 @@ Edit
 <<show-tiddler exclude:"caption created modified">>
 </$list>
 
+</$let>
+
 </$tiddler>
+
