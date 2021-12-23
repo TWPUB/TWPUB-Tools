@@ -1,0 +1,10 @@
+caption: Columns
+tags: $:/tags/SideBar
+title: $:/plugins/immateriel/twpub-tools/sidebar/columns
+
+<$button>
+	<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" template="$:/core/ui/ViewTemplate" tiddler="HelloThere"/>
+Create column
+</$button>
+
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/PageLayout/MainColumn]!is[draft]]" template="$:/plugins/immateriel/twpub-tools/sidebar/column" default={{{ [all[shadows+tiddlers]tag[$:/tags/PageLayout/MainColumn]!is[draft]] }}}/>

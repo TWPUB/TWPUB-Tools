@@ -1,0 +1,9 @@
+title: $:/plugins/immateriel/twpub-tools/sidebar/column
+caption: <$transclude tiddler=<<currentTab>> field="caption"/>
+
+
+<$tiddler tiddler=<<currentTab>>>
+
+This is a column <$text text=<<currentTiddler>>/>
+
+</$tiddler>

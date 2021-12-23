@@ -2,3 +2,4 @@ story-configuration: $:/config/stories/tertiary
 tags: $:/tags/PageLayout/MainColumn
 template: $:/plugins/immateriel/twpub-tools/story
 title: $:/config/PageColumns/NewRiver3
+caption: TWPub
