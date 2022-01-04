@@ -15,20 +15,6 @@ $item$
 </$droppable>
 \end
 
-\define open-tiddler-item(field)
-<$button tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
-<$action-listops $tiddler=<<storyConfigurationTiddler>> $field="$field$" $subfilter="-[<currentTiddler>]"/>
-{{$:/core/images/close-button}}
-</$button>
-<$link to={{!!title}}>
-<$view field="var-currentTiddler"><$view field="title"/></$view>
-</$link>
-\end
-
-\define close-all-tiddlers-item(field)
-<$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> $field="$field$"/>close all</$button>
-\end
-
 \define actions-open-tiddlers-link()
 <$action-sendmessage
 	$message="tm-navigate"
@@ -41,9 +27,26 @@ $item$
 />
 \end
 
-\define list-tiddlers(field,postfilter)
-<div class="tc-sidebar-tab-open">
+\define open-tiddler-item(field)
+<$button tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
+<$action-listops $tiddler=<<storyConfigurationTiddler>> $field="$field$" $subfilter="-[<currentTiddler>]"/>
+{{$:/core/images/close-button}}
+</$button>
+<<twpub-tiddler-fields-button>>
 <$messagecatcher $tm-navigate=<<actions-open-tiddlers-link>>>
+<$link to={{!!title}}>
+<$view field="var-currentTiddler"><$view field="title"/></$view>
+</$link>
+</$messagecatcher>
+\end
+
+\define close-all-tiddlers-item(field)
+<$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> $field="$field$"/>close all</$button>
+\end
+
+\define list-tiddlers(field,postfilter)
+<$let transclusion=<<__field__>>> <!-- Ensures qualified state titles are different for open vs. history -->
+<div class="tc-sidebar-tab-open">
 <$list filter="[<storyConfigurationTiddler>get<__field__>enlist-input[]] $postfilter$">
 <div class="tc-sidebar-tab-open-item">
 <$macrocall $name="open-tiddlers-droppable-item" field="$field$" item=<<open-tiddler-item field:"$field$">>/>
@@ -54,13 +57,13 @@ $item$
 <$macrocall $name="open-tiddlers-droppable-item" field="$field$" item=<<close-all-tiddlers-item field:"$field$">>/>
 </div>
 </$tiddler>
-</$messagecatcher>
 </div>
+</$let>
 \end
 
 Default tiddlers: 
 
-<$edit-text tiddler=<<storyConfigurationTiddler>> field="@default-tiddlers" tag="textarea" class="tc-edit-texteditor"/>
+<$edit-text tiddler=<<storyConfigurationTiddler>> field="@default-tiddlers" tag="textarea" class="tc-width-100-percent"/>
 
 Open tiddlers:
 

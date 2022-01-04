@@ -1,29 +1,6 @@
 title: $:/plugins/immateriel/twpub-tools/sidebar/story
 caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
-\define link-to-field(fieldname)
-<$link to={{{ [<currentTiddler>get<__fieldname__>] }}}><$text text={{{ [<currentTiddler>get<__fieldname__>] }}}/></$link>
-\end
-
-\define show-tiddler(exclude)
-<table class="tc-view-field-table">
-<tbody>
-<$list filter="[all[current]fields[]!sort[title]] title +[reverse[]] -[subfilter<__exclude__>]" variable="field">
-<tr class="tc-view-field">
-<td class="tc-view-field-name">
-<$text text=<<field>>/>
-</td>
-<td class="tc-view-field-value">
-<$link to={{{ [<currentTiddler>get<field>] }}}>
-<$text text={{{ [<currentTiddler>get<field>] }}}/>
-</$link>
-</td>
-</tr>
-</$list>
-</tbody>
-</table>
-\end
-
 \define edit-story-river-actions()
 <$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit" storyDefinitionTiddler={{!!story-definition}} storyConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit Story River"/>
 \end
@@ -33,10 +10,8 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 <$let storyDefinitionTiddler={{!!story-definition}}
 	storyConfigurationTiddler=<<currentTiddler>>>
 
-!!! <$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
-
-<$button actions=<<edit-story-river-actions>>>
-Edit
+!!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-story-river-actions>> class="tc-btn-invisible tc-btn-icon">
+{{$:/core/images/edit-button}}
 </$button>
 
 <$transclude tiddler={{{ [<storyDefinitionTiddler>get[edit-template]] }}}>
@@ -44,22 +19,6 @@ Edit
 (No visible options for story rivers of the type "<$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>")
 
 </$transclude>
-
-<hr>
-
-<<show-tiddler exclude:"created modified">>
-
-!!!! Story List
-
-<$list filter="[enlist{!!@story-list}]">
-<<show-tiddler exclude:"caption created modified">>
-</$list>
-
-!!!! History List
-
-<$list filter="[enlist{!!@history-list}]">
-<<show-tiddler exclude:"caption created modified">>
-</$list>
 
 </$let>
 

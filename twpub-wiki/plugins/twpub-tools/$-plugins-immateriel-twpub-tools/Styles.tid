@@ -16,6 +16,12 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
 
+/* Utilities */
+
+.tc-width-100-percent {
+	width: 100%;
+}
+
 /* Slice the viewport into horizontal rows */
 
 .flextemplate-container {
@@ -434,4 +440,28 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	width: 100%;
 	height: 100%;
 	object-fit: contain;
+}
+
+/* Tiddler fields dropdown */
+
+.tc-tiddler-fields-button {
+	 position: relative;
+	 display: inline-block;
+}
+
+.tc-tiddler-fields-button .tc-drop-down {
+	font-size: {{$:/themes/tiddlywiki/vanilla/metrics/fontsize}};
+	line-height: {{$:/themes/tiddlywiki/vanilla/metrics/lineheight}};
+	word-wrap: break-word;
+}
+
+.tc-tiddler-fields-button .tc-drop-down .tc-view-field-table {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.tc-tiddler-fields-button .tc-drop-down .tc-view-field-table,
+.tc-tiddler-fields-button .tc-drop-down .tc-view-field-table th,
+.tc-tiddler-fields-button .tc-drop-down .tc-view-field-table td {
+	border: none;
 }

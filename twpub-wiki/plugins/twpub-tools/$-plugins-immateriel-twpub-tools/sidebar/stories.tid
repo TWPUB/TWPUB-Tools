@@ -32,9 +32,7 @@ Type: <$select tiddler=<<stateStoryRiverDefinition>> default=<<defaultStoryDefin
 <$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
 </option>
 </$list>
-</$select>
-
-<$button actions=<<create-story-river-actions>>>
+</$select> <$button actions=<<create-story-river-actions>>>
 Create
 </$button>
 
