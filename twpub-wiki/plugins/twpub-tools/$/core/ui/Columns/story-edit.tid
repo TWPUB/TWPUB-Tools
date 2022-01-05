@@ -1,0 +1,3 @@
+title: $:/core/ui/Columns/story-edit
+
+\define tv-action-refresh-policy() always

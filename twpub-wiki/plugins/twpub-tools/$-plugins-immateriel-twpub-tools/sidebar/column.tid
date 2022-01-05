@@ -1,8 +1,11 @@
 title: $:/plugins/immateriel/twpub-tools/sidebar/column
 caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
-
 <$tiddler tiddler=<<currentTab>>>
+
+!!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-story-river-actions>> class="tc-btn-invisible tc-btn-icon">
+{{$:/core/images/edit-button}}
+</$button>
 
 This is a column <$text text=<<currentTiddler>>/>
 

@@ -1,5 +1,8 @@
-caption: New Story River
-title: $:/plugins/immateriel/twpub-tools/story
+title: $:/core/ui/Columns/story
+tags: $:/tags/ColumnDefinition
+caption: Story River
+class: river
+edit-template: $:/core/ui/Columns/story-edit
 
 \whitespace trim
 

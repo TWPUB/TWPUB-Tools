@@ -1,6 +1,7 @@
+title: $:/core/ui/Columns/sidebar
+tags: $:/tags/ColumnDefinition
 caption: Sidebar
 class: sidebar
-title: $:/plugins/immateriel/twpub-tools/templates/Columns/Sidebar
 
 <div class="sidebar-inner">
     <$messagecatcher type="tm-scroll">

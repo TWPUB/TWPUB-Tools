@@ -1,5 +1,5 @@
 story-configuration: $:/config/stories/secondary
 tags: $:/tags/PageLayout/MainColumn
-template: $:/plugins/immateriel/twpub-tools/story
+template: $:/core/ui/Columns/story
 title: $:/config/PageColumns/NewRiver2
 caption: Secondary

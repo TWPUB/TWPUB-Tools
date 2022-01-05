@@ -1,4 +1,4 @@
 tags: $:/tags/PageLayout/MainColumn
-template: $:/plugins/immateriel/twpub-tools/templates/Columns/Sidebar
+template: $:/core/ui/Columns/sidebar
 title: $:/config/PageColumns/Sidebar
 caption: Sidebar
