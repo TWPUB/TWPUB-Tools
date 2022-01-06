@@ -235,6 +235,11 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	background: #fcfcf8;
 }
 
+.twpub-body {
+	transform-origin: 0 0;
+	transition: 5s transform ease-in-out;
+}
+
 /* twpub extracts */
 
 .twpub-extract-list {

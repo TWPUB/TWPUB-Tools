@@ -8,8 +8,8 @@ title: $:/plugins/immateriel/twpub-tools/PageLayout
 
 \define body()
 <$dropzone enable=<<tv-enable-drag-and-drop>>>
-	<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="listItem">
-		<$transclude tiddler=<<listItem>> mode="inline"/>
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="flextemplateConfigurationTiddler">
+		<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
 	</$list>
 </$dropzone>
 \end

@@ -7,3 +7,5 @@ TWPub: <$select tiddler=<<storyConfigurationTiddler>> field="story-twpub">
 </option>
 </$list>
 </$select>
+
+Column count: <$edit tiddler=<<storyConfigurationTiddler>> field="story-column-count" default="1"/>
