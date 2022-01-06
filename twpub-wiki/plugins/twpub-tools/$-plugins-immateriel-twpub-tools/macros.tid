@@ -29,7 +29,11 @@ tags: $:/tags/Macro
 <$reveal state=<<state>> type="popup" position="below" tag="div" animate="yes" retain="yes">
 <div class="tc-drop-down-wrapper">
 <div class="tc-drop-down">
-<<twpub-tiddler-fields exclude:"created modified">>
+<<twpub-tiddler-fields exclude:"created modified text">>
+<$list filter="[<currentTiddler>get[text]]" variable="ignore">
+<hr>
+<$codeblock code={{!!text}}/>
+</$list>
 </div>
 </div>
 </$reveal>

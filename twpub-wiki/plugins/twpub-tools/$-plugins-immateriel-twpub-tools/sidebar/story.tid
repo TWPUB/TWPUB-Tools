@@ -14,6 +14,13 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 {{$:/core/images/edit-button}}
 </$button>
 
+Type: <div class="tc-type-pill">
+<$tiddler tiddler=<<storyDefinitionTiddler>>>
+<<twpub-tiddler-fields-button>>
+<$transclude tiddler=<<storyDefinitionTiddler>> field="caption"/>
+</$tiddler>
+</div>
+
 <$transclude tiddler={{{ [<storyDefinitionTiddler>get[edit-template]] }}}>
 
 (No visible options for story rivers of the type "<$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>")

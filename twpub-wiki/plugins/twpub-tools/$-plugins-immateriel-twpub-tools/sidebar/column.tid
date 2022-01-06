@@ -3,10 +3,27 @@ caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
 <$tiddler tiddler=<<currentTab>>>
 
+<$let
+	columnTemplateTiddler={{!!template}}
+>
+
 !!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-story-river-actions>> class="tc-btn-invisible tc-btn-icon">
 {{$:/core/images/edit-button}}
 </$button>
 
-This is a column <$text text=<<currentTiddler>>/>
+Type: <div class="tc-type-pill">
+<$tiddler tiddler=<<columnTemplateTiddler>>>
+<<twpub-tiddler-fields-button>>
+<$transclude tiddler=<<columnTemplateTiddler>> field="caption"/>
+</$tiddler>
+</div>
+
+<$transclude tiddler={{{ [<columnTemplateTiddler>get[edit-template]] }}}>
+
+(No visible options for story rivers of the type "<$transclude tiddler=<<columnTemplateTiddler>> field="caption"><$text text=<<columnTemplateTiddler>>/></$transclude>")
+
+</$transclude>
+
+</$let>
 
 </$tiddler>

@@ -22,6 +22,17 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	width: 100%;
 }
 
+/* Primitives */
+
+.tc-type-pill {
+	border: 1px solid <<colour muted-foreground>>;
+	font-size: 0.68em;
+	border-radius: 3em;
+	padding: 0.25em 0.5em;
+	display: inline-block;
+	line-height: 0;
+}
+
 /* Slice the viewport into horizontal rows */
 
 .flextemplate-container {
