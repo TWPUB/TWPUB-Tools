@@ -9,3 +9,6 @@ Story river: <$select field="story-configuration">
 </option>
 </$list>
 </$select>
+
+
+Column count: <$edit field="story-column-count" default="1"/>
