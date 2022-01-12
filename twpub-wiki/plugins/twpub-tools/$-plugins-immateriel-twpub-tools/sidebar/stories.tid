@@ -2,16 +2,6 @@ caption: Stories
 tags: $:/tags/SideBar
 title: $:/plugins/immateriel/twpub-tools/sidebar/stories
 
-\define show-story-river-chooser(tiddler)
-<$select tiddler=<<__tiddler__>>>
-<$list filter="[all[tiddlers+shadows]tag[$:/tags/Story]]">
-<option value=<<currentTiddler>>>
-<$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
-</option>
-</$list>
-</$select>
-\end
-
 \define create-story-river-actions()
 <$let storyDefinitionTiddler={{{ [<stateStoryRiverDefinition>is[tiddler]get[text]else<defaultStoryDefinitionTiddler>] }}}>
 	<$action-createtiddler $basetitle="$:/temp/new-story-river" story-definition=<<storyDefinitionTiddler>>>
@@ -20,7 +10,6 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/stories
 </$let>
 \end
 
-\define create-story-river()
 <$let
 	defaultStoryDefinitionTiddler={{{ [all[tiddlers+shadows]tag[$:/tags/StoryRiverDefinition]] }}}
 	stateStoryRiverDefinition=<<qualify "$:/temp/twpub/new-story-river-definition">>
@@ -37,25 +26,6 @@ Create
 </$button>
 
 </$let>
-\end
-
-!!! Primary Default Story River
-
-Navigations will target the primary default story river if one is not explicitly targeted
-
-<<show-story-river-chooser "$:/config/PrimaryDefaultStoryRiver">>
-
-!!! Secondary Default Story River
-
-Navigations will target the secondary default story river if the <kbd>alt</kbd> key is pressed and one is not explicitly targeted
-
-<<show-story-river-chooser "$:/config/SecondaryDefaultStoryRiver">>
-
-!!! Create New Story River
-
-<<create-story-river>>
-
-!!! Story Rivers
 
 <$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]]" template="$:/plugins/immateriel/twpub-tools/sidebar/story" default={{{ [all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]] }}}/>
 

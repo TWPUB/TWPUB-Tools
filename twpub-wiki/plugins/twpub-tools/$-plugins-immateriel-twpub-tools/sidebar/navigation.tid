@@ -1,0 +1,26 @@
+caption: Navigation
+tags: $:/tags/SideBar
+title: $:/plugins/immateriel/twpub-tools/sidebar/navigation
+
+\define show-story-river-chooser(tiddler)
+<$select tiddler=<<__tiddler__>>>
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/Story]]">
+<option value=<<currentTiddler>>>
+<$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
+</option>
+</$list>
+</$select>
+\end
+
+!!! Primary Default Story River
+
+Navigations will target the primary default story river if one is not explicitly targeted
+
+<<show-story-river-chooser "$:/config/PrimaryDefaultStoryRiver">>
+
+!!! Secondary Default Story River
+
+Navigations will target the secondary default story river if the <kbd>alt</kbd> key is pressed and one is not explicitly targeted
+
+<<show-story-river-chooser "$:/config/SecondaryDefaultStoryRiver">>
+
