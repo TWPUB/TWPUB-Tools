@@ -1,13 +1,17 @@
 title: $:/plugins/immateriel/twpub-tools/sidebar/column
 caption: <$transclude tiddler=<<currentTab>> field="caption"/>
 
+\define edit-column-actions()
+<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/columns/edit" columnDefinitionTiddler={{!!template}} columnConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit Column"/>
+\end
+
 <$tiddler tiddler=<<currentTab>>>
 
 <$let
 	columnTemplateTiddler={{!!template}}
 >
 
-!!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-story-river-actions>> class="tc-btn-invisible tc-btn-icon">
+!!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-column-actions>> class="tc-btn-invisible tc-btn-icon">
 {{$:/core/images/edit-button}}
 </$button>
 
