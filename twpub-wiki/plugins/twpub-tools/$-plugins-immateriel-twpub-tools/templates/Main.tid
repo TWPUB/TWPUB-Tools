@@ -9,16 +9,14 @@ title: $:/plugins/immateriel/twpub-tools/templates/Main
 		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Top}}
 	</header>
 	<main class="main column-container">
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]]" variable="columnConfigurationTiddler">
-			<$list filter="[<columnConfigurationTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="ignore">
-				<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
-					<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
-						<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
-							<$transclude tiddler=<<template>> mode="inline"/>
-						</$tiddler>
-					</$vars>
-				</div>
-			</$list>
+		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]] :filter[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="columnConfigurationTiddler">
+			<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
+				<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
+					<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
+						<$transclude tiddler=<<template>> mode="inline"/>
+					</$tiddler>
+				</$vars>
+			</div>
 		</$list>
 	</main>
 	<header class="column-config column-config-bottom">
