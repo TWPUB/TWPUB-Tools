@@ -79,7 +79,7 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 			class="twpub-body"
 			style.transform={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]] :map[[1]divide<currentTiddler>] +[addprefix[scale(]addsuffix[)]] }}}
 			style.column-count={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]] }}}
-			style.width={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]multiply[100]addsuffix[%]] }}}		
+			style.width={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]multiply[100]addsuffix[%]] }}}
 		>
 			<$set name="popup-state" value=<<qualify "$:/state/twpub-popup">>>
 				<$set name="popup-title" value={{{ [<popup-state>addsuffix[-title]] }}}>
