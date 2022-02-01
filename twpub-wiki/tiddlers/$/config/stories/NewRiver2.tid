@@ -1,5 +1,0 @@
-story-configuration: $:/config/stories/secondary
-tags: $:/tags/PageLayout/MainColumn
-template: $:/core/ui/Columns/story
-title: $:/config/PageColumns/NewRiver2
-caption: Secondary

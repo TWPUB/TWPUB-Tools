@@ -1,5 +1,0 @@
-caption: Secondary Story
-@default-tiddlers: $:/Manager $:/Acknowledgements $:/config/TiddlerInfo/Mode
-story-definition: $:/core/ui/storyrivers/single-tiddler
-tags: $:/tags/Story
-title: $:/config/stories/secondary
