@@ -8,7 +8,7 @@
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <title>Plugin Library</title>
 <script>
-var assetList = [
+var assetList =[
     {
         "list": "readme errors cover text",
         "version": "v0.0.1",
@@ -24,8 +24,7 @@ var assetList = [
         "count-chunks": "1938",
         "count-images": "47",
         "cover-image": "$:/plugins/twpub/6ae7495ce342ee75/images/OEBPS/A978-3-319-16925-5_CoverFigure.jpg",
-        "readme": "|epub-title |''Intertwingled'' |\n|epub-creator |''Douglas R. Dechow and Daniele C. Struppa'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''1938'' |\n|count-images |''47'' |",
-        "requires-reload": "no"
+        "cover-image-url": "recipes%2Flibrary%2Ftiddlers%2F%2524%253A%252Fplugins%252Ftwpub%252F6ae7495ce342ee75.jpeg"
     },
     {
         "list": "readme errors cover text",
@@ -40,9 +39,7 @@ var assetList = [
         "epub-creator": "Charles Dickens",
         "conversion-errors": "0",
         "count-chunks": "4183",
-        "count-images": "17",
-        "readme": "|epub-title |''Great Expectations'' |\n|epub-creator |''Charles Dickens'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''4183'' |\n|count-images |''17'' |",
-        "requires-reload": "no"
+        "count-images": "17"
     },
     {
         "list": "readme errors cover text",
@@ -59,8 +56,7 @@ var assetList = [
         "count-chunks": "832",
         "count-images": "13",
         "cover-image": "$:/plugins/twpub/830f3efb85afd034/images/OEBPS/Images/couv.jpg",
-        "readme": "|epub-title |''La conscience des animaux'' |\n|epub-creator |''P. Le Neindre, M. Dunier, R. Larrère, P. Prunet'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''832'' |\n|count-images |''13'' |",
-        "requires-reload": "no"
+        "cover-image-url": "recipes%2Flibrary%2Ftiddlers%2F%2524%253A%252Fplugins%252Ftwpub%252F830f3efb85afd034.jpeg"
     },
     {
         "list": "readme errors cover text",
@@ -77,8 +73,7 @@ var assetList = [
         "count-chunks": "2475",
         "count-images": "4",
         "cover-image": "$:/plugins/twpub/322d77430a929152/images/Images/cover.jpg",
-        "readme": "|epub-title |''Arsène Lupin gentleman cambrioleur'' |\n|epub-creator |''Maurice Leblanc'' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''0'' |\n|count-chunks |''2475'' |\n|count-images |''4'' |",
-        "requires-reload": "no"
+        "cover-image-url": "recipes%2Flibrary%2Ftiddlers%2F%2524%253A%252Fplugins%252Ftwpub%252F322d77430a929152.jpeg"
     },
     {
         "list": "readme errors cover text",
@@ -95,10 +90,17 @@ var assetList = [
         "count-chunks": "2526",
         "count-images": "89",
         "cover-image": "$:/plugins/twpub/bd798cb95480ec9c/images/OEBPS/Images/couv.jpg",
-        "readme": "|epub-title |''La panification au levain naturelHors Collection - Glossaire des savoirs'' |\n|epub-creator |'', , , '' |\n|converter-version |''0.1.0'' |\n|conversion-errors |''281'' |\n|count-chunks |''2526'' |\n|count-images |''89'' |",
-        "requires-reload": "no"
+        "cover-image-url": "recipes%2Flibrary%2Ftiddlers%2F%2524%253A%252Fplugins%252Ftwpub%252Fbd798cb95480ec9c.jpeg"
     }
-];
+]
+;
+
+// Convert the cover image URLs from relative to absolute
+for(var item=0; item<assetList.length; item++) {
+	if(assetList[item]["cover-image-url"]) {
+		assetList[item]["cover-image-url"] = document.location + assetList[item]["cover-image-url"]
+	}
+}
 
 /*\
 title: $:/plugins/tiddlywiki/pluginlibrary/libraryserver.js
