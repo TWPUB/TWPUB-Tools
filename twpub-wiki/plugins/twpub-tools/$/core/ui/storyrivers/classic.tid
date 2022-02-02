@@ -117,6 +117,11 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 \define story-river-content()
 \whitespace trim
 <div class="river-inner">
+	<section class="story-backdrop">
+		<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
+			<$transclude/>
+		</$list>
+	</section>
 	<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}>
 		<$vars storyItemTiddler=<<currentTiddler>> storyTiddler={{{ [<currentTiddler>get[var-currentTiddler]] }}}>
 			<$tiddler tiddler=<<storyTiddler>>>
@@ -124,5 +129,10 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 			</$tiddler>
 		</$vars>
 	</$list>
+	<section class="story-frontdrop">
+		<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
+			<$transclude/>
+		</$list>
+	</section>
 </div>
 \end

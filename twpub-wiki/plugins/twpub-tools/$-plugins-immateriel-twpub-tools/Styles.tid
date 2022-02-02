@@ -103,9 +103,9 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 
 .flextemplate-container .column-config {
 	flex-grow: 0;
-    flex-shrink: 0;
+	flex-shrink: 0;
 	background: #fbff9b;
-    z-index: 10000;
+	z-index: 10000;
 }
 
 .flextemplate-container .column-config-top-inner {
@@ -277,26 +277,26 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	background: black;
 	color: white;
 	width: 100%;
-    margin: 0.25em;
-    height: 25px;
+	margin: 0.25em;
+	height: 25px;
 }
 
 /* Forms */
 
 .tc-form-two-up {
 	display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 0.5em;
-    padding: 0.5em;
+	grid-template-columns: auto 1fr;
+	grid-gap: 0.5em;
+	padding: 0.5em;
 }
 
 .tc-form-two-up .tc-form-label {
-    grid-column: 1 / 2;
+	grid-column: 1 / 2;
 	text-align: right;
 }
 
 .tc-form-two-up .tc-form-item {
-    grid-column: 2 / 3;
+	grid-column: 2 / 3;
 }
 
 /* Swipe info */
@@ -308,17 +308,17 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	border: 1px solid #badbcc;
 	border-radius: 8px;
 	padding: 0 1em 0 1em;
-	margin: 1em;
+	margin: 0 0 1em 0;
 	color: #0f5132;
-	fill: #0f5132;
+	fill: #aad2bf;
 	background-color: #d1e7dd;
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .twpub-swipe-info svg {
-    width: 2em;
-    height: 2em;
-    vertical-align: middle;
+	width: 2em;
+	height: 2em;
+	vertical-align: middle;
 }
 
 /* Navigation */
@@ -366,10 +366,10 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	fill: <<color muted-foreground>>;
 	padding: 0.5em;
 	display: flex;
-    align-items: center;
+	align-items: center;
 	<<box-shadow "1px 1px 5px rgba(0, 0, 0, 0.3)">>
-    margin: 0.5em 0;
-    border-radius: 4px;
+	margin: 0.5em 0;
+	border-radius: 4px;
 }
 
 .twpub-badge.tc-popup-handle,
@@ -380,7 +380,7 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 }
 
 .twpub-badge-icon {
-    padding-right: 0.5em;
+	padding-right: 0.5em;
 }
 
 .twpub-badge:hover .twpub-badge-icon {
@@ -394,8 +394,8 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 
 .twpub-badge-text {
 	display: flex;
-    padding-left: 0.5em;
-    flex-grow: 1;
+	padding-left: 0.5em;
+	flex-grow: 1;
 	flex-direction: column;
 }
 
@@ -413,14 +413,14 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 .twpub-badge-cover img {
 	height: 4em;
 	width: auto;
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 /* Library */
 
 .twpub-library-button {
-    padding: 4px 8px;
-    margin: 4px 0;
+	padding: 4px 8px;
+	margin: 4px 0;
 	border: none;
 	cursor: pointer;
 	background: <<colour download-background>>;
@@ -436,12 +436,12 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 /* Search results */
 
 .twpub-search-results {
-    white-space: normal;
+	white-space: normal;
 }
 
 .twpub-search-results a.tc-tiddlylink.twpub-search-result {
-    padding: 0.5em 0;
-    border-radius: 0.25em;
+	padding: 0.5em 0;
+	border-radius: 0.25em;
 }
 
 /* Image gallery */
