@@ -13,6 +13,11 @@ Explore:
 
 * [[Images from currently loaded TWPubs|$:/TWPubs/Images]]
 
+Discuss:
+
+* [[talk.tiddlywiki.org|https://talk.tiddlywiki.org]]
+* [[TWPub on GitHub|https://github.com/TWPUB/TWPUB-Tools]]
+
 
 <$button>
 <$action-createtiddler $basetitle="$:/config/Stories/New" tags="$:/tags/Story" caption="Secondary" story-definition="$:/core/ui/storyrivers/single-tiddler">
