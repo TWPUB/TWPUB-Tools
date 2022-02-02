@@ -1,0 +1,31 @@
+caption: Stories
+tags: $:/tags/SideBar
+title: $:/plugins/immateriel/twpub-tools/sidebar/stories
+
+\define create-story-river-actions()
+<$let storyDefinitionTiddler={{{ [<stateStoryRiverDefinition>is[tiddler]get[text]else<defaultStoryDefinitionTiddler>] }}}>
+	<$action-createtiddler $basetitle="$:/temp/new-story-river" story-definition=<<storyDefinitionTiddler>>>
+		<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit" storyDefinitionTiddler=<<storyDefinitionTiddler>> storyConfigurationTiddler=<<createTiddler-title>> mode="create" prompt="Create New Story River"/>
+	</$action-createtiddler>
+</$let>
+\end
+
+<$let
+	defaultStoryDefinitionTiddler={{{ [all[tiddlers+shadows]tag[$:/tags/StoryRiverDefinition]] }}}
+	stateStoryRiverDefinition=<<qualify "$:/temp/twpub/new-story-river-definition">>
+>
+
+Type: <$select tiddler=<<stateStoryRiverDefinition>> default=<<defaultStoryDefinitionTiddler>>>
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/StoryRiverDefinition]]">
+<option value=<<currentTiddler>>>
+<$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
+</option>
+</$list>
+</$select> <$button actions=<<create-story-river-actions>>>
+Create
+</$button>
+
+</$let>
+
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]]" template="$:/plugins/immateriel/twpub-tools/sidebar/story" default={{{ [all[shadows+tiddlers]tag[$:/tags/Story]!is[draft]] }}}/>
+

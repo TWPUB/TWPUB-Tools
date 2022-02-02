@@ -1,0 +1,14 @@
+title: $:/core/ui/Columns/story-edit
+
+\define tv-action-refresh-policy() always
+
+Story river: <$select field="story-configuration">
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/Story]sort[]]">
+<option value=<<currentTiddler>>>
+<$view field="caption"><$text text=<<currentTiddler>>/></$view>
+</option>
+</$list>
+</$select>
+
+
+Column count: <$edit field="story-column-count" default="1"/>

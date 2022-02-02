@@ -1,0 +1,9 @@
+tags: $:/tags/AboveStory $:/tags/SideBarSegment
+title: $:/plugins/immateriel/twpub-tools/swipe-info
+list-before:
+
+<div class="twpub-swipe-info twpub-display-block-mobile-only">
+
+{{$:/core/images/chevron-left}} Swipe to see further columns {{$:/core/images/chevron-right}}
+
+</div>

@@ -1,7 +1,0 @@
-title: $:/plugins/immateriel/twpub-tools/templates/ColumnConfig/VisibilityListItemTemplate
-
-<$draggable tiddler=<<currentTiddler>>>
-    <$checkbox tiddler={{{ [<currentTiddler>addprefix[$:/config/PageLayout/MainColumn/Visibility/]] }}} field="text" checked="show" unchecked="hide" default="show">
-        <$text text={{{ [<currentTiddler>get[template]get[caption]else<currentTiddler>] }}}/>
-    </$checkbox>
-</$draggable>

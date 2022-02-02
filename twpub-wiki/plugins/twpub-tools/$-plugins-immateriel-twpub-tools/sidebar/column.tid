@@ -1,0 +1,35 @@
+title: $:/plugins/immateriel/twpub-tools/sidebar/column
+caption: <$transclude tiddler=<<currentTab>> field="caption"/>
+
+\define edit-column-actions()
+<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/columns/edit" columnDefinitionTiddler={{!!template}} columnConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit Column"/>
+\end
+
+<$tiddler tiddler=<<currentTab>>>
+
+<$let
+	columnTemplateTiddler={{!!template}}
+>
+
+!!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-column-actions>> class="tc-btn-invisible tc-btn-icon">
+{{$:/core/images/edit-button}}
+</$button>
+
+Type: <div class="tc-type-pill">
+<$tiddler tiddler=<<columnTemplateTiddler>>>
+<<twpub-tiddler-fields-button>>
+<$transclude tiddler=<<columnTemplateTiddler>> field="caption"/>
+</$tiddler>
+</div>
+
+<$checkbox tiddler={{{ [[$:/config/PageLayout/MainColumn/Visibility/]addsuffix<currentTiddler>] }}} field="text" checked="show" unchecked="hide" default="show"> Enable</$checkbox>
+
+<$transclude tiddler={{{ [<columnTemplateTiddler>get[edit-template]] }}}>
+
+(No visible options for story rivers of the type "<$transclude tiddler=<<columnTemplateTiddler>> field="caption"><$text text=<<columnTemplateTiddler>>/></$transclude>")
+
+</$transclude>
+
+</$let>
+
+</$tiddler>

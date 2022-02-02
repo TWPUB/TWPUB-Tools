@@ -1,0 +1,12 @@
+title: $:/TWPubs/Images
+
+<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]">
+<h2><$text text={{!!epub-title}}/> – <$text text={{!!epub-creator}}/></h2>
+<$list filter="[<currentTiddler>plugintiddlers[]is[image]sort[title]]">
+<$link>
+<div class="twpub-image-gallery-item-wrapper">
+<$image source=<<currentTiddler>> class="twpub-image-gallery-item"/>
+</div>
+</$link>
+</$list>
+</$list>

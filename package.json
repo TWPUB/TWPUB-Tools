@@ -7,7 +7,8 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "css": "^3.0.0",
-    "jszip": "^3.5.0",
+    "jszip": "^3.7.1",
+    "node-fetch": "^2.6.6",
     "puppeteer": "^8.0.0",
     "tiddlywiki": "github:Jermolene/TiddlyWiki5",
     "xmldom": "^0.5.0"
@@ -15,8 +16,10 @@
   "scripts": {
     "test": "node epub2twpub/test.js",
     "start": "npm run build && npx http-server ./output",
-    "start-with-global-tiddlywiki": "tiddlywiki ./twpub-wiki --output ./output --rendertiddler  $:/core/save/all index.html text/plain && npx http-server ./output",
-    "build": "./bin/slice-epubs-and-build-wiki.sh ./epubs ./tmp/twpubs && ./bin/build-twpub-library.sh ./tmp/twpubs ./output/library && ./bin/build-wiki.sh ./output",
+    "quick-start": "npx tiddlywiki ./twpub-wiki --output ./output --rendertiddler  $:/core/save/all index.html text/plain && npx http-server ./output",
+    "build": "./bin/slice-epubs.sh ./epubs/library ./tmp/twpubs && node ./bin/make-twpub-library.js ./tmp/twpubs ./output/library && ./bin/build-wiki.sh ./output",
+    "download-gutenberg": "node bin/download-gutenberg-top-100.js",
+    "build-gutenberg": "./bin/slice-epubs.sh ./epubs/gutenberg100 ./tmp/twpubs",
     "clean": "./bin/clean.sh"
   }
 }

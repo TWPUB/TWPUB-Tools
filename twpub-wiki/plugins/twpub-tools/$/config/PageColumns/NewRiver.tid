@@ -1,0 +1,5 @@
+story-configuration: $:/config/stories/main
+tags: $:/tags/PageLayout/MainColumn
+template: $:/core/ui/Columns/story
+title: $:/config/PageColumns/NewRiver
+caption: Main

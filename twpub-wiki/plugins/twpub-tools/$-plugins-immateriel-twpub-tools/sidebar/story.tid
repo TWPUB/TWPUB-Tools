@@ -1,0 +1,33 @@
+title: $:/plugins/immateriel/twpub-tools/sidebar/story
+caption: <$transclude tiddler=<<currentTab>> field="caption"/>
+
+\define edit-story-river-actions()
+<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit" storyDefinitionTiddler={{!!story-definition}} storyConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit Story River"/>
+\end
+
+<$tiddler tiddler=<<currentTab>>>
+
+<$let storyDefinitionTiddler={{!!story-definition}}
+	storyConfigurationTiddler=<<currentTiddler>>>
+
+!!! <<twpub-tiddler-fields-button>> <$link><$transclude field="caption"><$view field="title"/></$transclude></$link> <$button actions=<<edit-story-river-actions>> class="tc-btn-invisible tc-btn-icon">
+{{$:/core/images/edit-button}}
+</$button>
+
+Type: <div class="tc-type-pill">
+<$tiddler tiddler=<<storyDefinitionTiddler>>>
+<<twpub-tiddler-fields-button>>
+<$transclude tiddler=<<storyDefinitionTiddler>> field="caption"/>
+</$tiddler>
+</div>
+
+<$transclude tiddler={{{ [<storyDefinitionTiddler>get[edit-template]] }}}>
+
+(No visible options for story rivers of the type "<$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>")
+
+</$transclude>
+
+</$let>
+
+</$tiddler>
+

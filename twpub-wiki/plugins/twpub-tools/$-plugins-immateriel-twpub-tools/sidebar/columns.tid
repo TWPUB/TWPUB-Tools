@@ -1,0 +1,30 @@
+caption: Columns
+tags: $:/tags/SideBar
+title: $:/plugins/immateriel/twpub-tools/sidebar/columns
+
+\define create-column-actions()
+<$let columnDefinitionTiddler={{{ [<stateColumnDefinition>is[tiddler]get[text]else<defaultColumnDefinitionTiddler>] }}}>
+	<$action-createtiddler $basetitle="$:/temp/new-story-river" template=<<columnDefinitionTiddler>>>
+		<$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/columns/edit" columnDefinitionTiddler=<<columnDefinitionTiddler>> columnConfigurationTiddler=<<createTiddler-title>> mode="create" prompt="Create New Column"/>
+	</$action-createtiddler>
+</$let>
+\end
+
+<$let
+	defaultColumnDefinitionTiddler={{{ [all[tiddlers+shadows]tag[$:/tags/ColumnDefinition]] }}}
+	stateColumnDefinition=<<qualify "$:/temp/twpub/new-column-definition">>
+>
+
+Type: <$select tiddler=<<stateColumnDefinition>> default=<<defaultColumnDefinitionTiddler>>>
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/ColumnDefinition]!is[draft]]">
+<option value=<<currentTiddler>>>
+<$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
+</option>
+</$list>
+</$select> <$button actions=<<create-column-actions>>>
+Create
+</$button>
+
+</$let>
+
+<$macrocall $name="tabs" tabsList="[all[shadows+tiddlers]tag[$:/tags/PageLayout/MainColumn]!is[draft]]" template="$:/plugins/immateriel/twpub-tools/sidebar/column" default={{{ [all[shadows+tiddlers]tag[$:/tags/PageLayout/MainColumn]!is[draft]] }}}/>

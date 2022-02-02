@@ -1,7 +1,0 @@
-title: HelloThere
-
-!! Welcome to TWPUB
-
-{{$:/plugins/immateriel/twpub-tools/readme}}
-
-See [[documentation|$:/plugins/immateriel/twpub-tools/docs]] and [[specification|$:/plugins/immateriel/twpub-tools/spec]]

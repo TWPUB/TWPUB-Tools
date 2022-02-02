@@ -1,0 +1,38 @@
+caption: Single Tiddler Story River
+class: river
+imports: $:/core/ui/storyrivers/classic
+init-actions: <<init-actions>>
+title: $:/core/ui/storyrivers/single-tiddler
+tm-close-tiddler: <<close-tiddler-actions>>
+tm-edit-tiddler: <<edit-tiddler-actions>>
+tm-navigate: <<navigate-actions>>
+tags: $:/tags/StoryRiverDefinition
+edit-template: $:/core/ui/storyrivers/classic-edit
+
+\define tv-action-refresh-policy() always
+
+\define navigate-actions()
+<!--
+
+Navigate to a tiddler
+
+storyConfigurationTiddler: title of tiddler containing story configuration
+event-paramObject-var-currentTiddler: title of tiddler that is target of navigation
+event-navigateTo: alias for event-paramObject-var-currentTiddler for backwards compatibility
+event-paramObject-* other optional variables to be provided to the story entry
+
+-->
+<$vars
+	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+>
+	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyConfigurationTiddler>] }}}>
+		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-var-]removeprefix[event-paramObject-var-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-var-]getvariable[]]"/>
+		<$set name="value" filter="[<storyConfigurationTiddler>get[@history-list]enlist-input[]] =[<createTiddler-title>]">
+			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=<<value>>/>
+		</$set>
+		<$set name="value" filter="[<createTiddler-title>]">
+			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=<<value>>/>
+		</$set>
+	</$action-createtiddler>
+</$vars>
+\end

@@ -1,0 +1,5 @@
+description: Custom palette for the TWPUB viewer
+name: TWPUB Viewer Palette
+tags: $:/tags/Palette
+title: $:/plugins/immateriel/twpub-tools/TWPUBPalette
+type: application/x-tiddler-dictionary
