@@ -18,10 +18,12 @@ Discuss:
 * [[talk.tiddlywiki.org|https://talk.tiddlywiki.org]]
 * [[TWPub on GitHub|https://github.com/TWPUB/TWPUB-Tools]]
 
+Experiment:
 
-<$button>
+* <$button>
 <$action-createtiddler $basetitle="$:/config/Stories/New" tags="$:/tags/Story" caption="Secondary" story-definition="$:/core/ui/storyrivers/single-tiddler">
 <$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" caption="Secondary" template="$:/core/ui/Columns/story" story-configuration=<<createTiddler-title>>/>
 </$action-createtiddler>
-Create a secondary story river and display it in a new column
-</$button>
+Create
+</$button>  a secondary story river and display it in a new column
+
