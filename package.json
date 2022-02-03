@@ -19,7 +19,7 @@
     "quick-start": "npx tiddlywiki ./twpub-wiki --output ./output --rendertiddler  $:/core/save/all index.html text/plain && npx http-server ./output",
     "build": "npm run build-gutenberg && ./bin/slice-epubs.sh ./epubs/library ./tmp/twpubs && node ./bin/make-twpub-library.js ./tmp/twpubs ./output/library && ./bin/build-wiki.sh ./output",
     "download-gutenberg": "node bin/download-gutenberg-top-100.js",
-    "build-gutenberg": "./bin/slice-epubs.sh ./epubs/gutenberg100 ./tmp/twpubs",
+    "build-gutenberg": "./bin/slice-epubs.sh ./epubs/gutenberg100 ./tmp/twpubs && find ./tmp/twpubs -size +99M -delete",
     "clean": "./bin/clean.sh"
   }
 }
