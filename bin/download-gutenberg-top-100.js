@@ -2,6 +2,8 @@
 
 /*
 Download the top 100 epubs from the gutenberg.org website
+
+node ./bin/download-gutenberg-top-100.js
 */
 
 const puppeteer = require("puppeteer"),
