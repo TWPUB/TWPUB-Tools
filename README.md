@@ -4,20 +4,20 @@ TWPUB is a new format for electronic publications that encourages readers to reu
 
 We aim to re-imagine electronic publications as dynamic, mouldable, customisable shared cultural assets. Our goal is to create an ecosystem of readers and a library/store that makes it easy to create and consume these new-style publications. We hope that readers will come for the great experience, publishers will come to reach the readers, and that authors will be happy with the increased reader engagement.
 
-View the demo at https://twpub.github.io/TWPUB-Tools/
+View the demo at https://twpub-tools.org/
 
 ## Introduction
 
 This repository contains two tools:
 
-* ''epub2twpub'' is a command line tool to convert EPUB files into TWPUB format
-* ''twpub-wiki/plugins/twpub-tools'' is a TiddlyWiki plugin containing tools for viewing and annotating TWPUBs
+* **epub2twpub** is a command line tool to convert EPUB files into TWPUB format
+* **twpub-wiki/plugins/twpub-tools** is a TiddlyWiki plugin containing tools for viewing and annotating TWPUBs
 
 The repository also contains:
 
-* ''bin'' – scripts for working with the tools, including setting up a TiddlyWiki plugin library to contain the demo TWPUBs
-* ''epubs'' – demonstration EPUB files that get built into the 
-* ''fixtures'' – test fixtures for testing epub2twpub
+* **bin** – scripts for working with the tools, including setting up a TiddlyWiki plugin library to contain the demo TWPUBs
+* **epubs** – demonstration EPUB files
+* **fixtures** – test fixtures for testing epub2twpub
 
 ## Setup
 
@@ -71,10 +71,16 @@ Removes the build output in `./output` and the temporary files in `./tmp`.
 npm run clean
 ```
 
-## Usage of ''epub2twpub''
+## Usage of **epub2twpub**
 
-To run the ''epub2twpub'' converter:
+To run the **epub2twpub** converter:
 
 ```
 node epub2twpub --epub <path-to-input-epub-file> --output <path-to-output-twpub-file>
 ```
+
+## Stitching TWPub files into wiki files
+
+The file `./bin/slice-and-stitch-wiki.sh` demonstrates how to stitch a TWPub file into an empty TiddlyWiki wiki file using simple string operations, without using any TiddlyWiki library code.
+
+The script invokes a JavaScript app `./bin/stitch-wiki.js` that does the actual stitching.
