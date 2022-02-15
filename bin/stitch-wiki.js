@@ -27,36 +27,8 @@ const templateParts = fs.readFileSync(pathInputWiki,"utf8").split(marker);
 // Get the text of the TWPub file
 const textTWPub = fs.readFileSync(pathTWPub,"utf8");
 
-// Parse the TWPub so that we can access the data within it
-const jsonTWPub = JSON.parse(textTWPub);
-
-const twpubTitle = jsonTWPub.title,
-	twpubDescription = jsonTWPub["epub-title"],
-	twpubHash = jsonTWPub.title.split("/")[3];
-
-// Make the story configuration tiddler
-const textStoryConfiguration = JSON.stringify({
-	title: "$:/config/Stories/" + twpubHash,
-	tags: "$:/tags/Story",
-	caption: `Story for ${twpubDescription}`,
-	"story-definition": "$:/plugins/immateriel/twpub-tools/twpub-story-definition",
-	"story-twpub": twpubTitle
-},null,4);
-
-// Make the column configuration tiddler
-const textColumnConfiguration = JSON.stringify({
-	title: "$:/config/PageColumns/" + twpubHash,
-	tags: "$:/tags/PageLayout/MainColumn",
-	caption: `Column for ${twpubDescription}`,
-	"template": "$:/core/ui/Columns/story",
-	"story-configuration": "$:/config/Stories/" + twpubHash
-},null,4);
-
 // Assemble the payload 
-var payload = textTWPub + ",\n" + textStoryConfiguration + ",\n" + textColumnConfiguration + ",\n";
-
-// Replace "<" with "\u003c" to avoid HTML parsing errors
-payload = payload.replace(/</g,"\\u003c");
+const payload = textTWPub + ",\n";
 
 // Assemble the new wiki file
 const html = templateParts[0] + marker + payload + templateParts[1];

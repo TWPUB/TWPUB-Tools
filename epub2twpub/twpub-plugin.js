@@ -290,7 +290,8 @@ class TwpubPlugin {
 	*/
 	getPluginText() {
 		this.fields.text = JSON.stringify({tiddlers: this.tiddlers},null,4)
-		return JSON.stringify(this.fields,null,4);
+		// Replace "<" with "\u003c" to avoid HTML parsing errors when the JSON is embedded in a script tag
+		return JSON.stringify(this.fields,null,4).replace(/</g,"\\u003c");
 	}
 
 }
