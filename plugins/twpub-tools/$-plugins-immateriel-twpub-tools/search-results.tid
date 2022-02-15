@@ -1,0 +1,21 @@
+caption: TWPubs
+tags: $:/tags/SearchResults
+title: $:/plugins/immateriel/twpub-tools/search-results
+
+<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" variable="twpub">
+<div>
+<h3><$text text={{{ [<twpub>get[epub-title]] }}}/></h3>
+</div>
+<div class="twpub-search-results">
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<$list filter="[<twpub>plugintiddlers[]field:role[text]search:text<userInput>sort[title]limit[250]]">
+<$link class={{{[<currentTiddler>addsuffix[-primaryList]] -[<searchListState>get[text]] +[then[]else[tc-list-item-selected]] twpub-search-result +[join[ ]]}}}>
+<$dynannotate
+	search=<<userInput>>
+	searchDisplay="snippet"
+><$transclude mode="block"/></$dynannotate>
+</$link>
+</$list>
+</$list>
+</div>
+</$list>

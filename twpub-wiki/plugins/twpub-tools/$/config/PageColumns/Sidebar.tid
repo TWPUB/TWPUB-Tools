@@ -1,4 +1,0 @@
-tags: $:/tags/PageLayout/MainColumn
-template: $:/core/ui/Columns/sidebar
-title: $:/config/PageColumns/Sidebar
-caption: Sidebar

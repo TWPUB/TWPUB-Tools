@@ -1,0 +1,22 @@
+caption: {{$:/core/images/layout-button}} Layout
+description: Page Layout
+tags: $:/tags/PageControls
+title: $:/core/ui/Buttons/layout
+
+\whitespace trim
+<$button class={{{ [<tv-config-toolbar-class>] [[$:/config/ColumnConfig/Visibility]get[text]else[hide]match[show]then[tc-selected]] +[join[ ]] }}}>
+<$list filter="[[$:/config/ColumnConfig/Visibility]get[text]else[hide]match[hide]]" variable="ignore">
+<$action-setfield $tiddler="$:/config/ColumnConfig/Visibility" $field="text" $value="show"/>
+</$list>
+<$list filter="[[$:/config/ColumnConfig/Visibility]get[text]else[hide]match[show]]" variable="ignore">
+<$action-setfield $tiddler="$:/config/ColumnConfig/Visibility" $field="text" $value="hide"/>
+</$list>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/layout-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text="Page Layout"/></span>
+</$list>
+</$button>
+
+

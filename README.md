@@ -11,10 +11,11 @@ View the demo at https://twpub-tools.org/
 This repository contains two tools:
 
 * **epub2twpub** is a command line tool to convert EPUB files into TWPUB format
-* **twpub-wiki/plugins/twpub-tools** is a TiddlyWiki plugin containing tools for viewing and annotating TWPUBs
+* **plugins/twpub-tools** is a TiddlyWiki plugin containing tools for viewing and annotating TWPUBs
 
 The repository also contains:
 
+* **wikis** - wikis for twpub-tools.org and immateriel.fr
 * **bin** – scripts for working with the tools, including setting up a TiddlyWiki plugin library to contain the demo TWPUBs
 * **epubs** – demonstration EPUB files
 * **fixtures** – test fixtures for testing epub2twpub

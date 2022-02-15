@@ -1,0 +1,5 @@
+title: $:/config/FileSystemPaths
+
+[prefix[$:/plugins/immateriel/twpub-tools/]removeprefix[$:/plugins/immateriel/twpub-tools/]addprefix[$-plugins-immateriel-twpub-tools/]]
+[is[system]!has[draft.of]removeprefix[$:/]addprefix[$/]]
+[!is[system]]

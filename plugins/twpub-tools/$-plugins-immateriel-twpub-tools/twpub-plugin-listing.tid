@@ -1,0 +1,28 @@
+footer: <$button message="tm-close-tiddler"><$action-sendmessage $message="tm-unload-plugin-library" url={{!!url}}/><$action-deletetiddler $filter="[prefix[$:/temp/ServerConnection/$(PluginLibraryURL)$]][prefix[$:/temp/RemoteAssetInfo/$(PluginLibraryURL)$]]"/>Close</$button>
+subtitle: <$transclude field="caption"/>
+title: $:/plugins/immateriel/twpub-tools/twpub-plugin-listing
+
+\import $:/core/ui/ControlPanel/Modals/AddPlugins
+
+\define display-plugin-info(type)
+<div class="twpub-badge">
+<div class="twpub-badge-cover">
+<$list filter="[<assetInfo>has[cover-image-url]]" variable="ignore" emptyMessage="{{$:/plugins/immateriel/twpub-tools/default-book-cover}}">
+<img src={{{ [<assetInfo>get[cover-image-url]] }}}/>
+</$list>
+</div>
+<div class="twpub-badge-text">
+<div class="twpub-badge-title">
+<$text text={{{ [<assetInfo>get[epub-title]] }}}/>
+</div>
+<div class="twpub-badge-author">
+<$text text={{{ [<assetInfo>get[epub-creator]] }}}/>
+</div>
+</div>
+<div class="twpub-badge-install">
+<<install-plugin-button>>
+</div>
+</div>
+\end
+
+<<display-server-assets "plugin">>

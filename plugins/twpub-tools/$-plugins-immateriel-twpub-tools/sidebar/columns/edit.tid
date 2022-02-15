@@ -1,0 +1,33 @@
+title: $:/plugins/immateriel/twpub-tools/sidebar/columns/edit
+subtitle: <$importvariables filter="$:/plugins/immateriel/twpub-tools/sidebar/columns/edit"><<modal-subtitle>></$importvariables>
+footer: <$importvariables filter="$:/plugins/immateriel/twpub-tools/sidebar/columns/edit"><<modal-footer>></$importvariables>
+
+\define modal-subtitle()
+''<$text text=<<prompt>>/>'': <$transclude tiddler=<<columnDefinitionTiddler>> field="caption"><$text text=<<columnDefinitionTiddler>>/></$transclude>
+\end
+
+\define modal-footer()
+<$list filter="[<mode>match[edit]]" variable="ignore">
+	<$button message="tm-close-tiddler">
+		{{$:/language/Buttons/Close/Caption}}
+	</$button>
+</$list>
+<$list filter="[<mode>match[create]]" variable="ignore">
+	<$button message="tm-close-tiddler">
+		<$action-deletetiddler $tiddler=<<columnConfigurationTiddler>>/>
+		Cancel
+	</$button>
+	<$button message="tm-close-tiddler">
+		<$action-listops $tiddler=<<columnConfigurationTiddler>> $tags="$:/tags/PageLayout/MainColumn"/>
+		Create
+	</$button>
+</$list>
+\end
+
+Caption: <$edit-text tiddler=<<columnConfigurationTiddler>> field="caption" />
+
+<$transclude tiddler={{{ [<columnDefinitionTiddler>get[edit-template]] }}}>
+
+(No configuration options for columns of the type "<$transclude tiddler=<<columnDefinitionTiddler>> field="caption"><$text text=<<columnDefinitionTiddler>>/></$transclude>")
+
+</$transclude>

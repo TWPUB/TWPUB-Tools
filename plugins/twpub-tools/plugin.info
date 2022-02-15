@@ -1,0 +1,9 @@
+{
+    "title": "$:/plugins/immateriel/twpub-tools",
+    "name": "TWPUB Tools",
+    "description": "TiddlyWiki Tools for TWPUBs",
+    "list": "readme docs spec",
+    "version": "5.2.1-prerelease",
+    "plugin-type": "plugin",
+    "dependents": ""
+}

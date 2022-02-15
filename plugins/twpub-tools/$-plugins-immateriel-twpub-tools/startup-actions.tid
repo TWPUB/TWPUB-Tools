@@ -1,0 +1,47 @@
+tags: $:/tags/StartupAction/Browser
+title: $:/plugins/immateriel/twpub-tools/startup-actions
+
+\define tv-action-refresh-policy() always
+
+\define create-page-column(storyConfigurationTiddler)
+<$action-createtiddler $basetitle={{{ [[$:/config/PageColumns/]addsuffix{!!description}] }}} tags="$:/tags/PageLayout/MainColumn" caption={{!!description}} template="$:/core/ui/Columns/story" story-configuration=<<__storyConfigurationTiddler__>>/>
+\end
+
+\define check-page-column(storyConfigurationTiddler)
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageLayout/MainColumn]field:story-configuration<__storyConfigurationTiddler__>limit[1]]" variable="ignore" emptyMessage="""<$macrocall $name="create-page-column" storyConfigurationTiddler=<<__storyConfigurationTiddler__>>/>"""/>
+\end
+
+\define create-story-configuration-tiddler()
+<$action-createtiddler $basetitle={{{ [[$:/config/Stories/]addsuffix{!!description}] }}} tags="$:/tags/Story" caption={{!!description}} story-definition="$:/plugins/immateriel/twpub-tools/twpub-story-definition" story-twpub=<<currentTiddler>>>
+	<$macrocall $name="check-page-column" storyConfigurationTiddler=<<createTiddler-title>>/>
+</$action-createtiddler>
+\end
+
+<!-- Create columns and stories for any loaded TWPubs -->
+
+<!-- Loop through each TWPub -->
+<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]">
+	// Check for a story configuration tiddler for this TWPub
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]field:story-definition[$:/plugins/immateriel/twpub-tools/twpub-story-definition]field:story-twpub<currentTiddler>limit[1]]" variable="storyConfigurationTiddler" emptyMessage="""<$macrocall $name="create-story-configuration-tiddler"/>""">
+			<$macrocall $name="check-page-column" storyConfigurationTiddler=<<storyConfigurationTiddler>>/>
+	</$list>
+</$list>
+
+<!-- Open default tiddlers for each story -->
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
+
+<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
+
+<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+
+<$importvariables filter=<<storyDefinitionTiddler>>>
+
+<$transclude tiddler=<<storyDefinitionTiddler>> field="init-actions"/>
+
+</$importvariables>
+
+</$importvariables>
+
+</$vars>
+
+</$list>

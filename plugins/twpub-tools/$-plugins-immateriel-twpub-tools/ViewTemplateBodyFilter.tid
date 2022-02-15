@@ -1,0 +1,5 @@
+title: $:/plugins/immateriel/twpub-tools/ViewTemplateBodyFilter
+tags: $:/tags/ViewTemplateBodyFilter
+list-before:
+
+[shadowsource[]has[epub-title]then[$:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body]]

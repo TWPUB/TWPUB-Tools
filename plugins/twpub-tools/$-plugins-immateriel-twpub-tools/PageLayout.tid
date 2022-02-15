@@ -1,0 +1,31 @@
+description: TWPub Tools Custom Page Layout
+name: TWPub Tools
+tags: $:/tags/Layout
+title: $:/plugins/immateriel/twpub-tools/PageLayout
+
+\whitespace trim
+\import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+
+\define body()
+<$dropzone enable=<<tv-enable-drag-and-drop>>>
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="flextemplateConfigurationTiddler">
+		<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
+	</$list>
+</$dropzone>
+\end
+
+<$vars
+	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
+	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
+	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
+	tv-enable-drag-and-drop={{$:/config/DragAndDrop/Enable}}
+	tv-show-missing-links={{$:/config/MissingLinks}}
+	storyviewTitle={{$:/view}}
+	languageTitle={{{ [{$:/language}get[name]] }}}
+>
+	<div class="tc-layout-flextemplate">
+		<$importvariables filter="$:/plugins/immateriel/twpub-tools/Navigator">
+			<$macrocall $name="navigator-handler" content=<<body>>/>
+		</$importvariables>
+	</div>
+</$vars>

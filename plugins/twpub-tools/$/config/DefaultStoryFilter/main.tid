@@ -1,0 +1,8 @@
+title: $:/config/DefaultStoryFilter/main
+tags: $:/tags/DefaultStoryFilter
+
+[<event-paramObject-altKey>!is[blank]match[true]then{$:/config/SecondaryDefaultStoryRiver}tag[$:/tags/Story]]
+
+~[{$:/config/PrimaryDefaultStoryRiver}tag[$:/tags/Story]]
+
+~[all[shadows+tiddlers]tag[$:/tags/Story]limit[1]]
