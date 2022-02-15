@@ -26,7 +26,7 @@ mkdir -p tmp || exit 1
 
 # Build an almost empty wiki file, just containing the plugins we need
 
-npx tiddlywiki ./twpub-wiki \
+npx tiddlywiki ++plugins/twpub-tools/ ./wikis/immateriel.fr/ \
 	--output tmp \
 	--render dummy empty.html text/plain $:/core/templates/tiddlywiki5.html saveTiddlerFilter "$:/core $:/themes/tiddlywiki/snowwhite $:/themes/tiddlywiki/vanilla $:/plugins/immateriel/twpub-tools $:/languages/fr-FR $:/config/Search/AutoFocus $:/config/TiddlerInfo/Mode $:/plugins/tiddlywiki/dynannotate +[sort[title]]" || exit 1
 

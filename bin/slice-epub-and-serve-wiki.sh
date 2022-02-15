@@ -22,6 +22,6 @@ mkdir -p tmp
 
 node epub2twpub/index.js --epub "$EPUB_FILEPATH" --output ./tmp/twpub.json || exit 1
 
-npx tiddlywiki ./twpub-wiki \
+npx tiddlywiki ++plugins/twpub-tools/ ./wikis/twpub-tools.org/ \
 	--load ./tmp/twpub.json \
 	--listen host=0.0.0.0 || exit 1
