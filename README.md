@@ -81,6 +81,4 @@ node epub2twpub --epub <path-to-input-epub-file> --output <path-to-output-twpub-
 
 ## Stitching TWPub files into wiki files
 
-The file `./bin/slice-and-stitch-wiki.sh` demonstrates how to stitch a TWPub file into an empty TiddlyWiki wiki file using simple string operations, without using any TiddlyWiki library code.
-
-The script invokes a JavaScript app `./bin/stitch-wiki.js` that does the actual stitching. As well as injecting the TWPub, it also needs to inject a story configuration tiddler and a column configuration tiddler. These tiddlers have to be constructed dynamically rather than baked into the empty file because their content depends on the TWPub in question.
+The file `./bin/slice-and-stitch-wiki.sh` demonstrates how to stitch a TWPub file into an empty TiddlyWiki wiki file using simple string operations, without using any TiddlyWiki library code. The script invokes a JavaScript app `./bin/stitch-wiki.js` that does the actual stitching.
