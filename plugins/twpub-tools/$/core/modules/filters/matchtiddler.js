@@ -27,7 +27,7 @@ exports.matchtiddler = function(source,operator,options) {
 	source(function(tiddler,title) {
 		// Ignore any titles that aren't tiddlers
 		if(tiddler) {
-			if(targetTiddler.isEqual(tiddler,["title","created","modified"]) === matchTo) {
+			if(targetTiddler.isEqual(tiddler,["title","created","modified","draft.of","draft.title"]) === matchTo) {
 				results.push(title);
 			}
 		}

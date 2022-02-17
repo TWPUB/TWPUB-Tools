@@ -5,6 +5,7 @@ init-actions: <<init-actions>>
 title: $:/core/ui/storyrivers/single-tiddler
 tm-close-tiddler: <<close-tiddler-actions>>
 tm-edit-tiddler: <<edit-tiddler-actions>>
+tm-cancel-tiddler: <<cancel-tiddler-actions>>
 tm-navigate: <<navigate-actions>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/core/ui/storyrivers/classic-edit

@@ -4,6 +4,7 @@ init-actions: <<init-actions>>
 title: $:/core/ui/storyrivers/classic
 tm-close-tiddler: <<close-tiddler-actions>>
 tm-edit-tiddler: <<edit-tiddler-actions>>
+tm-cancel-tiddler: <<cancel-tiddler-actions>>
 tm-navigate: <<navigate-actions>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/core/ui/storyrivers/classic-edit
@@ -95,6 +96,33 @@ event-tiddlerTitle: title of tiddler that is to be edited
 		</$action-confirm>
 	</$wikify>
 </$vars>
+\end
+
+\define cancel-tiddler-actions()
+<!--
+
+If the tiddler has changed, show a confirmation prompt. If confirmed, delete the draft tiddler and replace it in the story with the original tiddler, and then navigate to it
+
+storyConfigurationTiddler: title of tiddler containing story configuration
+event-tiddlerTitle: title of tiddler that is to be cancelled
+
+-->
+<$let
+	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
+	originalTitle={{{ [<title>get[draft.of]] }}}
+>
+<$action-log msg="In classic cancel-tiddler-actions" storyConfigurationTiddler=<<storyConfigurationTiddler>>/>
+<$action-log/>
+	<$wikify name="confirmation-message" text={{$:/language/ConfirmCancelTiddler}}>
+		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<title>] :filter[{!!draft.title}!match{!!draft.of}then[yes]] :else[<title>matchtiddler:title,modified,created,draft.of,draft.title<originalTitle>then[no]else[yes]] }}}>
+			<$action-deletetiddler $tiddler=<<title>>/>
+			<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]] :filter[field:var-currentTiddler<title>]" variable="storyItemTiddler">
+				<$action-setfield $tiddler=<<storyItemTiddler>> var-currentTiddler=<<originalTitle>>/>
+				<!-- POSSIBLY SHOULD NAVIGATE TO THE TIDDLER AS WELL HERE -->
+			</$list>
+		</$action-confirm>
+	</$wikify>
+</$let>
 \end
 
 \define init-actions()

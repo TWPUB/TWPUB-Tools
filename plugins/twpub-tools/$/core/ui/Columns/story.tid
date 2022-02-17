@@ -38,6 +38,7 @@ Generic message handler that passes the message on but adds the story configurat
 					$tm-close-tiddler=<<generic-handler>>
 					$tm-edit-tiddler=<<generic-handler>>
 					$tm-save-tiddler=<<generic-handler>>
+					$tm-cancel-tiddler=<<generic-handler>>
 				>
 					<<navigation-popup>>
 					<<story-river-content>>
