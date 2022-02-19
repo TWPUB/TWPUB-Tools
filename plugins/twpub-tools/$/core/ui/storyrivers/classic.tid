@@ -4,6 +4,7 @@ init-actions: <<init-actions>>
 title: $:/core/ui/storyrivers/classic
 tm-close-tiddler: <<close-tiddler-actions>>
 tm-edit-tiddler: <<edit-tiddler-actions>>
+tm-save-tiddler: <<save-tiddler-actions>>
 tm-cancel-tiddler: <<cancel-tiddler-actions>>
 tm-navigate: <<navigate-actions>>
 tags: $:/tags/StoryRiverDefinition
@@ -96,6 +97,49 @@ event-tiddlerTitle: title of tiddler that is to be edited
 		</$action-confirm>
 	</$wikify>
 </$vars>
+\end
+
+\define save-tiddler-actions()
+<!--
+
+* If the tiddler has been renamed and the target tiddler already exists then issue a confirmation prompt
+* Save the draft over the original tiddler
+* Optionally, relink references to the original tiddler to the new title
+* Delete the draft
+* If it is a rename, then also delete the original tiddler
+* Replace the draft in the story river with the new tiddler
+* Finally, trigger an autosave.
+
+storyConfigurationTiddler: title of tiddler containing story configuration
+event-tiddlerTitle: title of tiddler that is to be edited
+
+-->
+<$let
+	draftTitle={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
+	title={{{ [<draftTitle>get[draft.title]] }}}
+	originalTitle={{{ [<draftTitle>get[draft.of]] }}}
+	isRename={{{ [<title>match<originalTitle>then[no]else[yes]] }}}
+>
+<$action-log msg="In classic save-tiddler-actions"/>
+<$action-log/>
+	<$wikify name="confirmation-message" text={{$:/language/ConfirmOverwriteTiddler}}>
+		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<title>!is[tiddler]then[no]] [<isRename>match[no]] ~[[yes]] }}}>
+			<$action-setmultiplefields $tiddler=<<title>> $fields="[<draftTitle>fields[]sort[]] -title -draft.of -draft.title" $values="[<draftTitle>fields[]sort[]] -title -draft.of -draft.title :map[<draftTitle>get<currentTiddler>]"/>
+			<$action-setfield $tiddler=<<title>> $timestamp="yes"/>
+			<$list filter="[{$:/config/RelinkOnRename}match[yes]]" variable="ignore">
+				<$action-sendmessage $message="tm-relink-tiddler" from=<<originalTitle>> to=<<title>>/>
+			</$list>
+			<$action-deletetiddler $tiddler=<<draftTitle>>/>
+			<$list filter="[<isRename>match[yes]]" variable="ignore">
+				<$action-deletetiddler $tiddler=<<originalTitle>>/>
+			</$list>
+			<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]] :filter[field:var-currentTiddler<draftTitle>]" variable="storyItemTiddler">
+				<$action-setfield $tiddler=<<storyItemTiddler>> var-currentTiddler=<<title>>/>
+				<!-- POSSIBLY SHOULD NAVIGATE TO THE TIDDLER AS WELL HERE -->
+			</$list>
+		</$action-confirm>
+	</$wikify>
+</$let>
 \end
 
 \define cancel-tiddler-actions()
