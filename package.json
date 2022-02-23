@@ -10,7 +10,7 @@
     "jszip": "^3.7.1",
     "node-fetch": "^2.6.7",
     "puppeteer": "^8.0.0",
-    "tiddlywiki": "github:Jermolene/TiddlyWiki5#direct-style-attributes",
+    "tiddlywiki": "github:Jermolene/TiddlyWiki5",
     "xmldom": "^0.5.0"
   },
   "scripts": {
