@@ -1,0 +1,52 @@
+caption: Notes
+tags: $:/tags/SideBar
+title: $:/plugins/immateriel/twpub-tools/sidebar/notes
+
+\define navigate-to-twpub()
+<$action-sendmessage
+	$message="tm-navigate"
+	var-currentTiddler={{{ [list<currentTiddler>get[annotate-tiddler]] }}}
+	storyConfigurationTiddler={{{
+		[all[tiddlers+shadows]tag[$:/tags/Story]!is[draft]field:story-definition[$:/plugins/immateriel/twpub-tools/twpub-story-definition]field:story-twpub<twpub>]
+		:else[all[tiddlers+shadows]tag[$:/tags/Story]!is[draft]] }}}
+/>
+\end
+
+<$list filter="[all[shadows+tiddlers]!is[draft]tag[$:/tags/Note]!sort[modified]]">
+
+<h2><$link><$view field="modified" format="date" template={{$:/language/Tiddler/DateFormat}}/></$link></h2>
+
+On:
+<$let twpub={{{ [<currentTiddler>get[twpub]get[story-twpub]] }}}>
+<$link to=<<twpub>>>
+<$text text={{{ [<twpub>get[epub-title]] }}}/>
+</$link>
+</$let> <$button actions=<<navigate-to-twpub>>>
+goto
+</$button>
+
+<div style="border: 1px solid #888; padding: 1em;" style.background-color={{{ [<currentTiddler>get[color]else[#ff0]] }}} style.color=<<foregroundColour>>>
+
+<$list filter="[list<currentTiddler>]">
+
+<p>
+
+<$text text={{!!annotate-text}}/>
+
+</p>
+
+</$list>
+
+</div>
+
+<$list filter="[<currentTiddler>get[text]!is[blank]]" variable="ignore">
+
+<div style="border: 1px solid #888; padding: 0 1em; background-color: #fff;">
+
+<$transclude mode="block"/>
+
+</div>
+
+</$list>
+
+</$list>

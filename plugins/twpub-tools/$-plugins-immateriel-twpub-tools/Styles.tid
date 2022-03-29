@@ -191,12 +191,12 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	border-bottom: 1px solid <<colour muted-foreground>>;
 }
 
-.flextemplate-container .twpub-frame .twpub-chunk-frame {
+.flextemplate-container .twpub-frame .dynannotate-chunk {
 	border-left: 1em solid transparent;
 	border-right: 1em solid transparent;
 }
 
-.flextemplate-container .twpub-frame .twpub-chunk-frame.twpub-chunk-selected {
+.flextemplate-container .twpub-frame .dynannotate-chunk.twpub-chunk-selected {
 	border-left: 1em solid #ffeecd;
 	border-right: 1em solid #ffeecd;
 }
@@ -227,11 +227,11 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 	height: auto;
 }
 
-.flextemplate-container .twpub-frame .twpub-chunk-frame {
+.flextemplate-container .twpub-frame .dynannotate-chunk {
 	display: block;
 }
 
-.flextemplate-container .twpub-frame .twpub-chunk-frame:hover .twpub-chunk-content {
+.flextemplate-container .twpub-frame .dynannotate-chunk:hover .twpub-chunk-content {
 	background: #fcfcf8;
 }
 

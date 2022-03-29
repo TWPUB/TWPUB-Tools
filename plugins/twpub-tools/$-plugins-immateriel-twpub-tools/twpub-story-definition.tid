@@ -32,7 +32,7 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 \end
 
 \define body-click-actions()
-<$action-sendmessage
+<$action-sendmessage-DISABLED
 	$message="tm-navigate"
 	var-currentTiddler=<<dom-id>>
 	shiftKey="true"
@@ -41,6 +41,20 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 	navigateFromClientWidth=20
 	navigateFromClientHeight=20
 />
+\end
+
+\define annotation-click-actions()
+<$action-log message="In annotation-click-actions"/>
+<$action-log/>
+<$action-sendmessage
+	$message="tm-navigate"
+	var-currentTiddler={{{ [<annotationTiddler>get[note]] }}}
+	storyConfigurationTiddler=""
+	shiftKey="true"
+	navigateFromClientLeft=<<tv-selection-posx>>
+	navigateFromClientTop=<<tv-selection-posy>>
+	navigateFromClientWidth=20
+	navigateFromClientHeight=20/>
 \end
 
 \define story-river-content()
@@ -75,29 +89,32 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 			</$vars>
 			<div style="clear:both;"/>
 		</div>
-		<div
-			class="twpub-body"
-			style.transform={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]] :map[[1]divide<currentTiddler>] +[addprefix[scale(]addsuffix[)]] }}}
-			style.column-count={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]] }}}
-			style.width={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]multiply[100]addsuffix[%]] }}}
-		>
-			<$set name="popup-state" value=<<qualify "$:/state/twpub-popup">>>
-				<$set name="popup-title" value={{{ [<popup-state>addsuffix[-title]] }}}>
-					<$eventcatcher events="click" selector="a[id].twpub-chunk-frame" actions-click=<<body-click-actions>> tag="div">
-						<div data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions">
-							<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}} filter={{{ [<storyConfigurationTiddler>get[story-filter]] }}}>
-								<$list filter="[<storyConfigurationTiddler>has[story-filter]]" variable="ignore">
-									<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]filter<filter>]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
-								</$list>
-								<$list filter="[<storyConfigurationTiddler>!has[story-filter]]" variable="ignore">
-									<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
-								</$list>
-							</$vars>
-						</div>
-					</$eventcatcher>
-				</$set>
-			</$set>
-		</div>
+		<$let stateSelectionPopupTitle={{{ [[$:/state/selection-popup/]addsuffix<storyConfigurationTiddler>] }}}>
+			<$transclude tiddler="$:/plugins/immateriel/twpub-tools/twpub-story-definition-selection-popup" mode="inline"/>
+			<div
+				class="twpub-body"
+				style.transform={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]] :map[[1]divide<currentTiddler>] +[addprefix[scale(]addsuffix[)]] }}}
+				style.column-count={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]] }}}
+				style.width={{{ [<columnConfigurationTiddler>get[story-column-count]else[1]multiply[100]addsuffix[%]] }}}
+			>
+				<$eventcatcher events="click" selector="a[id].dynannotate-chunk" matchSelector=".tc-dynannotation-selection-container *" actions-click=<<body-click-actions>> tag="div">
+					<div
+						data-twpub-story-configuration=<<storyConfigurationTiddler>>
+						data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions"
+						data-selection-popup-title=<<stateSelectionPopupTitle>>
+					>
+						<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}} filter={{{ [<storyConfigurationTiddler>get[story-filter]] }}}>
+							<$list filter="[<storyConfigurationTiddler>has[story-filter]]" variable="ignore">
+								<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]filter<filter>]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+							</$list>
+							<$list filter="[<storyConfigurationTiddler>!has[story-filter]]" variable="ignore">
+								<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+							</$list>
+						</$vars>
+					</div>
+				</$eventcatcher>
+			</div>
+		</$let>
 	</div>
 </$tiddler>
 \end

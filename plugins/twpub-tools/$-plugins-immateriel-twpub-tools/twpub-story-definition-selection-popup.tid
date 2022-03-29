@@ -1,0 +1,83 @@
+title: $:/plugins/immateriel/twpub-tools/twpub-story-definition-selection-popup
+
+\define annotation-prefix()
+<div style="position:relative;"><$dynannotate filter="[all[tiddlers]!has[draft.of]annotate-tiddler<currentTiddler>]" actions=<<annotation-click-actions>>>
+\end
+
+\define annotation-suffix()
+</$dynannotate></div>
+\end
+
+\define create-annotation-actions()
+<$action-createtiddler
+	$basetitle="$:/note/"
+	tags="$:/tags/Note"
+	text={{{ [<selectionTracker>get[note]] }}}
+	color={{{ [<selectionTracker>get[note-color]else[#ffff00]] }}}
+	twpub={{{ [<selectionTracker>getjson[variables],[dom-data-twpub-story-configuration]] }}}
+	icon="$:/core/images/file"
+>
+	<$let
+		noteTitle=<<createTiddler-title>>
+	>
+		<$list filter="[<selectionTracker>indexesjson[chunks]]" variable="index">
+			<$let
+				idChunk={{{ [<selectionTracker>getjson[chunks],<index>,[id]] }}}
+			>
+				<$list filter="[<idChunk>!is[tiddler]]" variable="ignore">
+					<$action-setfield $tiddler=<<idChunk>> text={{{ [<idChunk>get[text]addprefix<annotation-prefix>addsuffix<annotation-suffix>] }}}/>
+				</$list>
+				<$action-createtiddler $basetitle="$:/annotation/"
+						annotate-tiddler=<<idChunk>>
+						annotate-text={{{ [<selectionTracker>getjson[chunks],<index>,[text]] }}}
+						annotate-prefix={{{ [<selectionTracker>getjson[chunks],<index>,[prefix]] }}}
+						annotate-suffix={{{ [<selectionTracker>getjson[chunks],<index>,[suffix]] }}}
+						annotate-colour={{{ [<selectionTracker>get[note-color]else[#ffff00]] }}}
+						note=<<noteTitle>>
+						tags="$:/tags/TwpubAnnotation"
+				>
+					<$action-setfield $tiddler=<<noteTitle>> list={{{ [list<noteTitle>] =[<createTiddler-title>] +[format:titlelist[]join[ ]] }}}/>
+				</$action-createtiddler>
+			</$let>
+		</$list>
+		<$action-deletetiddler $tiddler=<<stateSelectionPopupTitle>>/>
+		<$action-deletetiddler $tiddler=<<selectionTracker>>/>
+	</$let>
+</$action-createtiddler>
+\end
+
+\define cancel-annotation-actions()
+<$action-deletetiddler $tiddler=<<stateSelectionPopupTitle>>/>
+<$action-deletetiddler $tiddler=<<selectionTracker>>/>
+\end
+
+<$reveal state=<<stateSelectionPopupTitle>> type="popup" tag="div" class="tc-block-dropdown-wrapper tc-selection-popup" position="below" updatePopupPosition="yes" animate="yes">
+	<$let selectionTracker={{{ [<stateSelectionPopupTitle>get[selection-tracker]] }}}>
+		<div class="tc-block-dropdown">
+			<p style="width:300px;white-space:normal;max-height:250px;overflow:scroll;">
+				<blockquote>
+					<$list filter="[<selectionTracker>indexesjson[chunks]]">
+						<p>
+							<$text text={{{ [<selectionTracker>getjson[chunks],<currentTiddler>,[text]] }}}/>
+						</p>
+					</$list>
+					<$text text={{{ [<selectionTracker>indexesjson[chunks]] :reduce[<selectionTracker>getjson[chunks],<currentTiddler>,[text]addprefix<accumulator>] }}}/>
+				</blockquote>
+			</p>
+			<p>
+				<$edit-text tiddler=<<selectionTracker>> field="note" tag="textarea" placeholder="Type note here..." class="tc-width-100-percent"/>
+			</p>
+			<p>
+				<$edit-text tiddler=<<selectionTracker>> field="note-color" type="color" default="#ffff00"/>
+			</p>
+			<p style="width:300px;white-space:normal;">
+				<$button actions=<<create-annotation-actions>>>
+				Create Annotation
+				</$button>
+				<$button actions=<<cancel-annotation-actions>>>
+				Cancel
+				</$button>
+			</p>
+		</div>
+	</$let>
+</$reveal>
