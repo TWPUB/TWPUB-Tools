@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/twpub-story-definition-editor
+code-body: yes
 
 TWPub: <$select tiddler=<<storyConfigurationTiddler>> field="story-twpub">
 <$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]">

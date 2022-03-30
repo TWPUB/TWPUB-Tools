@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/Navigator
+code-body: yes
 
 \define tv-action-refresh-policy() always
 

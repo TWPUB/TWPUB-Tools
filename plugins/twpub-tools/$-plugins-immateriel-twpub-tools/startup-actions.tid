@@ -1,5 +1,6 @@
 tags: $:/tags/StartupAction/Browser
 title: $:/plugins/immateriel/twpub-tools/startup-actions
+code-body: yes
 
 \define tv-action-refresh-policy() always
 

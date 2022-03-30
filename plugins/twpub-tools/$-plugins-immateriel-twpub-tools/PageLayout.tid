@@ -2,6 +2,7 @@ description: TWPub Tools Custom Page Layout
 name: TWPub Tools
 tags: $:/tags/Layout
 title: $:/plugins/immateriel/twpub-tools/PageLayout
+code-body: yes
 
 \whitespace trim
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]

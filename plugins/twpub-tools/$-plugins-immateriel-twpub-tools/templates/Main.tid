@@ -1,5 +1,6 @@
 tags: $:/tags/FlexTemplate/Component
 title: $:/plugins/immateriel/twpub-tools/templates/Main
+code-body: yes
 
 <div class="flextemplate-container">
 	<header class="toolbar">

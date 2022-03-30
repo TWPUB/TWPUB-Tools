@@ -2,6 +2,7 @@ caption: {{$:/plugins/immateriel/twpub-tools/twpub-list}} TWPubs
 description: TWPub Listing
 tags: $:/tags/PageControls
 title: $:/plugins/immateriel/twpub-tools/templates/twpubs-button
+code-body: yes
 
 \whitespace trim
 <$button class={{{ [<tv-config-toolbar-class>] +[join[ ]] }}}>

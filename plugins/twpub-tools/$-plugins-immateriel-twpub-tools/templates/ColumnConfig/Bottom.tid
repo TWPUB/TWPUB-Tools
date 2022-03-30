@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Bottom
+code-body: yes
 
 <$list filter="[[$:/config/ColumnConfig/Visibility]get[text]else[hide]match[show]]" variable="ignore">
     <div class="column-config-bottom-inner">

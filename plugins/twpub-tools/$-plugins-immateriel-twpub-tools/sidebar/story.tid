@@ -1,5 +1,6 @@
 title: $:/plugins/immateriel/twpub-tools/sidebar/story
 caption: <$transclude tiddler=<<currentTab>> field="caption"/>
+code-body: yes
 
 \define edit-story-river-actions()
 <$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit" storyDefinitionTiddler={{!!story-definition}} storyConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit Story River"/>

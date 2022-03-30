@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub/viewtemplate/body
+code-body: yes
 
 Number of context chunks: <$text text={{{ [<storyItemTiddler>get[var-numberOfContextChunks]] }}}/>
 

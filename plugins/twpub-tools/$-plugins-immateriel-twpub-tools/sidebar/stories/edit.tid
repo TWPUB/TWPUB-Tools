@@ -1,6 +1,7 @@
 title: $:/plugins/immateriel/twpub-tools/sidebar/stories/edit
 subtitle: <$importvariables filter="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit"><<modal-subtitle>></$importvariables>
 footer: <$importvariables filter="$:/plugins/immateriel/twpub-tools/sidebar/stories/edit"><<modal-footer>></$importvariables>
+code-body: yes
 
 \define modal-subtitle()
 ''<$text text=<<prompt>>/>'': <$transclude tiddler=<<storyDefinitionTiddler>> field="caption"><$text text=<<storyDefinitionTiddler>>/></$transclude>

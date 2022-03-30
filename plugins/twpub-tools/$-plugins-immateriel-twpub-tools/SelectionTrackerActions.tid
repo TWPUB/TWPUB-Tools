@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/SelectionTrackerActions
+code-body: yes
 
 <$action-log message="In SelectionTrackerActions" selection=<<selection>>/>
 <$action-log/>

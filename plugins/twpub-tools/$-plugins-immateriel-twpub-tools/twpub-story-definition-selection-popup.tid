@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/twpub-story-definition-selection-popup
+code-body: yes
 
 \define annotation-prefix()
 <div style="position:relative;"><$dynannotate filter="[all[tiddlers]!has[draft.of]annotate-tiddler<currentTiddler>]" actions=<<annotation-click-actions>>>

@@ -1,5 +1,6 @@
 title: $:/plugins/immateriel/twpub-tools/macros
 tags: $:/tags/Macro
+code-body: yes
 
 \define twpub-tiddler-fields(exclude)
 <table class="tc-view-field-table">

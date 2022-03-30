@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Top
+code-body: yes
 
 \define maquette(property,defaultValue)
 <div class="tc-column-config-maquette-wrapper">

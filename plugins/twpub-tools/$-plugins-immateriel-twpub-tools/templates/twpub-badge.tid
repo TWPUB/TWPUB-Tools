@@ -1,4 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
+code-body: yes
 
 <$button popup=<<qualify "$:/state/popup/twpub-badge">> class="twpub-badge">
 <div class="twpub-badge-cover">

@@ -1,5 +1,6 @@
 tags: $:/tags/Stylesheet
 title: $:/plugins/immateriel/twpub-tools/Styles
+code-body: yes
 
 \define column-layout()
 <$vars is-column-enabled="[lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]">

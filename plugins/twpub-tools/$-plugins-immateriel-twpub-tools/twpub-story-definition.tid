@@ -5,6 +5,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-story-definition
 tm-navigate: <<navigate-actions>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/plugins/immateriel/twpub-tools/twpub-story-definition-editor
+code-body: yes
 
 \define tv-action-refresh-policy() always
 

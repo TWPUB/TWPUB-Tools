@@ -1,5 +1,6 @@
 title: $:/plugins/immateriel/twpub-tools/sidebar/column
 caption: <$transclude tiddler=<<currentTab>> field="caption"/>
+code-body: yes
 
 \define edit-column-actions()
 <$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/sidebar/columns/edit" columnDefinitionTiddler={{!!template}} columnConfigurationTiddler=<<currentTiddler>> mode="edit" prompt="Edit Column"/>
