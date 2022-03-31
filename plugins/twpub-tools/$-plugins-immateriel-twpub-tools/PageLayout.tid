@@ -25,7 +25,7 @@ code-body: yes
 	languageTitle={{{ [{$:/language}get[name]] }}}
 >
 	<div class="tc-layout-flextemplate">
-		<$importvariables filter="$:/plugins/immateriel/twpub-tools/Navigator">
+		<$importvariables filter="$:/core/ui/Navigator">
 			<$macrocall $name="navigator-handler" content=<<body>>/>
 		</$importvariables>
 	</div>
