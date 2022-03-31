@@ -1,0 +1,36 @@
+title: $:/plugins/immateriel/twpub-tools/docs/tiddlywiki-experiments
+
+! Introduction
+
+''twpub-tools'' incorporates several experimental features that are intended for eventual inclusion in the TiddlyWiki core.
+
+!! Multiple Column Page layout
+
+The new multiple column page layout is based on vertically stacked segments that fill the browser window.
+
+* Each segment is defined by a tiddler tagged <<tag $:/tags/FlexTemplate/Component>>
+
+The main segment is in turn divided into multiple columns.
+
+* Different types of column are defined by ''column definition tiddlers'' tagged <<tag $:/tags/ColumnDefinition>>
+* Each instance of a column is defined by a ''column configuration tiddler'' tagged <<tag $:/tags/PageLayout/MainColumn>>
+* The column definition tiddler $:/core/ui/Columns/story defines a tiddler containing a story river
+** The ''story-configuration'' field contains the title of the associated ''story definition tiddler''
+
+!! ~WikiText Navigator and Story Rivers
+
+The wikitext navigator provides the same basic functionality as the TiddlyWiki core `<$navigator>` widget but supports multiple story rivers at the same time.
+
+* Different types of story river are defined by ''story definition tiddlers'' tagged <<tag $:/tags/StoryRiverDefinition>>
+* Each instance of a story river is defined by a ''story configuration tiddler'' tagged <<tag $:/tags/Story>>
+** The ''story-definition'' field contains the title of the associated story river definition tiddler
+** Fields starting with `@` are reserved for the story definition tiddler to use
+* The navigator implementation is in $:/core/ui/Navigator
+* It is used in the TWPub custom page layout in $:/plugins/immateriel/twpub-tools/PageLayout
+
+!! `matchtiddler` Filter Operator
+
+The `matchtiddler` operator compares the fields of two tiddlers. It is incomplete at the moment because it doesn't permit the list of excluded fields to be specified.
+
+See $:/core/modules/filters/matchtiddler.js
+

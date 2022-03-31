@@ -4,4 +4,4 @@ TWPUB is an experiment to explore new formats for electronic publications that e
 
 We re-imagine electronic publications as dynamic, mouldable, customisable shared cultural assets. Our goal is to create an ecosystem of readers and libraries/stores that make it easy to create and consume these new-style publications. We hope that readers will come for the great experience, publishers will come to reach the readers, and that authors will be delighted with the increased reader engagement.
 
-This prototype is based on [[TiddlyWiki|https://tiddlywiki.com/]].
+This prototype is based on [[TiddlyWiki|https://tiddlywiki.com/]], with [[several experimental enhancements|$:/plugins/immateriel/twpub-tools/docs/tiddlywiki-experiments]].
