@@ -19,7 +19,11 @@ The main segment is in turn divided into multiple columns.
 
 !! ~WikiText Navigator and Story Rivers
 
-The wikitext navigator provides the same basic functionality as the TiddlyWiki core `<$navigator>` widget but supports multiple story rivers at the same time.
+A story river is an interactive display of one or more tiddlers. There are different types of story river, the most familiar being the "classic" story river definition which provides the familiar TiddlyWiki experience of a linear sequence of tiddlers. There is also a "single tiddler" story river definition which provides the same experience but with only a single tiddler displayed at one time.
+
+Story rivers support ''navigation'': moving between tiddlers by clicking on links. The navigation system allows users to choose which story river is used to display a particular tiddler.
+
+Story rivers are controlled by the navigator, a wikitext component that provides the same basic functionality as the TiddlyWiki core `<$navigator>` widget but supports multiple story rivers at the same time.
 
 * Different types of story river are defined by ''story definition tiddlers'' tagged <<tag $:/tags/StoryRiverDefinition>>
 * Each instance of a story river is defined by a ''story configuration tiddler'' tagged <<tag $:/tags/Story>>
