@@ -1,7 +1,8 @@
 {
 	"description": "TWPUB Wiki",
 	"plugins": [
-		"tiddlywiki/dynannotate"
+		"tiddlywiki/dynannotate",
+		"tiddlywiki/highlight"
 	],
 	"themes": [
 		"tiddlywiki/vanilla",
