@@ -62,6 +62,7 @@ code-body: yes
 	justify-content: flex-start;
 	align-items: stretch;
 	overflow: hidden;
+	position: relative;
 }
 
 @media (min-width: 800px) {	
@@ -424,10 +425,16 @@ code-body: yes
 	margin: 4px 0;
 	border: none;
 	cursor: pointer;
-	background: <<colour download-background>>;
+	background: <<colour site-title-foreground>>;
 	border-radius: 1em;
 	color: <<colour download-foreground>>;
 	fill: <<colour download-foreground>>;
+}
+
+.twpub-library-button:hover {
+	background: <<colour download-foreground>>;
+	color: <<colour site-title-foreground>>;
+	fill: <<colour site-title-foreground>>;
 }
 
 .twpub-library-button svg {
@@ -481,4 +488,57 @@ code-body: yes
 .tc-tiddler-fields-button .tc-drop-down .tc-view-field-table th,
 .tc-tiddler-fields-button .tc-drop-down .tc-view-field-table td {
 	border: none;
+}
+
+/* Help Panel */
+
+.tc-help-panel-wrapper {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.tc-help-panel {
+	width: 310px;
+	height: 40vh;
+	max-height: 400px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	<<box-shadow "0px 0px 5px rgba(0, 0, 0, 0.3)">>
+	border: 1px solid #888161;
+	background: #f8f1df;
+	padding: 1em;
+	margin: 0.5em;
+	z-index: 1000;
+	border-radius: 6px;
+}
+
+.tc-help-panel ol {
+	padding-left: 1em;
+}
+
+/* Help Button Sidebar Segment */
+
+.twpub-help-button {
+	padding: 4px 8px;
+	margin: 4px 0;
+	border: none;
+	cursor: pointer;
+	transform: rotate(-2.5deg);
+	background: <<colour download-foreground>>;
+	border: 2px solid <<colour download-background>>;
+	border-radius: 2px;
+	color: <<colour download-background>>;
+	fill: <<colour download-background>>;
+	font-weight: bold;
+	font-size: 1.2em;
+	transition: transform 250ms ease-in-out;
+}
+
+.twpub-help-button.tc-selected {
+	transform: rotate(2.5deg) scale(0.8);
+}
+
+.twpub-help-button:hover {
+	transform: rotate(3.5deg) scale(1.1);
 }

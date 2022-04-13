@@ -1,0 +1,16 @@
+title: Using This Site
+tags: $:/tags/HelpPanel
+
+This demo can be intimidating because TWPub is a complex system that is highly flexible and customisable.
+
+Here we suggest some things to get you started.
+
+# Click ''Load from TWPUB Demo Library'' to load further TWPubs that have been converted from the EPUB files of [[Gutenberg's|https://www.gutenberg.org/]] top 100 English-language books
+# Shift-click on links to navigate into a specific story river
+# Explore [[images from currently loaded TWPubs|$:/TWPubs/Images]]
+# <$button>
+<$action-createtiddler $basetitle="$:/config/Stories/New" tags="$:/tags/Story" caption="Secondary" story-definition="$:/core/ui/storyrivers/single-tiddler">
+<$action-createtiddler $basetitle="$:/config/PageColumns/New" tags="$:/tags/PageLayout/MainColumn" caption="Secondary" template="$:/core/ui/Columns/story" story-configuration=<<createTiddler-title>>/>
+</$action-createtiddler>
+Create
+</$button>  a secondary story river and display it in a new column

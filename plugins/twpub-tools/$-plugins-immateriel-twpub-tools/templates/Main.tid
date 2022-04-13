@@ -19,6 +19,9 @@ code-body: yes
 				</$vars>
 			</div>
 		</$list>
+		<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/story]]" variable="listItem">
+			<$transclude tiddler=<<listItem>>/>
+		</$list>
 	</main>
 	<header class="column-config column-config-bottom">
 		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Bottom}}

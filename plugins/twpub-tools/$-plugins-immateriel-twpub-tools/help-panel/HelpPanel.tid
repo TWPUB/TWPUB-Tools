@@ -1,0 +1,15 @@
+title: $:/plugins/immateriel/twpub-tools/help-panel/HelpPanel
+tags: $:/tags/PageTemplate
+
+\whitespace trim
+<div class="tc-help-panel-wrapper">
+<$list filter="[[$:/state/TWPub/ShowHelp]get[text]else[no]match[yes]]" variable="ignore" storyview="pop">
+<div class="tc-help-panel">
+<div class="tc-tiddler-controls">
+<$button set="$:/state/TWPub/ShowHelp" setTo="no" class="tc-btn-invisible">{{$:/core/images/close-button}}</$button> ''How To Use This Demo''
+</div>
+<$transclude tiddler="Using This Site" mode="block"/>
+</div>
+</$list>
+</div>
+

@@ -9,9 +9,11 @@ code-body: yes
 
 \define body()
 <$dropzone enable=<<tv-enable-drag-and-drop>>>
-	<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="flextemplateConfigurationTiddler">
-		<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
-	</$list>
+	<div class="tc-layout-flextemplate">
+		<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="flextemplateConfigurationTiddler">
+			<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
+		</$list>
+	</div>
 </$dropzone>
 \end
 
@@ -24,9 +26,7 @@ code-body: yes
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}
 >
-	<div class="tc-layout-flextemplate">
-		<$importvariables filter="$:/core/ui/Navigator">
+	<$importvariables filter="$:/core/ui/Navigator">
 			<$macrocall $name="navigator-handler" content=<<body>>/>
-		</$importvariables>
-	</div>
+	</$importvariables>
 </$vars>

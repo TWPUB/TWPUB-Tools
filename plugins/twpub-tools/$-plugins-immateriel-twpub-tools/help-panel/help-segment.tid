@@ -1,0 +1,24 @@
+title: $:/plugins/immateriel/twpub-tools/help-panel/help-segment
+tags: $:/tags/SideBarSegment
+list-after: $:/core/ui/SideBarSegments/site-subtitle
+
+\define actions()
+<$list filter="[[$:/state/TWPub/ShowHelp]get[text]] +[else[no]match[yes]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/TWPub/ShowHelp" $value="no"/>
+</$list>
+<$list filter="[[$:/state/TWPub/ShowHelp]get[text]] +[else[no]!match[yes]]" variable="ignore">
+<$action-setfield $tiddler="$:/state/TWPub/ShowHelp" $value="yes"/>
+</$list>
+\end
+
+\whitespace trim
+<$let tv-action-refresh-policy="default">
+<$button actions=<<actions>> class={{{ tc-btn-invisible twpub-help-button [[$:/state/TWPub/ShowHelp]get[text]else[no]match[yes]then[tc-selected]] +[join[ ]]}}}>
+<$list filter="[[$:/state/TWPub/ShowHelp]get[text]] +[else[no]match[yes]]" variable="ignore">
+<$text text="Hide Demo Instructions"/>
+</$list>
+<$list filter="[[$:/state/TWPub/ShowHelp]get[text]] +[else[no]!match[yes]]" variable="ignore">
+<$text text="Explore This Demo"/>
+</$list>
+</$button>
+</$let>
