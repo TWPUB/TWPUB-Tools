@@ -14,6 +14,9 @@ code-body: yes
 			<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
 		</$list>
 	</div>
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/story]]" variable="listItem">
+		<$transclude tiddler=<<listItem>>/>
+	</$list>
 </$dropzone>
 \end
 
