@@ -97,8 +97,7 @@ Renders the navigation popup menu
 </$vars>
 \end
 
-\define navigator-handler(content)
-<$vars tv-action-refresh-policy="once">
+<$let tv-action-refresh-policy="once">
 	<$messagecatcher
 		$tm-navigate=<<navigate-handler>>
 		$tm-close-tiddler=<<generic-handler>>
@@ -107,7 +106,6 @@ Renders the navigation popup menu
 		$tm-cancel-tiddler=<<generic-handler>>
 		$tm-save-tiddler=<<generic-handler>>
 	>
-		<<__content__>>
+		<<body>>
 	</$messagecatcher>
-</$vars>
-\end
+</$let>

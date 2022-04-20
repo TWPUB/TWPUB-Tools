@@ -4,8 +4,28 @@ tags: $:/tags/Layout
 title: $:/plugins/immateriel/twpub-tools/PageLayout
 code-body: yes
 
+<!--
+
+Main page layout
+
+* Imports global macros
+* Sets up global tv- variables
+* Installs Navigator - see $:/core/ui/Navigator
+* Installs dropzone
+* Displays vertical page segment tiddlers tagged $:/tags/FlexTemplate/Component inside a div with .tc-layout-flextemplate
+* Displays legacy page template tiddlers tagged $:/tags/PageTemplate, skipping the core sidebar and story
+
+-->
+
 \whitespace trim
+
 \import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+
+<!--
+
+The variable "body" is used to pass to the navigator the content that it should render within its body.
+
+-->
 
 \define body()
 <$dropzone enable=<<tv-enable-drag-and-drop>>>
@@ -20,7 +40,7 @@ code-body: yes
 </$dropzone>
 \end
 
-<$vars
+<$let
 	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
 	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
 	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
@@ -29,7 +49,5 @@ code-body: yes
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}
 >
-	<$importvariables filter="$:/core/ui/Navigator">
-			<$macrocall $name="navigator-handler" content=<<body>>/>
-	</$importvariables>
-</$vars>
+	<$transclude tiddler="$:/core/ui/Navigator"/>
+</$let>
