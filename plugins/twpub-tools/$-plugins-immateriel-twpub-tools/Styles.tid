@@ -3,16 +3,14 @@ title: $:/plugins/immateriel/twpub-tools/Styles
 code-body: yes
 
 \define column-layout()
-<$vars is-column-enabled="[lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]">
-	<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]filter<is-column-enabled>]" counter="counter">
-		`.column-container > *:nth-child(`<$text text=<<counter>>/>`) {
-		flex-basis:` <$text text={{{ [<currentTiddler>get[flex-basis]addsuffix[px]else[0]] }}}/>`;
-		flex-grow:` <$text text={{{ [<currentTiddler>get[flex-grow]else[1]] }}}/>`;
-		flex-shrink:` <$text text={{{ [<currentTiddler>get[flex-shrink]else[0]] }}}/>`;
-		overflow: scroll;
-		}`
-	</$list>
-</$vars>
+<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]] :filter[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]subfilter:pass-on-missing{!!condition}]" counter="counter">
+	`.column-container > *:nth-child(`<$text text=<<counter>>/>`) {
+	flex-basis:` <$text text={{{ [<currentTiddler>get[flex-basis]addsuffix[px]else[0]] }}}/>`;
+	flex-grow:` <$text text={{{ [<currentTiddler>get[flex-grow]else[1]] }}}/>`;
+	flex-shrink:` <$text text={{{ [<currentTiddler>get[flex-shrink]else[0]] }}}/>`;
+	overflow: scroll;
+	}`
+</$list>
 \end
 
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline macrocallblock
