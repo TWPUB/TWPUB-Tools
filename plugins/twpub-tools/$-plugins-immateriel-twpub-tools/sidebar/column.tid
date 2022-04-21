@@ -25,6 +25,12 @@ Type: <div class="tc-type-pill">
 
 <$checkbox tiddler={{{ [[$:/config/PageLayout/MainColumn/Visibility/]addsuffix<currentTiddler>] }}} field="text" checked="show" unchecked="hide" default="show"> Enable</$checkbox>
 
+Condition:
+
+<$list filter="[<currentTiddler>has[condition]]" variable="ignore" emptyMessage="(none)">
+<$codeblock code={{{ [<currentTiddler>get[condition]] }}}/>
+</$list>
+
 <$transclude tiddler={{{ [<columnTemplateTiddler>get[edit-template]] }}}>
 
 (No visible options for story rivers of the type "<$transclude tiddler=<<columnTemplateTiddler>> field="caption"><$text text=<<columnTemplateTiddler>>/></$transclude>")

@@ -11,13 +11,20 @@ code-body: yes
 	</header>
 	<main class="main column-container">
 		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]] :filter[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]]" variable="columnConfigurationTiddler">
-			<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
-				<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
-					<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
-						<$transclude tiddler=<<template>> mode="inline"/>
-					</$tiddler>
-				</$vars>
-			</div>
+			<$let
+				defaultCondition="[all[tiddlers]]"
+				condition={{{ [<columnConfigurationTiddler>get[condition]else<defaultCondition>] }}}
+			>
+				<$list filter="[<columnConfigurationTiddler>subfilter<condition>] +[limit[1]]" variable="ignore">
+					<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
+						<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
+							<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
+								<$transclude tiddler=<<template>> mode="inline"/>
+							</$tiddler>
+						</$vars>
+					</div>
+				</$list>
+			</$let>
 		</$list>
 	</main>
 	<header class="column-config column-config-bottom">
