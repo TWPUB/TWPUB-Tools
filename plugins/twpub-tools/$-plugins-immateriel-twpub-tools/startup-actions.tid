@@ -5,7 +5,7 @@ code-body: yes
 \define tv-action-refresh-policy() always
 
 \define create-page-column(storyConfigurationTiddler)
-<$action-createtiddler $basetitle={{{ [[$:/config/PageColumns/]addsuffix{!!description}] }}} tags="$:/tags/PageLayout/MainColumn" caption={{!!description}} template="$:/core/ui/Columns/story" story-configuration=<<__storyConfigurationTiddler__>>/>
+<$action-createtiddler $basetitle={{{ [[$:/config/PageColumns/]addsuffix{!!description}] }}} tags="$:/tags/PageLayout/MainColumn" caption={{!!description}} template="$:/core/ui/Columns/story" story-configuration=<<__storyConfigurationTiddler__>> flex-grow="2"/>
 \end
 
 \define check-page-column(storyConfigurationTiddler)
