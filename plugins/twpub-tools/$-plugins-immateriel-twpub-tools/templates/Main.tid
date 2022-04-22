@@ -10,15 +10,17 @@ code-body: yes
 		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Top}}
 	</header>
 	<main class="main column-container">
-		<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]] :filter[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]subfilter:pass-on-missing{!!condition}]" variable="columnConfigurationTiddler">
-				<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
-					<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
-						<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
-							<$transclude tiddler=<<template>> mode="inline"/>
-						</$tiddler>
-					</$vars>
-				</div>
-		</$list>
+		<$let conditionFilter="[<currentTiddler>!has[condition]] [<currentTiddler>filter{!!condition}]">
+			<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]] :filter[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]] +[filter<conditionFilter>]" variable="columnConfigurationTiddler">
+					<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
+						<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
+							<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
+								<$transclude tiddler=<<template>> mode="inline"/>
+							</$tiddler>
+						</$vars>
+					</div>
+			</$list>
+		</$let>
 	</main>
 	<header class="column-config column-config-bottom">
 		{{$:/plugins/immateriel/twpub-tools/templates/ColumnConfig/Bottom}}
