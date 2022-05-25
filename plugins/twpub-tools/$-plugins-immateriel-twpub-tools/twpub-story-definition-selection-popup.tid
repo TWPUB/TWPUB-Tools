@@ -15,24 +15,24 @@ code-body: yes
 	tags="$:/tags/Note"
 	text={{{ [<selectionTracker>get[note]] }}}
 	color={{{ [<selectionTracker>get[note-color]else[#ffff00]] }}}
-	twpub={{{ [<selectionTracker>getjson[variables],[dom-data-twpub-story-configuration]] }}}
+	twpub={{{ [<selectionTracker>get[text]jsonget[variables],[dom-data-twpub-story-configuration]] }}}
 	icon="$:/core/images/file"
 >
 	<$let
 		noteTitle=<<createTiddler-title>>
 	>
-		<$list filter="[<selectionTracker>indexesjson[chunks]]" variable="index">
+		<$list filter="[<selectionTracker>get[text]jsonindexes[chunks]]" variable="index">
 			<$let
-				idChunk={{{ [<selectionTracker>getjson[chunks],<index>,[id]] }}}
+				idChunk={{{ [<selectionTracker>get[text]jsonget[chunks],<index>,[id]] }}}
 			>
 				<$list filter="[<idChunk>!is[tiddler]]" variable="ignore">
 					<$action-setfield $tiddler=<<idChunk>> text={{{ [<idChunk>get[text]addprefix<annotation-prefix>addsuffix<annotation-suffix>] }}}/>
 				</$list>
 				<$action-createtiddler $basetitle="$:/annotation/"
 						annotate-tiddler=<<idChunk>>
-						annotate-text={{{ [<selectionTracker>getjson[chunks],<index>,[text]] }}}
-						annotate-prefix={{{ [<selectionTracker>getjson[chunks],<index>,[prefix]] }}}
-						annotate-suffix={{{ [<selectionTracker>getjson[chunks],<index>,[suffix]] }}}
+						annotate-text={{{ [<selectionTracker>get[text]jsonget[chunks],<index>,[text]] }}}
+						annotate-prefix={{{ [<selectionTracker>get[text]jsonget[chunks],<index>,[prefix]] }}}
+						annotate-suffix={{{ [<selectionTracker>get[text]jsonget[chunks],<index>,[suffix]] }}}
 						annotate-colour={{{ [<selectionTracker>get[note-color]else[#ffff00]] }}}
 						note=<<noteTitle>>
 						tags="$:/tags/TwpubAnnotation"
@@ -57,12 +57,12 @@ code-body: yes
 		<div class="tc-block-dropdown">
 			<p style="width:300px;white-space:normal;max-height:250px;overflow:scroll;">
 				<blockquote>
-					<$list filter="[<selectionTracker>indexesjson[chunks]]">
+					<$list filter="[<selectionTracker>get[text]jsonindexes[chunks]]">
 						<p>
-							<$text text={{{ [<selectionTracker>getjson[chunks],<currentTiddler>,[text]] }}}/>
+							<$text text={{{ [<selectionTracker>get[text]jsonget[chunks],<currentTiddler>,[text]] }}}/>
 						</p>
 					</$list>
-					<$text text={{{ [<selectionTracker>indexesjson[chunks]] :reduce[<selectionTracker>getjson[chunks],<currentTiddler>,[text]addprefix<accumulator>] }}}/>
+					<$text text={{{ [<selectionTracker>get[text]jsonindexes[chunks]] :reduce[<selectionTracker>get[text]jsonget[chunks],<currentTiddler>,[text]addprefix<accumulator>] }}}/>
 				</blockquote>
 			</p>
 			<p>
