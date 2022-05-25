@@ -1,8 +1,9 @@
 title: $:/core/ui/Navigator
+tags: $:/tags/Macro
 
 \define tv-action-refresh-policy() always
 
-\define generic-handler()
+\procedure generic-handler()
 <$vars storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}} >
 	<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 <$action-log message="In navigator generic-handler"/>
@@ -16,7 +17,7 @@ title: $:/core/ui/Navigator
 </$vars>
 \end
 
-\define navigate-handler()
+\procedure navigate-handler()
 <!--
 
 Traps navigate events within the story river
@@ -54,7 +55,7 @@ Traps navigate events within the story river
 </$let>
 \end
 
-\define navigation-popup-actions()
+\procedure navigation-popup-actions()
 <!--
 
 Handles clicks within the navigation popup menu
@@ -71,7 +72,7 @@ Handles clicks within the navigation popup menu
 </$vars>
 \end
 
-\define navigation-popup()
+\procedure navigation-popup()
 <!--
 
 Renders the navigation popup menu
@@ -97,6 +98,7 @@ Renders the navigation popup menu
 </$vars>
 \end
 
+\widget $$multinavigator()
 <$let tv-action-refresh-policy="once">
 	<$messagecatcher
 		$tm-navigate=<<navigate-handler>>
@@ -106,6 +108,7 @@ Renders the navigation popup menu
 		$tm-cancel-tiddler=<<generic-handler>>
 		$tm-save-tiddler=<<generic-handler>>
 	>
-		<<body>>
+		<$slot $name="ts-body"/>
 	</$messagecatcher>
 </$let>
+\end
