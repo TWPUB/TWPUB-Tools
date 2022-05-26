@@ -32,19 +32,26 @@ Generic message handler that just passes messages onto the appropriate story riv
 \end
 
 <!--
+
+-->
+\function getMessageParam(name)
+[<name>addprefix[event-]is[variable]getvariable[]!is[blank]] :else[<name>addprefix[event-paramObject-]is[variable]getvariable[]!is[blank]]
+\end
+
+<!--
 Traps navigate events within the story river
 -->
 \procedure tm-navigate-handler()
 <$let
-	event-paramObject-shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
-	event-paramObject-altKey={{{ [<event-altKey>!is[blank]else<event-paramObject-altKey>] }}}
-	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+	event-paramObject-shiftKey=<<getMessageParam shiftKey>> 
+	event-paramObject-altKey=<<getMessageParam altKey>> 
+	event-paramObject-var-currentTiddler=<<getMessageParam navigateTo>>
 	defaultStoryConfigurationTiddler={{{ [<event-paramObject-var-currentTiddler>]  :cascade[all[shadows+tiddlers]tag[$:/tags/DefaultStoryFilter]get[text]] }}}
 	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[<defaultStoryConfigurationTiddler>] }}}
-	event-paramObject-navigateFromClientLeft={{{ [<event-navigateFromClientLeft>!is[blank]else<event-paramObject-navigateFromClientLeft>] }}}
-	event-paramObject-navigateFromClientTop={{{ [<event-navigateFromClientTop>!is[blank]else<event-paramObject-navigateFromClientTop>] }}}
-	event-paramObject-navigateFromClientWidth={{{ [<event-navigateFromClientWidth>!is[blank]else<event-paramObject-navigateFromClientWidth>] }}}
-	event-paramObject-navigateFromClientHeight={{{ [<event-navigateFromClientHeight>!is[blank]else<event-paramObject-navigateFromClientHeight>] }}}
+	event-paramObject-navigateFromClientLeft=<<getMessageParam navigateFromClientLeft>>
+	event-paramObject-navigateFromClientTop=<<getMessageParam navigateFromClientTop>>
+	event-paramObject-navigateFromClientWidth=<<getMessageParam navigateFromClientWidth>>
+	event-paramObject-navigateFromClientHeight=<<getMessageParam navigateFromClientHeight>>
 	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
 >
 	<$action-log message="In tm-navigate-handler"/>
