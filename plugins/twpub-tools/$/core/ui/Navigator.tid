@@ -32,10 +32,17 @@ Generic message handler that just passes messages onto the appropriate story riv
 \end
 
 <!--
-
+Function to get a message parameter, first looking on the event object and then on the paramObject
 -->
 \function getMessageParam(name)
 [<name>addprefix[event-]is[variable]getvariable[]!is[blank]] :else[<name>addprefix[event-paramObject-]is[variable]getvariable[]!is[blank]]
+\end
+
+<!--
+Function to pack four coordinates into "(x,y,w,h)" string
+-->
+\function makeRectangle(x,y,w,h)
+=[[(]] =[<x>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<y>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<w>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<h>addprefix[event-paramObject-]getvariable[]] =[[)]] +[join[]]
 \end
 
 <!--
@@ -67,18 +74,16 @@ Traps navigate events within the story river
 	<!-- If the shift key is pressed, save all the context information and display the navigation popup -->
 	<$list filter="[<event-paramObject-shiftKey>match[true]]" variable="ignore">
 		<$action-setmultiplefields $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $fields="[variables[]removeprefix[event-paramObject-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-]getvariable[]]"/>
-		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
-		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords={{{ =[[(]] =[<event-paramObject-navigateFromClientLeft>] =[[,]] =[<event-paramObject-navigateFromClientTop>] =[[,]] =[<event-paramObject-navigateFromClientWidth>] =[[,]] =[<event-paramObject-navigateFromClientHeight>] =[[)]] +[join[]] }}}/>
+		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>/>
+		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
 	</$list>
 </$let>
 \end
 
-\procedure navigation-popup-actions()
 <!--
-
 Handles clicks within the navigation popup menu
-
 -->
+\procedure navigation-popup-actions()
 <$vars storyConfigurationTiddler=<<currentTiddler>>>
 	<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
 		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
@@ -90,12 +95,10 @@ Handles clicks within the navigation popup menu
 </$vars>
 \end
 
-\procedure navigation-popup()
 <!--
-
 Renders the navigation popup menu
-
 -->
+\procedure navigation-popup()
 <$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
 	<$setmultiplevariables $names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]" $values="[<stateTitle>fields[]prefix[var-]]  :map[<stateTitle>get<currentTiddler>]">
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
@@ -116,6 +119,9 @@ Renders the navigation popup menu
 </$vars>
 \end
 
+<!--
+multinavigator widget is used instead of the core `<$navigator>` widget but is not currently intended to be backwards compatible with it.
+-->
 \widget $$multinavigator()
 <$let tv-action-refresh-policy="once">
 	<$messagecatcher
