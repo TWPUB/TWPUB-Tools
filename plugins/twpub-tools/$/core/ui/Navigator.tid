@@ -1,5 +1,5 @@
-title: $:/core/ui/MultiNavigator
-tags: $:/tags/Macro
+title: $:/global/$$multinavigator
+_is_widget: yes
 
 <!--
 Define the $$multinavigator widget.
@@ -122,7 +122,6 @@ Renders the navigation popup menu
 <!--
 multinavigator widget is used instead of the core `<$navigator>` widget but is not currently intended to be backwards compatible with it.
 -->
-\widget $$multinavigator()
 <$let tv-action-refresh-policy="once">
 	<$messagecatcher
 		$tm-navigate=<<tm-navigate-handler>>
@@ -135,4 +134,3 @@ multinavigator widget is used instead of the core `<$navigator>` widget but is n
 		<$slot $name="ts-body"/>
 	</$messagecatcher>
 </$let>
-\end
