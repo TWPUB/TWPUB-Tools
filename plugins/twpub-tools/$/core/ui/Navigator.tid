@@ -1,11 +1,12 @@
 title: $:/global/$$multinavigator
 _is_widget: yes
+code-body: yes
 
 <!--
 Define the $$multinavigator widget.
 
-It manages story rivers widgets that it contains by handling and dispatching messages, including handling navigation popup.
-
+It handles tm-navigate and other storyriver-related messages by either dispatching the message to
+the appropriate storyriver or by displaying a popup for the user to choose the target storyriver.
 -->
 
 \define tv-action-refresh-policy() always
@@ -17,17 +18,11 @@ Generic message handler that just passes messages onto the appropriate story riv
 <!-- Compute the story configuration tiddler -->
 <$let
 	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}}
-	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
 >
 	<$action-log message="In navigator generic-message-handler"/>
 	<$action-log/>
-	<!-- Import the procedures from the story definition tiddler -->
-	<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
-		<$importvariables filter=<<storyDefinitionTiddler>>>
-			<!-- Invoke the story river message handler-->
-			<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
-		</$importvariables>
-	</$importvariables>
+	<!-- Invoke that method on the storyriver -->
+	<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName=<<event-type>>/>
 </$let>
 \end
 
@@ -59,23 +54,30 @@ Traps navigate events within the story river
 	event-paramObject-navigateFromClientTop=<<getMessageParam navigateFromClientTop>>
 	event-paramObject-navigateFromClientWidth=<<getMessageParam navigateFromClientWidth>>
 	event-paramObject-navigateFromClientHeight=<<getMessageParam navigateFromClientHeight>>
-	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
 >
 	<$action-log message="In tm-navigate-handler"/>
 	<$action-log/>
 	<!-- If the shift key is not pressed, pass the navigation onto the current story river -->
 	<$list filter="[<event-paramObject-shiftKey>!match[true]]" variable="ignore">
-		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
-			<$importvariables filter=<<storyDefinitionTiddler>>>
-				<$transclude tiddler=<<storyDefinitionTiddler>> field=<<event-type>>/>
-			</$importvariables>
-		</$importvariables>
+		<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName=<<event-type>>/>
 	</$list>
 	<!-- If the shift key is pressed, save all the context information and display the navigation popup -->
 	<$list filter="[<event-paramObject-shiftKey>match[true]]" variable="ignore">
-		<$action-setmultiplefields $tiddler={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $fields="[variables[]removeprefix[event-paramObject-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-]getvariable[]]"/>
-		<$action-popup $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>/>
-		<$action-log $state={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}} $coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
+		<$let stateNavigationPopup={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
+			<$action-setmultiplefields
+				$tiddler=<<stateNavigationPopup>>
+				$fields="[variables[]removeprefix[event-paramObject-]addprefix[var-]]"
+				$values="[variables[]prefix[event-paramObject-]getvariable[]]"
+			/>
+			<$action-popup
+				$state=<<stateNavigationPopup>>
+				$coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
+			/>
+			<$action-log
+				$state=<<stateNavigationPopup>>
+				$coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
+			/>
+		</$let>
 	</$list>
 </$let>
 \end
@@ -84,23 +86,24 @@ Traps navigate events within the story river
 Handles clicks within the navigation popup menu
 -->
 \procedure navigation-popup-actions()
-<$vars storyConfigurationTiddler=<<currentTiddler>>>
-	<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-		<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
-			<$importvariables filter=<<storyDefinitionTiddler>>>
-				<$transclude tiddler=<<storyDefinitionTiddler>> field="tm-navigate"/>
-			</$importvariables>
-		</$importvariables>
-	</$vars>
-</$vars>
+<$let
+	storyConfigurationTiddler=<<currentTiddler>>
+>
+	<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-navigate"/>
+</$let>
 \end
 
 <!--
 Renders the navigation popup menu
 -->
 \procedure navigation-popup()
-<$vars stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}>
-	<$setmultiplevariables $names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]" $values="[<stateTitle>fields[]prefix[var-]]  :map[<stateTitle>get<currentTiddler>]">
+<$let
+	stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}
+>
+	<$setmultiplevariables
+		$names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]"
+		$values="[<stateTitle>fields[]prefix[var-]]  :map[<stateTitle>get<currentTiddler>]"
+	>
 		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<event-paramObject-var-currentTiddler>>/>
@@ -116,7 +119,7 @@ Renders the navigation popup menu
 			</div>
 		</$reveal>
 	</$setmultiplevariables>
-</$vars>
+</$let>
 \end
 
 <!--

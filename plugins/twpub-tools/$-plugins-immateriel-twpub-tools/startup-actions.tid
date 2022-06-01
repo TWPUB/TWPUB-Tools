@@ -31,18 +31,6 @@ code-body: yes
 <!-- Open default tiddlers for each story -->
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
 
-<$vars storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}>
-
-<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
-
-<$importvariables filter=<<storyDefinitionTiddler>>>
-
-<$transclude tiddler=<<storyDefinitionTiddler>> field="init-actions"/>
-
-</$importvariables>
-
-</$importvariables>
-
-</$vars>
+<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="init-actions"/>
 
 </$list>

@@ -1,0 +1,27 @@
+title: $:/global/$$invoke
+_is_widget: yes
+_parameters: (instanceTitle,methodName)
+code-body: yes
+
+<!--
+Transclude the text of a given method of a tiddler object instance.
+
+The tiddler object instance must have a field _class that points to the tiddler class definition. The other fields of the instance are available to be used as state data by the tiddler class definition.
+
+The tiddler class definition should contain procedure definitions comprising the methods. It may also have a field _parent_class that points to a parent tiddler class definition. Currently only one level of inheritance is supported.
+
+Any body provided to this widget is passed along to the transclusion
+-->
+
+<$let
+	classDefinition={{{ [<instanceTitle>get[story-definition]] }}}>
+>
+	<$importvariables filter={{{ [<classDefinition>get[imports]] }}}>
+		<$importvariables filter=<<classDefinition>>>
+			<!-- Invoke the story river message handler-->
+			<$transclude $tiddler=<<classDefinition>> $field=<<methodName>>>
+				<$slot $name="ts-body" $depth="2"/>
+			</$transclude>
+		</$importvariables>
+	</$importvariables>
+</$let>
