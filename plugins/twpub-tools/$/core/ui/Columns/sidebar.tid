@@ -3,6 +3,10 @@ tags: $:/tags/ColumnDefinition
 caption: Sidebar
 class: sidebar
 
+\define config-title()
+$:/config/SideBarSegments/Visibility/$(listItem)$
+\end
+
 <div class="sidebar-inner">
 	<$messagecatcher type="tm-scroll">
 		<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBarSegment]!has[draft.of]]" variable="listItem">
