@@ -1,19 +1,12 @@
 caption: Classic Story River
 class: river
-init-actions: <<init-actions>>
 title: $:/core/ui/storyrivers/classic
-tm-close-tiddler: <<close-tiddler-actions>>
-tm-edit-tiddler: <<edit-tiddler-actions>>
-tm-save-tiddler: <<save-tiddler-actions>>
-tm-cancel-tiddler: <<cancel-tiddler-actions>>
-tm-navigate: <<navigate-actions>>
-story-river-content: <<story-river-content>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/core/ui/storyrivers/classic-edit
 
 \define tv-action-refresh-policy() always
 
-\define navigate-actions()
+\define tm-navigate()
 <!--
 
 Navigate to a tiddler
@@ -24,7 +17,7 @@ event-navigateTo: alias for event-paramObject-var-currentTiddler for backwards c
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->
-<$action-log message="In classic navigate-actions"/>
+<$action-log message="In classic tm-navigate"/>
 <$action-log/>
 <$vars
 	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
@@ -50,7 +43,7 @@ event-paramObject-* other optional variables to be provided to the story entry
 </$vars>
 \end
 
-\define close-tiddler-actions()
+\define tm-close-tiddler()
 <!--
 
 Closes all tiddlers with the specified currentTiddler variable
@@ -62,7 +55,7 @@ event-tiddlerTitle: title of tiddler that is to be closed
 <$vars
 	event-paramObject-tiddlerTitle={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
-<$action-log message="In classic close-tiddler-actions"/>
+<$action-log message="In classic tm-close-tiddler"/>
 <$action-log/>
 	<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]] :filter[field:var-currentTiddler<event-paramObject-tiddlerTitle>]" variable="storyItemTiddler">
 		<$action-log removing=<<storyItemTiddler>>/>
@@ -73,7 +66,7 @@ event-tiddlerTitle: title of tiddler that is to be closed
 </$vars>
 \end
 
-\define edit-tiddler-actions()
+\define tm-edit-tiddler()
 <!--
 
 Creates a new draft tiddler referencing the specified tiddler, and then finds all tiddlers with the specified currentTiddler variable, replacing currentTiddler with the draft, and setting the template to the edit template
@@ -85,7 +78,7 @@ event-tiddlerTitle: title of tiddler that is to be edited
 <$vars
 	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
-<$action-log msg="In classic edit-tiddler-actions"/>
+<$action-log msg="In classic tm-edit-tiddler"/>
 <$action-log/>
 	<$wikify name="confirmation-message" text={{$:/language/ConfirmEditShadowTiddler}}>
 		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<title>is[shadow]!is[tiddler]then[yes]else[no]] }}}>
@@ -100,7 +93,7 @@ event-tiddlerTitle: title of tiddler that is to be edited
 </$vars>
 \end
 
-\define save-tiddler-actions()
+\define tm-save-tiddler()
 <!--
 
 * If the tiddler has been renamed and the target tiddler already exists then issue a confirmation prompt
@@ -121,7 +114,7 @@ event-tiddlerTitle: title of tiddler that is to be edited
 	originalTitle={{{ [<draftTitle>get[draft.of]] }}}
 	isRename={{{ [<title>match<originalTitle>then[no]else[yes]] }}}
 >
-<$action-log msg="In classic save-tiddler-actions"/>
+<$action-log msg="In classic tm-save-tiddler"/>
 <$action-log/>
 	<$wikify name="confirmation-message" text={{$:/language/ConfirmOverwriteTiddler}}>
 		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<title>!is[tiddler]then[no]] [<isRename>match[no]] ~[[yes]] }}}>
@@ -143,7 +136,7 @@ event-tiddlerTitle: title of tiddler that is to be edited
 </$let>
 \end
 
-\define cancel-tiddler-actions()
+\define tm-cancel-tiddler()
 <!--
 
 If the tiddler has changed, show a confirmation prompt. If confirmed, delete the draft tiddler and replace it in the story with the original tiddler, and then navigate to it
@@ -156,7 +149,7 @@ event-tiddlerTitle: title of tiddler that is to be cancelled
 	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 	originalTitle={{{ [<title>get[draft.of]] }}}
 >
-<$action-log msg="In classic cancel-tiddler-actions" storyConfigurationTiddler=<<storyConfigurationTiddler>>/>
+<$action-log msg="In classic tm-cancel-tiddler" storyConfigurationTiddler=<<storyConfigurationTiddler>>/>
 <$action-log/>
 	<$wikify name="confirmation-message" text={{$:/language/ConfirmCancelTiddler}}>
 		<$action-confirm $message=<<confirmation-message>> $prompt={{{ [<title>] :filter[{!!draft.title}!match{!!draft.of}then[yes]] :else[<title>matchtiddler:title,modified,created,draft.of,draft.title<originalTitle>then[no]else[yes]] }}}>
@@ -182,7 +175,7 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 <$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=""/>
 <$list filter="[<storyConfigurationTiddler>has[@default-tiddlers]]" variable="ignore">
 	<$list filter={{{ [<storyConfigurationTiddler>get[@default-tiddlers]] }}} variable="event-paramObject-var-currentTiddler">
-		<<navigate-actions>>
+		<<tm-navigate>>
 	</$list>
 </$list>
 \end

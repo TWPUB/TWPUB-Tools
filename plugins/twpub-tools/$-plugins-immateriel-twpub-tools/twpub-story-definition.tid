@@ -1,16 +1,13 @@
 caption: TWPub Story River
 class: twpub
-init-actions: <<init-actions>>
 title: $:/plugins/immateriel/twpub-tools/twpub-story-definition
-tm-navigate: <<navigate-actions>>
-story-river-content: <<story-river-content>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/plugins/immateriel/twpub-tools/twpub-story-definition-editor
 code-body: yes
 
 \define tv-action-refresh-policy() always
 
-\define navigate-actions()
+\define tm-navigate()
 <!--
 
 Navigate to a tiddler

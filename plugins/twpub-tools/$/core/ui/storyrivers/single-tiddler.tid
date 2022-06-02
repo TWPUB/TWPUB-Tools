@@ -1,20 +1,13 @@
 caption: Single Tiddler Story River
 class: river
 imports: $:/core/ui/storyrivers/classic
-init-actions: <<init-actions>>
 title: $:/core/ui/storyrivers/single-tiddler
-tm-close-tiddler: <<close-tiddler-actions>>
-tm-edit-tiddler: <<edit-tiddler-actions>>
-tm-save-tiddler: <<save-tiddler-actions>>
-tm-cancel-tiddler: <<cancel-tiddler-actions>>
-tm-navigate: <<navigate-actions>>
-story-river-content: <<story-river-content>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/core/ui/storyrivers/classic-edit
 
 \define tv-action-refresh-policy() always
 
-\define navigate-actions()
+\define tm-navigate()
 <!--
 
 Navigate to a tiddler
