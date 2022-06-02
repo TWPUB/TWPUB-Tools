@@ -7,6 +7,7 @@ tm-edit-tiddler: <<edit-tiddler-actions>>
 tm-save-tiddler: <<save-tiddler-actions>>
 tm-cancel-tiddler: <<cancel-tiddler-actions>>
 tm-navigate: <<navigate-actions>>
+story-river-content: <<story-river-content>>
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/core/ui/storyrivers/classic-edit
 

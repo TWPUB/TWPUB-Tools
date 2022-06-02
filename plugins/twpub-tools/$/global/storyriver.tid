@@ -1,0 +1,96 @@
+title: $:/global/$$storyriver
+_is_widget: yes
+_parameters: (storyConfigurationTiddler)
+code-body: yes
+
+<!--
+Set the current story configuration tiddler for navigation.
+
+Traps the navigation messages to add the storyDefinitionTiddler and storyConfigurationTiddler parameters.
+-->
+
+
+\whitespace trim
+
+\procedure generic-handler()
+<!--
+Generic message handler that passes the message on but adds the story configuration and definition tiddlers
+-->
+<$action-sendmessage
+	$message=<<event-type>>
+	var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+	shiftKey=<<.getMessageParam shiftKey>>
+	altKey=<<.getMessageParam altKey>>
+	navigateFromClientLeft=<<.getMessageParam navigateFromClientLeft>>
+	navigateFromClientTop=<<.getMessageParam navigateFromClientTop>>
+	navigateFromClientWidth=<<.getMessageParam navigateFromClientWidth>>
+	navigateFromClientHeight=<<.getMessageParam navigateFromClientHeight>>
+	storyConfigurationTiddler=<<storyConfigurationTiddler>>
+	storyDefinitionTiddler=<<storyDefinitionTiddler>>
+	$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"
+	$values="=[<list-event-paramObject>enlist-input[]addprefix[event-paramObject-]getvariable[]] =[<list-event>enlist-input[]addprefix[event-]getvariable[]]"
+/>
+\end
+
+<!--
+Handles clicks within the navigation popup menu
+-->
+\procedure navigation-popup-actions()
+<$let
+	storyConfigurationTiddler=<<currentTiddler>>
+>
+	<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-navigate"/>
+</$let>
+\end
+
+<!--
+Renders the navigation popup menu
+-->
+\procedure navigation-popup()
+<$let
+	stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}
+>
+	<$setmultiplevariables
+		$names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]"
+		$values="[<stateTitle>fields[]prefix[var-]]  :map[<stateTitle>get<currentTiddler>]"
+	>
+		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
+			<div class="tc-drop-down">
+				Navigating to:<$text text=<<event-paramObject-var-currentTiddler>>/>
+				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
+					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
+						<$text text={{!!caption}}/>
+					</$button>
+				</$list>
+				<hr>
+				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
+					<$transclude tiddler=<<event-paramObject-var-currentTiddler>> mode="block"/>
+				</div>
+			</div>
+		</$reveal>
+	</$setmultiplevariables>
+</$let>
+\end
+
+<$let
+	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
+>
+	<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
+		<$importvariables filter=<<storyDefinitionTiddler>>>
+			<div class={{{ [<storyDefinitionTiddler>get[class]] }}}>
+				<$messagecatcher
+					$tm-navigate=<<generic-handler>>
+					$tm-close-tiddler=<<generic-handler>>
+					$tm-edit-tiddler=<<generic-handler>>
+					$tm-save-tiddler=<<generic-handler>>
+					$tm-cancel-tiddler=<<generic-handler>>
+					$tm-save-tiddler=<<generic-handler>>
+				>
+					<$slot $name="ts-body"/>
+					<<navigation-popup>>
+					<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="story-river-content"/>
+				</$messagecatcher>
+			</div>
+		</$importvariables>
+	</$importvariables>
+</$let>

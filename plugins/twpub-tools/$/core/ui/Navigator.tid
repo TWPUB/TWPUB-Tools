@@ -27,33 +27,19 @@ Generic message handler that just passes messages onto the appropriate story riv
 \end
 
 <!--
-Function to get a message parameter, first looking on the event object and then on the paramObject
--->
-\function getMessageParam(name)
-[<name>addprefix[event-]is[variable]getvariable[]!is[blank]] :else[<name>addprefix[event-paramObject-]is[variable]getvariable[]!is[blank]]
-\end
-
-<!--
-Function to pack four coordinates into "(x,y,w,h)" string
--->
-\function makeRectangle(x,y,w,h)
-=[[(]] =[<x>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<y>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<w>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<h>addprefix[event-paramObject-]getvariable[]] =[[)]] +[join[]]
-\end
-
-<!--
 Traps navigate events within the story river
 -->
 \procedure tm-navigate-handler()
 <$let
-	event-paramObject-shiftKey=<<getMessageParam shiftKey>> 
-	event-paramObject-altKey=<<getMessageParam altKey>> 
-	event-paramObject-var-currentTiddler=<<getMessageParam navigateTo>>
+	event-paramObject-shiftKey=<<.getMessageParam shiftKey>> 
+	event-paramObject-altKey=<<.getMessageParam altKey>> 
+	event-paramObject-var-currentTiddler=<<.getMessageParam navigateTo>>
 	defaultStoryConfigurationTiddler={{{ [<event-paramObject-var-currentTiddler>]  :cascade[all[shadows+tiddlers]tag[$:/tags/DefaultStoryFilter]get[text]] }}}
 	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[<defaultStoryConfigurationTiddler>] }}}
-	event-paramObject-navigateFromClientLeft=<<getMessageParam navigateFromClientLeft>>
-	event-paramObject-navigateFromClientTop=<<getMessageParam navigateFromClientTop>>
-	event-paramObject-navigateFromClientWidth=<<getMessageParam navigateFromClientWidth>>
-	event-paramObject-navigateFromClientHeight=<<getMessageParam navigateFromClientHeight>>
+	event-paramObject-navigateFromClientLeft=<<.getMessageParam navigateFromClientLeft>>
+	event-paramObject-navigateFromClientTop=<<.getMessageParam navigateFromClientTop>>
+	event-paramObject-navigateFromClientWidth=<<.getMessageParam navigateFromClientWidth>>
+	event-paramObject-navigateFromClientHeight=<<.getMessageParam navigateFromClientHeight>>
 >
 	<$action-log message="In tm-navigate-handler"/>
 	<$action-log/>
@@ -71,60 +57,17 @@ Traps navigate events within the story river
 			/>
 			<$action-popup
 				$state=<<stateNavigationPopup>>
-				$coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
+				$coords=<<.makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
 			/>
 			<$action-log
 				$state=<<stateNavigationPopup>>
-				$coords=<<makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
+				$coords=<<.makeRectangle navigateFromClientLeft navigateFromClientTop navigateFromClientWidth navigateFromClientHeight>>
 			/>
 		</$let>
 	</$list>
 </$let>
 \end
 
-<!--
-Handles clicks within the navigation popup menu
--->
-\procedure navigation-popup-actions()
-<$let
-	storyConfigurationTiddler=<<currentTiddler>>
->
-	<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-navigate"/>
-</$let>
-\end
-
-<!--
-Renders the navigation popup menu
--->
-\procedure navigation-popup()
-<$let
-	stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}
->
-	<$setmultiplevariables
-		$names="[<stateTitle>fields[]removeprefix[var-]addprefix[event-paramObject-]]"
-		$values="[<stateTitle>fields[]prefix[var-]]  :map[<stateTitle>get<currentTiddler>]"
-	>
-		<$reveal state=<<stateTitle>> type="popup" tag="div" class="tc-link-popup" position="below" updatePopupPosition="yes" animate="yes">
-			<div class="tc-drop-down">
-				Navigating to:<$text text=<<event-paramObject-var-currentTiddler>>/>
-				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
-					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
-						<$text text={{!!caption}}/>
-					</$button>
-				</$list>
-				<hr>
-				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
-					<$transclude tiddler=<<event-paramObject-var-currentTiddler>> mode="block"/>
-				</div>
-			</div>
-		</$reveal>
-	</$setmultiplevariables>
-</$let>
-\end
-
-<!--
-multinavigator widget is used instead of the core `<$navigator>` widget but is not currently intended to be backwards compatible with it.
--->
 <$let tv-action-refresh-policy="once">
 	<$messagecatcher
 		$tm-navigate=<<tm-navigate-handler>>

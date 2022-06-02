@@ -1,0 +1,7 @@
+title: $:/global/.getMessageParam
+_is_function: yes
+_parameters: (name)
+code-body: yes
+description: Function to get a message parameter, first looking on the event object and then on the paramObject
+
+[<name>addprefix[event-]is[variable]getvariable[]!is[blank]] :else[<name>addprefix[event-paramObject-]is[variable]getvariable[]!is[blank]]

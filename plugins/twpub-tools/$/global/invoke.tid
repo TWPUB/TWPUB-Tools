@@ -14,7 +14,7 @@ Any body provided to this widget is passed along to the transclusion
 -->
 
 <$let
-	classDefinition={{{ [<instanceTitle>get[story-definition]] }}}>
+	classDefinition={{{ [<instanceTitle>get[story-definition]] }}}
 >
 	<$importvariables filter={{{ [<classDefinition>get[imports]] }}}>
 		<$importvariables filter=<<classDefinition>>>
