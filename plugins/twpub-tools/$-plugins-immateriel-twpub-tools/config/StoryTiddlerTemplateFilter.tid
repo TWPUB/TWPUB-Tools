@@ -1,0 +1,5 @@
+title: $:/plugins/immateriel/twpub-tools/config/StoryTiddlerTemplateFilter
+tags: $:/tags/StoryTiddlerTemplateFilter
+list-before:
+
+[field:plugin-type[plugin]has[epub-title]then[$:/plugins/immateriel/twpub-tools/twpub-template]]

@@ -1,5 +1,4 @@
 caption: Single Tiddler Story River
-class: river
 imports: $:/core/ui/storyrivers/classic
 title: $:/core/ui/storyrivers/single-tiddler
 tags: $:/tags/StoryRiverDefinition

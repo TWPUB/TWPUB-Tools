@@ -1,5 +1,4 @@
 caption: Classic Story River
-class: river
 title: $:/core/ui/storyrivers/classic
 tags: $:/tags/StoryRiverDefinition
 edit-template: $:/core/ui/storyrivers/classic-edit
@@ -13,6 +12,7 @@ Navigate to a tiddler
 
 storyConfigurationTiddler: title of tiddler containing story configuration
 event-paramObject-var-currentTiddler: title of tiddler that is target of navigation
+event-paramObject-anchor: optional title of anchor within tiddler
 event-navigateTo: alias for event-paramObject-var-currentTiddler for backwards compatibility
 event-paramObject-* other optional variables to be provided to the story entry
 
@@ -188,13 +188,15 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 			<$transclude/>
 		</$list>
 	</section>
-	<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}>
-		<$vars storyItemTiddler=<<currentTiddler>> storyTiddler={{{ [<currentTiddler>get[var-currentTiddler]] }}}>
-			<$tiddler tiddler=<<storyTiddler>>>
-				<$transclude tiddler="$:/core/ui/StoryTiddlerTemplate"/>
-			</$tiddler>
-		</$vars>
-	</$list>
+	<$historytracker history={{{ [<storyConfigurationTiddler>get[@story-list]enlist-input[]last[]] }}} tag="div">
+		<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]" emptyMessage={{$:/config/EmptyStoryMessage}}>
+			<$vars storyItemTiddler=<<currentTiddler>> storyTiddler={{{ [<currentTiddler>get[var-currentTiddler]] }}}>
+				<$tiddler tiddler=<<storyTiddler>>>
+					<$transclude tiddler="$:/core/ui/StoryTiddlerTemplate"/>
+				</$tiddler>
+			</$vars>
+		</$list>
+	</$historytracker>
 	<section class="story-frontdrop">
 		<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
 			<$transclude/>

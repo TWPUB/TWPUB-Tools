@@ -38,3 +38,6 @@ The `matchtiddler` operator compares the fields of two tiddlers. It is incomplet
 
 See $:/core/modules/filters/matchtiddler.js
 
+!! Overridden Core Shadow Tiddlers
+
+<<list-links "[[$:/plugins/immateriel/twpub-tools]plugintiddlers[]] :filter[[$:/core]plugintiddlers[]match<currentTiddler>]">>

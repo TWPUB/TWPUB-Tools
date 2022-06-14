@@ -20,7 +20,7 @@ Any body provided to this widget is passed along to the transclusion
 		<$importvariables filter=<<classDefinition>>>
 			<!-- Invoke the story river message handler-->
 			<$transclude $variable=<<methodName>>>
-				<$slot $name="ts-body" $depth="2"/>
+				<$slot $name="ts-raw" $depth="2"/>
 			</$transclude>
 		</$importvariables>
 	</$importvariables>

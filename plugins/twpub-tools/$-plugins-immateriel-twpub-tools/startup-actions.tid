@@ -13,7 +13,7 @@ code-body: yes
 \end
 
 \define create-story-configuration-tiddler()
-<$action-createtiddler $basetitle={{{ [[$:/config/Stories/]addsuffix{!!description}] }}} tags="$:/tags/Story" caption={{!!description}} story-definition="$:/plugins/immateriel/twpub-tools/twpub-story-definition" story-twpub=<<currentTiddler>>>
+<$action-createtiddler $basetitle={{{ [[$:/config/Stories/]addsuffix{!!description}] }}} tags="$:/tags/Story" caption={{!!description}} story-definition="$:/core/ui/storyrivers/single-tiddler" @default-tiddlers={{{ [<currentTiddler>format:titlelist[]] }}}>
 	<$macrocall $name="check-page-column" storyConfigurationTiddler=<<createTiddler-title>>/>
 </$action-createtiddler>
 \end

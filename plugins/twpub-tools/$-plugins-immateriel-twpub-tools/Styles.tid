@@ -172,8 +172,7 @@ code-body: yes
 }
 
 .flextemplate-container .twpub-frame {
-	background-color: <<colour tiddler-background>>;
-	border-right: 1px solid <<colour muted-foreground>>;
+	padding: 0 0 22px 0;
 }
 
 .flextemplate-container .twpub-frame .twpub-toolbar {

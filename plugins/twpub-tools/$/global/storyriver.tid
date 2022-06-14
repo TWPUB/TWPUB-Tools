@@ -77,20 +77,18 @@ Renders the navigation popup menu
 >
 	<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
 		<$importvariables filter=<<storyDefinitionTiddler>>>
-			<div class={{{ [<storyDefinitionTiddler>get[class]] }}}>
-				<$messagecatcher
-					$tm-navigate=<<generic-handler>>
-					$tm-close-tiddler=<<generic-handler>>
-					$tm-edit-tiddler=<<generic-handler>>
-					$tm-save-tiddler=<<generic-handler>>
-					$tm-cancel-tiddler=<<generic-handler>>
-					$tm-save-tiddler=<<generic-handler>>
-				>
-					<$slot $name="ts-body"/>
-					<<navigation-popup>>
-					<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="story-river-content"/>
-				</$messagecatcher>
-			</div>
+			<$messagecatcher
+				$tm-navigate=<<generic-handler>>
+				$tm-close-tiddler=<<generic-handler>>
+				$tm-edit-tiddler=<<generic-handler>>
+				$tm-save-tiddler=<<generic-handler>>
+				$tm-cancel-tiddler=<<generic-handler>>
+				$tm-save-tiddler=<<generic-handler>>
+			>
+				<$slot $name="ts-raw"/>
+				<<navigation-popup>>
+				<<story-river-content>>
+			</$messagecatcher>
 		</$importvariables>
 	</$importvariables>
 </$let>

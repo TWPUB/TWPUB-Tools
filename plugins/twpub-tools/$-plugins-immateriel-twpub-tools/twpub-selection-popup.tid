@@ -1,4 +1,4 @@
-title: $:/plugins/immateriel/twpub-tools/twpub-story-definition-selection-popup
+title: $:/plugins/immateriel/twpub-tools/twpub-selection-popup
 code-body: yes
 
 \define annotation-prefix()
@@ -16,7 +16,7 @@ code-body: yes
 	text={{{ [<selectionTracker>get[note]] }}}
 	color={{{ [<selectionTracker>get[note-color]else[#ffff00]] }}}
 	selectionJSON={{{ [<selectionTracker>get[text]] }}}
-	twpub={{{ [<selectionJSON>jsonget[variables],[dom-data-twpub-story-configuration]] }}}
+	twpub={{{ [<selectionJSON>jsonget[variables],[dom-data-twpub-title]] }}}
 	icon="$:/core/images/file"
 >
 	<$let
@@ -65,7 +65,9 @@ code-body: yes
 							<$text text={{{ [<selectionJSON>jsonget[chunks],<currentTiddler>,[text]] }}}/>
 						</p>
 					</$list>
+					<!--
 					<$text text={{{ [<selectionJSON>jsonindexes[chunks]] :reduce[<selectionJSON>jsonget[chunks],<currentTiddler>,[text]addprefix<accumulator>] }}}/>
+					-->
 				</blockquote>
 			</p>
 			<p>
