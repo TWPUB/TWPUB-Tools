@@ -80,8 +80,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 				<<twpub-toc>>
 				<div style="clear:both;"/>
 			</div>
-			<$let stateSelectionPopupTitle={{{ [[$:/state/selection-popup/]addsuffix<currentTiddler>] }}}>
-				<$transclude tiddler="$:/plugins/immateriel/twpub-tools/twpub-selection-popup" mode="inline"/>
+			<$let stateSelectionPopupTitle={{{ [[$:/state/selection-popup/]addsuffix<qualify>addsuffix<currentTiddler>] }}}>
 				<div
 					class="twpub-body"
 					style.transform={{{ [<storyItemTiddler>get[twpub-column-count]else[1]] :map[[1]divide<currentTiddler>] +[addprefix[scale(]addsuffix[)]] }}}
@@ -99,6 +98,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 							</$vars>
 						</div>
 					</$eventcatcher>
+					<$transclude tiddler="$:/plugins/immateriel/twpub-tools/twpub-selection-popup" mode="inline"/>
 				</div>
 			</$let>
 		</div>

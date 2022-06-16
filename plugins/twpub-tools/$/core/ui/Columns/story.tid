@@ -6,4 +6,9 @@ edit-template: $:/core/ui/Columns/story-edit
 
 \whitespace trim
 
-<$$storyriver storyConfigurationTiddler={{{ [<columnConfigurationTiddler>get[story-configuration]] }}}/>
+<$let storyConfigurationTiddler={{{ [<columnConfigurationTiddler>get[story-configuration]] }}}>
+<!-- The assignment to "transclusion" ensures that qualify yields a different string for each story river column -->
+<$let transclusion=<<storyConfigurationTiddler>>>
+<$$storyriver storyConfigurationTiddler=<<storyConfigurationTiddler>>/>
+</$let>
+</$let>

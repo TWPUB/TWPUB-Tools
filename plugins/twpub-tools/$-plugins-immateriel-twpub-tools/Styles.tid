@@ -240,6 +240,7 @@ code-body: yes
 .twpub-body {
 	transform-origin: 0 0;
 	transition: 5s transform ease-in-out;
+	position: relative;
 }
 
 /* twpub extracts */
