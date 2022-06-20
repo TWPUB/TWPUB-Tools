@@ -64,6 +64,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 
 <$let
 	twpubTitle=<<currentTiddler>>
+	folded-state={{{ [<currentTiddler>addprefix[$:/state/folded/]] }}}
 >
 	<$messagecatcher
 		$tm-navigate=<<tm-navigate>>
@@ -76,31 +77,33 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 				</$button>
 				<<twpub-controls>>
 			</div>
-			<div class="twpub-header">
-				<<twpub-toc>>
-				<div style="clear:both;"/>
-			</div>
-			<$let stateSelectionPopupTitle={{{ [[$:/state/selection-popup/]addsuffix<qualify>addsuffix<currentTiddler>] }}}>
-				<div
-					class="twpub-body"
-					style.transform={{{ [<storyItemTiddler>get[twpub-column-count]else[1]] :map[[1]divide<currentTiddler>] +[addprefix[scale(]addsuffix[)]] }}}
-					style.column-count={{{ [<storyItemTiddler>get[twpub-column-count]else[1]] }}}
-					style.width={{{ [<storyItemTiddler>get[twpub-column-count]else[1]multiply[100]addsuffix[%]] }}}
-				>
-					<$eventcatcher events="click" selector="a[id].dynannotate-chunk" matchSelector=".tc-dynannotation-selection-container *" actions-click=<<body-click-actions>> tag="div">
-						<div
-							data-twpub-title=<<currentTiddler>>
-							data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions"
-							data-selection-popup-title=<<stateSelectionPopupTitle>>
-						>
-							<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
-								<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
-							</$vars>
-						</div>
-					</$eventcatcher>
-					<$transclude tiddler="$:/plugins/immateriel/twpub-tools/twpub-selection-popup" mode="inline"/>
+			<$reveal tag="div" class="" type="nomatch" stateTitle=<<folded-state>> text="hide" retain="yes" animate="yes">
+				<div class="twpub-header">
+					<<twpub-toc>>
+					<div style="clear:both;"/>
 				</div>
-			</$let>
+				<$let stateSelectionPopupTitle={{{ [[$:/state/selection-popup/]addsuffix<qualify>addsuffix<currentTiddler>] }}}>
+					<div
+						class="twpub-body"
+						style.transform={{{ [<storyItemTiddler>get[twpub-column-count]else[1]] :map[[1]divide<currentTiddler>] +[addprefix[scale(]addsuffix[)]] }}}
+						style.column-count={{{ [<storyItemTiddler>get[twpub-column-count]else[1]] }}}
+						style.width={{{ [<storyItemTiddler>get[twpub-column-count]else[1]multiply[100]addsuffix[%]] }}}
+					>
+						<$eventcatcher events="click" selector="a[id].dynannotate-chunk" matchSelector=".tc-dynannotation-selection-container *" actions-click=<<body-click-actions>> tag="div">
+							<div
+								data-twpub-title=<<currentTiddler>>
+								data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions"
+								data-selection-popup-title=<<stateSelectionPopupTitle>>
+							>
+								<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
+									<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
+								</$vars>
+							</div>
+						</$eventcatcher>
+						<$transclude tiddler="$:/plugins/immateriel/twpub-tools/twpub-selection-popup" mode="inline"/>
+					</div>
+				</$let>
+			</$reveal>
 		</div>
 	</$messagecatcher>
 </$let>

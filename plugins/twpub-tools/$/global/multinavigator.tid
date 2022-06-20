@@ -76,6 +76,7 @@ Traps navigate events within the story river
 		$tm-save-tiddler=<<generic-message-handler>>
 		$tm-cancel-tiddler=<<generic-message-handler>>
 		$tm-save-tiddler=<<generic-message-handler>>
+		$tm-fold-tiddler=<<generic-message-handler>>
 	>
 		<$slot $name="ts-raw"/>
 	</$messagecatcher>

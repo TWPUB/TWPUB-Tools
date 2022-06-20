@@ -163,6 +163,23 @@ event-tiddlerTitle: title of tiddler that is to be cancelled
 </$let>
 \end
 
+\define tm-fold-tiddler()
+<!--
+
+Folds a tiddler
+
+event-paramObject-foldedState: optional title of associated state tiddler
+
+-->
+<$let
+	folded-state=<<event-paramObject-foldedState>>
+>
+<$action-log message="In classic tm-fold-tiddler"/>
+<$action-log/>
+<$action-setfield $tiddler=<<folded-state>> $value={{{ [<folded-state>get[text]else[show]match[show]then[hide]else[show]] }}}/>
+</$let>
+\end
+
 \define init-actions()
 <!--
 
