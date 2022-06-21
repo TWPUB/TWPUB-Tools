@@ -7,6 +7,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 <$action-log/>
 <$action-sendmessage
 	$message="tm-navigate"
+	doNotTrap="true"
 	var-currentTiddler={{{ [<annotationTiddler>get[note]] }}}
 	storyConfigurationTiddler=""
 	shiftKey="true"
@@ -19,19 +20,36 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 \procedure tm-navigate()
 <$action-log message="In tm-navigate of twpub-template"/>
 <$action-log/>
-<$action-sendmessage
-	$message="tm-navigate"
-	navigateTo=<<twpubTitle>>
-	var-anchor={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
-	storyConfigurationTiddler=<<storyConfigurationTiddler>>
-	shiftKey="false"
-	navigateFromClientLeft=<<tv-selection-posx>>
-	navigateFromClientTop=<<tv-selection-posy>>
-	navigateFromClientWidth=20
-	navigateFromClientHeight=20
-	$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"
-	$values="=[<list-event-paramObject>enlist-input[]addprefix[event-paramObject-]getvariable[]] =[<list-event>enlist-input[]addprefix[event-]getvariable[]]"
-/>
+<$list filter="[[event-paramObject-doNotTrap]is[variable]]" variable="ignore">
+	<$action-sendmessage
+		$message="tm-navigate"
+		navigateTo={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+		var-anchor=<<event-paramObject-var-anchor>>
+		storyConfigurationTiddler=<<storyConfigurationTiddler>>
+		shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
+		navigateFromClientLeft=<<tv-selection-posx>>
+		navigateFromClientTop=<<tv-selection-posy>>
+		navigateFromClientWidth=20
+		navigateFromClientHeight=20
+		$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"
+		$values="=[<list-event-paramObject>enlist-input[]addprefix[event-paramObject-]getvariable[]] =[<list-event>enlist-input[]addprefix[event-]getvariable[]]"
+	/>
+</$list>
+<$list filter="[[event-paramObject-doNotTrap]!is[variable]]" variable="ignore">
+	<$action-sendmessage
+		$message="tm-navigate"
+		navigateTo=<<twpubTitle>>
+		var-anchor={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
+		storyConfigurationTiddler=<<storyConfigurationTiddler>>
+		shiftKey="false"
+		navigateFromClientLeft=<<tv-selection-posx>>
+		navigateFromClientTop=<<tv-selection-posy>>
+		navigateFromClientWidth=20
+		navigateFromClientHeight=20
+		$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"
+		$values="=[<list-event-paramObject>enlist-input[]addprefix[event-paramObject-]getvariable[]] =[<list-event>enlist-input[]addprefix[event-]getvariable[]]"
+	/>
+</$list>
 \end
 
 \procedure twpub-toc()
