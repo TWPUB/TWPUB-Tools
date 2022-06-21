@@ -56,7 +56,7 @@ HistoryTrackerWidget.prototype.navigate = function() {
 			targetAnchor = historyTiddler.fields["var-anchor"];
 		if(targetTiddler) {
 			var domTargetTiddler = this.domNode.querySelector("[data-tiddler-title='" + $tw.utils.escapeCSS(targetTiddler) + "']");
-			if(domTargetTiddler) {
+			if(domTargetTiddler && targetAnchor) {
 				var domTargetAnchor = domTargetTiddler.querySelector("[id='" + $tw.utils.escapeCSS(targetAnchor) + "']");
 			}
 			var domTarget = domTargetAnchor || domTargetTiddler;
