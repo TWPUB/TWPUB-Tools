@@ -5,42 +5,48 @@ edit-template: $:/core/ui/storyrivers/classic-edit
 
 \define tv-action-refresh-policy() always
 
-\define tm-navigate()
+\procedure tm-navigate()
 <!--
 
 Navigate to a tiddler
 
 storyConfigurationTiddler: title of tiddler containing story configuration
 event-paramObject-var-currentTiddler: title of tiddler that is target of navigation
-event-paramObject-anchor: optional title of anchor within tiddler
-event-navigateTo: alias for event-paramObject-var-currentTiddler for backwards compatibility
-event-paramObject-* other optional variables to be provided to the story entry
+event-navigateTo: optional alias for event-paramObject-var-currentTiddler for backwards compatibility
+event-paramObject-var-anchor: optional title of anchor within tiddler
+event-paramObject-var-creationFields: optional JSON of field values for tiddlers created from missing links
 
 -->
 <$action-log message="In classic tm-navigate"/>
 <$action-log/>
-<$vars
+<$let 
 	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
 >
-	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyConfigurationTiddler>] }}}>
-		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-var-]removeprefix[event-paramObject-var-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-var-]getvariable[]]"/>
+	<!-- Create the new story item tiddler -->
+	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyConfigurationTiddler>] }}} var-currentTiddler=<<event-paramObject-var-currentTiddler>> var-anchor=<<event-paramObject-var-anchor>> var-creationFields=<<event-paramObject-var-creationFields>>>
+		<!-- Push it at the top of the history list -->
 		<$set name="value" filter="[<storyConfigurationTiddler>get[@history-list]enlist-input[]] =[<createTiddler-title>]">
 			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=<<value>>/>
 		</$set>
-		<$vars storyPosition={{{ [<storyConfigurationTiddler>get[@story-list]enlist-input[]] :filter[matchtiddler<createTiddler-title>] }}}>
+		<!-- Find any existing entry in the story that matches -->
+		<$let
+			storyPosition={{{ [<storyConfigurationTiddler>get[@story-list]enlist-input[]] :filter[<currentTiddler>get[var-currentTiddler]match<event-paramObject-var-currentTiddler>] }}}
+		>
+			<!-- If no match then add it to the end of the story list -->
 			<$list filter="[<storyPosition>match[]]" variable="ignore">
 				<$set name="value" filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]] [<createTiddler-title>]">
 					<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=<<value>>/>
 				</$set>
 			</$list>
+			<!-- If there is a match then replace the existing item in the story list-->
 			<$list filter="[<storyPosition>!match[]]" variable="ignore">
 				<$set name="value" filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]] [<createTiddler-title>] +[replace<storyPosition>]">
 					<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=<<value>>/>
 				</$set>
 			</$list>
-		</$vars>
+		</$let>
 	</$action-createtiddler>
-</$vars>
+</$let>
 \end
 
 \define tm-close-tiddler()
@@ -192,7 +198,11 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 <$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=""/>
 <$list filter="[<storyConfigurationTiddler>has[@default-tiddlers]]" variable="ignore">
 	<$list filter={{{ [<storyConfigurationTiddler>get[@default-tiddlers]] }}} variable="event-paramObject-var-currentTiddler">
-		<<tm-navigate>>
+		<$let
+			event-paramObject-var-anchor=""
+		>
+			<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-navigate"/>
+		</$let>
 	</$list>
 </$list>
 \end
@@ -205,13 +215,15 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 			<$transclude/>
 		</$list>
 	</section>
-	<$historytracker history={{{ [<storyConfigurationTiddler>get[@story-list]enlist-input[]last[]] }}} tag="div">
+	<$historytracker history={{{ [<storyConfigurationTiddler>get[@history-list]enlist-input[]last[]] }}} tag="div">
 		<$list filter="[<storyConfigurationTiddler>get[@story-list]enlist-input[]]" emptyMessage={{$:/config/EmptyStoryMessage}}>
-			<$vars storyItemTiddler=<<currentTiddler>> storyTiddler={{{ [<currentTiddler>get[var-currentTiddler]] }}}>
-				<$tiddler tiddler=<<storyTiddler>>>
-					<$transclude tiddler="$:/core/ui/StoryTiddlerTemplate"/>
-				</$tiddler>
-			</$vars>
+			<div>
+				<$let storyItemTiddler=<<currentTiddler>> storyTiddler={{{ [<currentTiddler>get[var-currentTiddler]] }}}>
+					<$tiddler tiddler=<<storyTiddler>>>
+						<$transclude tiddler="$:/core/ui/StoryTiddlerTemplate"/>
+					</$tiddler>
+				</$let>
+			</div>
 		</$list>
 	</$historytracker>
 	<section class="story-frontdrop">
