@@ -72,7 +72,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 		<div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ twpub-frame tc-tiddler-frame tc-tiddler-view-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
 			<div class="twpub-toolbar">
 				<$button class="tc-btn-invisible">
-					<$action-sendmessage $message="tm-scroll" selector={{{ [<currentTiddler>escapecss[]addprefix[#]] }}}/>
+					<$action-sendmessage $message="tm-navigate" var-currentTiddler=<<currentTiddler>>/>
 					<$text text={{!!description}}/>
 				</$button>
 				<<twpub-controls>>
