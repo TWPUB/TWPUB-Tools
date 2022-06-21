@@ -17,11 +17,10 @@ event-navigateTo: alias for event-paramObject-var-currentTiddler for backwards c
 event-paramObject-* other optional variables to be provided to the story entry
 
 -->
-<$vars
+<$let
 	event-paramObject-var-currentTiddler={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
 >
-	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyConfigurationTiddler>] }}}>
-		<$action-setmultiplefields $tiddler=<<createTiddler-title>> $fields="[variables[]prefix[event-paramObject-var-]removeprefix[event-paramObject-var-]addprefix[var-]]" $values="[variables[]prefix[event-paramObject-var-]getvariable[]]"/>
+	<$action-createtiddler $basetitle={{{ [[$:/state/storyitem/]addsuffix<storyConfigurationTiddler>] }}} var-currentTiddler=<<event-paramObject-var-currentTiddler>> var-anchor=<<event-paramObject-var-anchor>> var-creationFields=<<event-paramObject-var-creationFields>>>
 		<$set name="value" filter="[<storyConfigurationTiddler>get[@history-list]enlist-input[]] =[<createTiddler-title>]">
 			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @history-list=<<value>>/>
 		</$set>
@@ -29,5 +28,5 @@ event-paramObject-* other optional variables to be provided to the story entry
 			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=<<value>>/>
 		</$set>
 	</$action-createtiddler>
-</$vars>
+</$let>
 \end
