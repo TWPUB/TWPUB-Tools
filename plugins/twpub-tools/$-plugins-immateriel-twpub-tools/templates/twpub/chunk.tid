@@ -3,7 +3,18 @@ code-body: yes
 
 \whitespace trim
 <a id=<<currentTiddler>> class={{{ [[dynannotate-chunk]] [<currentTiddler>is[tiddler]then[twpub-chunk-selected]] +[join[ ]] }}}>
-	<div class="twpub-chunk-content">
-		<$transclude mode="inline"/>
-	</div>
+	<$list filter="[<currentTiddler>!is[tiddler]]" variable="ignore">
+		<div class="twpub-chunk-content">
+			<$transclude mode="inline"/>
+		</div>
+	</$list>
+	<$list filter="[<currentTiddler>is[tiddler]]" variable="ignore">
+		<div class="twpub-chunk-content">
+			<div style="position:relative;">
+				<$dynannotate filter="[all[tiddlers]!has[draft.of]annotate-tiddler<currentTiddler>]" actions=<<annotation-click-actions>>>
+					<$transclude mode="inline"/>
+				</$dynannotate>
+			</div>
+		</div>
+	</$list>
 </a>

@@ -1,13 +1,6 @@
 title: $:/plugins/immateriel/twpub-tools/twpub-selection-popup
 code-body: yes
 
-\define annotation-prefix()
-<div style="position:relative;"><$dynannotate filter="[all[tiddlers]!has[draft.of]annotate-tiddler<currentTiddler>]" actions=<<annotation-click-actions>>>
-\end
-
-\define annotation-suffix()
-</$dynannotate></div>
-\end
 
 \define create-annotation-actions()
 <$action-createtiddler
@@ -27,7 +20,7 @@ code-body: yes
 				idChunk={{{ [<selectionJSON>jsonget[chunks],<index>,[id]] }}}
 			>
 				<$list filter="[<idChunk>!is[tiddler]]" variable="ignore">
-					<$action-setfield $tiddler=<<idChunk>> text={{{ [<idChunk>get[text]addprefix<annotation-prefix>addsuffix<annotation-suffix>] }}}/>
+					<$action-setfield $tiddler=<<idChunk>> text={{{ [<idChunk>get[text]] }}}/>
 				</$list>
 				<$action-createtiddler $basetitle="$:/annotation/"
 						annotate-tiddler=<<idChunk>>
