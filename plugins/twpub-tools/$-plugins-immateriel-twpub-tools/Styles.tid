@@ -499,19 +499,38 @@ code-body: yes
 	left: 0;
 }
 
+.tc-help-panel-inner-wrapper {
+	<<box-shadow "0px 0px 5px rgba(0, 0, 0, 0.3)">>
+	border-radius: 12px 12px 0 0;
+	background: <<colour muted-foreground>>;
+	padding-bottom: 0.5em;
+}
+
 .tc-help-panel {
+	background: <<colour background>>;
+	color: <<colour foreground>>;
 	width: 310px;
 	height: 40vh;
 	max-height: 400px;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	<<box-shadow "0px 0px 5px rgba(0, 0, 0, 0.3)">>
-	border: 1px solid #888161;
-	background: #f8f1df;
-	padding: 1em;
 	margin: 0.5em;
 	z-index: 1000;
 	border-radius: 6px;
+}
+
+.tc-help-panel-wrapper .tc-tiddler-controls {
+	color: <<colour foreground>>;
+	padding: 0.25em 0.5em 0 0.5em;
+}
+
+.tc-help-panel-wrapper .tc-tiddler-controls svg {
+	fill: <<colour foreground>>;
+}
+
+.tc-help-panel .tc-tiddler-frame {
+	width: auto;
 }
 
 .tc-help-panel ol {
