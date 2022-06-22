@@ -64,7 +64,9 @@ Renders the navigation popup menu
 				</$list>
 				<hr>
 				<div style="border:1px solid black;padding: 1em;max-width: 300px;max-height: 300px;overflow:auto;">
-					<$transclude tiddler=<<event-paramObject-var-currentTiddler>> mode="block"/>
+					<$tiddler tiddler=<<event-paramObject-var-currentTiddler>>>
+						<$transclude tiddler="$:/core/ui/ViewTemplate/body" mode="block"/>
+					</$tiddler>
 				</div>
 			</div>
 		</$reveal>
