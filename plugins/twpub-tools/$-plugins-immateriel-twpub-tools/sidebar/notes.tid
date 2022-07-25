@@ -3,13 +3,16 @@ tags: $:/tags/SideBar
 title: $:/plugins/immateriel/twpub-tools/sidebar/notes
 
 \define navigate-to-twpub()
+<$let twpub={{{ [<currentTiddler>get[twpub]] }}}>
 <$action-sendmessage
 	$message="tm-navigate"
-	var-currentTiddler={{{ [list<currentTiddler>get[annotate-tiddler]] }}}
+	navigateTo=<<twpub>>
+	var-anchor={{{ [list<currentTiddler>get[annotate-tiddler]] }}}
 	storyConfigurationTiddler={{{
 		[all[tiddlers+shadows]tag[$:/tags/Story]!is[draft]field:story-definition[$:/plugins/immateriel/twpub-tools/twpub-story-definition]field:story-twpub<twpub>]
 		:else[all[tiddlers+shadows]tag[$:/tags/Story]!is[draft]] }}}
 />
+</$let>
 \end
 
 <$list filter="[all[shadows+tiddlers]!is[draft]tag[$:/tags/Note]!sort[modified]]">
