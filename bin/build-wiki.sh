@@ -11,6 +11,6 @@ if [ -z "$OUTPUT_FOLDER_PATH" ]; then
 	exit 1
 fi
 
-npx tiddlywiki ++plugins/twpub-tools/ ./wikis/twpub-tools.org/ \
+npx tiddlywiki ++plugins/twpub-tools/ ++twpubs/using-twpub/ ./wikis/twpub-tools.org/ \
 	--output $OUTPUT_FOLDER_PATH \
 	--rendertiddler  $:/core/save/all index.html text/plain || exit 1

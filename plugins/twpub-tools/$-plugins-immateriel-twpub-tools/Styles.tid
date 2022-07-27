@@ -24,6 +24,10 @@ code-body: yes
 	width: 100%;
 }
 
+.tc-invisible {
+	display: none;
+}
+
 /* Primitives */
 
 .tc-type-pill {
@@ -565,4 +569,23 @@ code-body: yes
 
 .twpub-help-button:hover {
 	transform: rotate(3.5deg) scale(1.1);
+}
+
+/* Help Button */
+
+.twpub-btn-show-help {
+	color: <<colour download-background>>;
+	fill: <<colour download-background>>;
+	transform-origin: 50% 50%;
+	transition: transform 250ms ease-in-out;
+	padding: 0.25em 0.5em;
+}
+
+.twpub-btn-show-help:hover {
+	transform: scale(1.1);
+}
+
+button.twpub-btn-show-help svg.tc-image-button {
+	width: 2em;
+	height: 2em;
 }

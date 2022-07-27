@@ -1,6 +1,7 @@
 icon: $:/plugins/immateriel/twpub-tools/twpub-list
 title: $:/TWPubs
 
+\whitespace trim
 <div class="twpub-badge-listing">
 <$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub-badge" storyview="pop">
 </$list>
@@ -10,7 +11,7 @@ title: $:/TWPubs
 <$action-sendmessage $message="tm-load-plugin-library" url={{!!url}} infoTitlePrefix="$:/temp/RemoteAssetInfo/"/>
 <$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/twpub-plugin-listing" currentTiddler=<<currentTiddler>>/>
 {{$:/core/images/spiral}} Load from ''<$transclude tiddler=<<currentTiddler>> field="caption"/>''
-</$button>
+</$button><<show-help "$:/plugins/immateriel/using-twpub/toc/navpoint-1">>
 </div>
 </$list>
 </div>

@@ -1,5 +1,5 @@
 title: $:/plugins/immateriel/twpub-tools/config/help-panel/story
-@default-tiddlers: [[Using This Site]]
+@default-tiddlers: [[$:/plugins/immateriel/using-twpub]]
 @history-list:
 @story-list:
 caption: Help Panel Story

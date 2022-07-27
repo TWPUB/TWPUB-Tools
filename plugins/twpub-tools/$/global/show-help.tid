@@ -1,0 +1,18 @@
+title: $:/global/show-help
+_is_procedure: yes
+_parameters: (target)
+code-body: yes
+
+\procedure actions()
+<$action-setfield $tiddler="$:/state/TWPub/ShowHelp" $value="yes"/>
+<$action-sendmessage
+	$message="tm-navigate"
+	navigateTo={{{ [<target>shadowsource[]] }}}
+	var-anchor={{{ [<target>get[target]] }}}
+	storyConfigurationTiddler="$:/plugins/immateriel/twpub-tools/config/help-panel/story"
+/>
+\end
+
+<$button class={{{ tc-btn-invisible twpub-btn-show-help [{$:/state/TWPub/ShowHelp}!match[yes]then[tc-invisible]] +[join[ ]]}}}  actions=<<actions>> tooltip="Show popup help for this">
+{{$:/core/images/help}}
+</$button>

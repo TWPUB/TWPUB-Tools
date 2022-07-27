@@ -1,0 +1,19 @@
+title: $:/plugins/immateriel/using-twpub/text
+
+\define link-actions()
+<$action-sendmessage $message="tm-scroll" selector={{{ [<navigateTo>escapecss[]addprefix[#]] }}}/>
+\end
+
+<$linkcatcher actions=<<link-actions>>>
+
+<div class="tc-table-of-contents">
+<<toc "$:/plugins/immateriel/using-twpub/toc">>
+</div>
+
+<$list filter="[all[tiddlers+shadows]prefix[$:/plugins/immateriel/using-twpub/text/]sort[]]">
+<a id=<<currentTiddler>>>
+<$transclude mode="inline"/>
+</a>
+</$list>
+
+</$linkcatcher>
