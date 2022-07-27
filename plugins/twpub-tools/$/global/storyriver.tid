@@ -6,7 +6,7 @@ code-body: yes
 <!--
 Set the current story configuration tiddler for navigation.
 
-Traps the navigation messages to add the storyDefinitionTiddler and storyConfigurationTiddler parameters.
+Traps the navigation messages to add the storyConfigurationTiddler parameter.
 -->
 
 
@@ -14,7 +14,7 @@ Traps the navigation messages to add the storyDefinitionTiddler and storyConfigu
 
 \procedure generic-handler()
 <!--
-Generic message handler that passes the message on but adds the story configuration and definition tiddlers
+Generic message handler that passes the message on but adds the story configuration tiddler
 -->
 <$action-sendmessage
 	$message=<<event-type>>
@@ -25,8 +25,7 @@ Generic message handler that passes the message on but adds the story configurat
 	navigateFromClientTop=<<.getMessageParam navigateFromClientTop>>
 	navigateFromClientWidth=<<.getMessageParam navigateFromClientWidth>>
 	navigateFromClientHeight=<<.getMessageParam navigateFromClientHeight>>
-	storyConfigurationTiddler=<<storyConfigurationTiddler>>
-	storyDefinitionTiddler=<<storyDefinitionTiddler>>
+	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] :else[<storyConfigurationTiddler>] }}}
 	$names="=[<list-event-paramObject>enlist-input[]] =[<list-event>enlist-input[]]"
 	$values="=[<list-event-paramObject>enlist-input[]addprefix[event-paramObject-]getvariable[]] =[<list-event>enlist-input[]addprefix[event-]getvariable[]]"
 />
