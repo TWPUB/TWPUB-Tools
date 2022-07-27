@@ -15,7 +15,7 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/notes
 </$let>
 \end
 
-<$list filter="[all[shadows+tiddlers]!is[draft]tag[$:/tags/Note]!sort[modified]]">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Note]!is[draft]!sort[modified]]">
 
 <h2><$link><$view field="modified" format="date" template={{$:/language/Tiddler/DateFormat}}/></$link></h2>
 
