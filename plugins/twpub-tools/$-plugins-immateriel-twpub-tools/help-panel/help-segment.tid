@@ -15,10 +15,10 @@ list-after: $:/core/ui/SideBarSegments/site-subtitle
 <$let tv-action-refresh-policy="default">
 <$button actions=<<actions>> class={{{ tc-btn-invisible twpub-help-button [[$:/state/TWPub/ShowHelp]get[text]else[no]match[yes]then[tc-selected]] +[join[ ]]}}}>
 <$list filter="[[$:/state/TWPub/ShowHelp]get[text]] +[else[no]match[yes]]" variable="ignore">
-<$text text="Hide Demo Instructions"/>
+<<twpub-lingo HelpPanel/HideButton/Caption>>
 </$list>
 <$list filter="[[$:/state/TWPub/ShowHelp]get[text]] +[else[no]!match[yes]]" variable="ignore">
-<$text text="Explore This Demo"/>
+<<twpub-lingo HelpPanel/ShowButton/Caption>>
 </$list>
 </$button>
 </$let>

@@ -10,7 +10,9 @@ title: $:/TWPubs
 <$button class="twpub-library-button">
 <$action-sendmessage $message="tm-load-plugin-library" url={{!!url}} infoTitlePrefix="$:/temp/RemoteAssetInfo/"/>
 <$action-sendmessage $message="tm-modal" $param="$:/plugins/immateriel/twpub-tools/twpub-plugin-listing" currentTiddler=<<currentTiddler>>/>
-{{$:/core/images/spiral}} Load from ''<$transclude tiddler=<<currentTiddler>> field="caption"/>''
+<$let target="""<$transclude tiddler=<<currentTiddler>> field="caption"><$text text=<<currentTiddler>>/></$transclude>""">
+{{$:/core/images/spiral}}&#20;<<twpub-lingo TWPubs/LoadButton/Caption>>
+</$let>
 </$button><<show-help "$:/plugins/immateriel/using-twpub/toc/navpoint-1">>
 </div>
 </$list>

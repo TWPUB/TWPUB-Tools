@@ -1,0 +1,15 @@
+title: $:/plugins/immateriel/twpub-tools/strings/en-GB/
+
+Example: This is a string in English
+Second: This is an English string that has not been translated into French
+HelpPanel/HideButton/Caption: Hide Demo Instructions
+HelpPanel/ShowButton/Caption: Explore This Demo
+SiteTitle: TWPub
+SiteSubtitle: electronic publications in ~TiddlyWiki
+TWPubs/LoadButton/Caption: Load from ''<<target>>''
+DemoLibrary/Caption: TWPUB Demo Library
+HelpPanel/Caption: How To Use This Demo
+Tabs/Columns/Caption: Columns
+Tabs/Navigation/Caption: Navigation
+Tabs/Notes/Caption: Notes
+Tabs/Stories/Caption: Stories

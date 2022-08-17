@@ -1,0 +1,7 @@
+title: $:/global/.plugin-lingo
+_is_function: yes
+_parameters: (id,prefix)
+code-body: yes
+description: Generic function to return translated string for a plugin prefix
+
+[[$:/language]get[text]else[$:/languages/en-GB]get[name]addprefix<prefix>addsuffix[/]addsuffix<id>get[text]] :else[[$:/languages/en-GB]get[name]addprefix<prefix>addsuffix[/]addsuffix<id>get[text]addprefix[<mark>]addsuffix[</mark>]] :else[<id>addprefix[<mark>MISSING: ]addsuffix[</mark>]]

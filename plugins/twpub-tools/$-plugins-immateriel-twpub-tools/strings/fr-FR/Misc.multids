@@ -1,0 +1,14 @@
+title: $:/plugins/immateriel/twpub-tools/strings/fr-FR/
+
+Example: Ceci est une chaîne en français
+HelpPanel/HideButton/Caption: Masquer les instructions de démonstration
+HelpPanel/ShowButton/Caption: Explorer cette démonstration
+SiteTitle: TWPub
+SiteSubtitle: publications électroniques dans ~TiddlyWiki
+TWPubs/LoadButton/Caption: Charger à partir de ''<<target>>''
+DemoLibrary/Caption: Bibliothèque de démonstration TWPUB
+HelpPanel/Caption: Utiliser cette démonstration
+Tabs/Columns/Caption: Colonnes
+Tabs/Navigation/Caption: Navigation
+Tabs/Notes/Caption: Notes
+Tabs/Stories/Caption: Histoires

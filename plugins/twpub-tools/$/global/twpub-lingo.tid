@@ -1,0 +1,7 @@
+title: $:/global/twpub-lingo
+_is_function: yes
+_parameters: (id)
+code-body: yes
+description: Function to return a TWPub translated string
+
+[.plugin-lingo<id>,[$:/plugins/immateriel/twpub-tools/strings/]]
