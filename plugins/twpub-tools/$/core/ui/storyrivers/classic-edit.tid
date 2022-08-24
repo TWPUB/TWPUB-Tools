@@ -61,14 +61,14 @@ $item$
 </$let>
 \end
 
-Default tiddlers: 
+<<twpub-lingo Edit/Story/Classic/DefaultTiddlers/Caption>>
 
 <$edit-text tiddler=<<storyConfigurationTiddler>> field="@default-tiddlers" tag="textarea" class="tc-width-100-percent"/>
 
-Open tiddlers:
+<<twpub-lingo Edit/Story/Classic/OpenTiddlers/Caption>>
 
 <<list-tiddlers field:"@story-list">>
 
-History:
+<<twpub-lingo Edit/Story/Classic/History/Caption>>
 
 <<list-tiddlers field:"@history-list" postfilter:"+[reverse[]]">>

@@ -15,14 +15,14 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/columns
 	stateColumnDefinition=<<qualify "$:/temp/twpub/new-column-definition">>
 >
 
-Type: <$select tiddler=<<stateColumnDefinition>> default=<<defaultColumnDefinitionTiddler>>>
+<<twpub-lingo Info/Type/Caption>> <$select tiddler=<<stateColumnDefinition>> default=<<defaultColumnDefinitionTiddler>>>
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/ColumnDefinition]!is[draft]]">
 <option value=<<currentTiddler>>>
 <$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
 </option>
 </$list>
 </$select> <$button actions=<<create-column-actions>>>
-Create
+<<twpub-lingo Info/Create/Caption>>
 </$button>
 
 </$let>

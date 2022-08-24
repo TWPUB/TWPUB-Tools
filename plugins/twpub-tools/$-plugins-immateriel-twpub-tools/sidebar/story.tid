@@ -15,7 +15,7 @@ code-body: yes
 {{$:/core/images/edit-button}}
 </$button>
 
-Type: <div class="tc-type-pill">
+<<twpub-lingo Info/Type/Caption>> <div class="tc-type-pill">
 <$tiddler tiddler=<<storyDefinitionTiddler>>>
 <<twpub-tiddler-fields-button>>
 <$transclude tiddler=<<storyDefinitionTiddler>> field="caption"/>

@@ -15,14 +15,14 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/stories
 	stateStoryRiverDefinition=<<qualify "$:/temp/twpub/new-story-river-definition">>
 >
 
-Type: <$select tiddler=<<stateStoryRiverDefinition>> default=<<defaultStoryDefinitionTiddler>>>
+<<twpub-lingo Info/Type/Caption>> <$select tiddler=<<stateStoryRiverDefinition>> default=<<defaultStoryDefinitionTiddler>>>
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/StoryRiverDefinition]]">
 <option value=<<currentTiddler>>>
 <$transclude field="caption"><$text text=<<currentTiddler>>/></$transclude>
 </option>
 </$list>
 </$select> <$button actions=<<create-story-river-actions>>>
-Create
+<<twpub-lingo Info/Create/Caption>>
 </$button>
 
 </$let>

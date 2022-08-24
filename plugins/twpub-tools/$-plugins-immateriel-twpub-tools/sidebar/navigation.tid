@@ -12,15 +12,15 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/navigation
 </$select>
 \end
 
-!!! Primary Default Story River
+!!! <<twpub-lingo Navigation/PrimaryDefaultStoryRiver/Heading>>
 
-Navigations will target the primary default story river if one is not explicitly targeted
+<<twpub-lingo Navigation/PrimaryDefaultStoryRiver/Hint>>
 
 <<show-story-river-chooser "$:/config/PrimaryDefaultStoryRiver">>
 
-!!! Secondary Default Story River
+!!! <<twpub-lingo Navigation/SecondaryDefaultStoryRiver/Heading>>
 
-Navigations will target the secondary default story river if the <kbd>alt</kbd> key is pressed and one is not explicitly targeted
+<<twpub-lingo Navigation/SecondaryDefaultStoryRiver/Hint>>
 
 <<show-story-river-chooser "$:/config/SecondaryDefaultStoryRiver">>
 

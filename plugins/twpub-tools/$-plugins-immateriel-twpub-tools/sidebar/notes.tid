@@ -2,6 +2,8 @@ caption: <<twpub-lingo Tabs/Notes/Caption>>
 tags: $:/tags/SideBar
 title: $:/plugins/immateriel/twpub-tools/sidebar/notes
 
+\whitespace trim
+
 \define navigate-to-twpub()
 <$let twpub={{{ [<currentTiddler>get[twpub]] }}}>
 <$action-sendmessage
@@ -19,13 +21,15 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/notes
 
 <h2><$link><$view field="modified" format="date" template={{$:/language/Tiddler/DateFormat}}/></$link></h2>
 
-On:
-<$let twpub={{{ [<currentTiddler>get[twpub]get[story-twpub]] }}}>
+<<twpub-lingo Info/Notes/On/Caption>>&#20;
+<$let twpub={{{ [<currentTiddler>get[twpub]] }}}>
 <$link to=<<twpub>>>
 <$text text={{{ [<twpub>get[epub-title]] }}}/>
 </$link>
-</$let> <$button actions=<<navigate-to-twpub>>>
-goto
+</$let>
+&#20;
+<$button actions=<<navigate-to-twpub>>>
+<<twpub-lingo Info/Notes/Goto/Caption>>
 </$button>
 
 <div style="border: 1px solid #888; padding: 1em;" style.background-color={{{ [<currentTiddler>get[color]else[#ff0]] }}} style.color=<<foregroundColour>>>

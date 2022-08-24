@@ -16,24 +16,26 @@ code-body: yes
 {{$:/core/images/edit-button}}
 </$button>
 
-Type: <div class="tc-type-pill">
+<<twpub-lingo Info/Type/Caption>> <div class="tc-type-pill">
 <$tiddler tiddler=<<columnTemplateTiddler>>>
 <<twpub-tiddler-fields-button>>
 <$transclude tiddler=<<columnTemplateTiddler>> field="caption"/>
 </$tiddler>
 </div>
 
-<$checkbox tiddler={{{ [[$:/config/PageLayout/MainColumn/Visibility/]addsuffix<currentTiddler>] }}} field="text" checked="show" unchecked="hide" default="show"> Enable</$checkbox>
+<$checkbox tiddler={{{ [[$:/config/PageLayout/MainColumn/Visibility/]addsuffix<currentTiddler>] }}} field="text" checked="show" unchecked="hide" default="show"> <<twpub-lingo Info/Column/Enable/Caption>></$checkbox>
 
-Condition:
+<<twpub-lingo Info/Column/Condition/Caption>>
 
-<$list filter="[<currentTiddler>has[condition]]" variable="ignore" emptyMessage="(none)">
+<$list filter="[<currentTiddler>has[condition]]" variable="ignore" emptyMessage=<<twpub-lingo Info/None/Caption>>>
 <$codeblock code={{{ [<currentTiddler>get[condition]] }}}/>
 </$list>
 
 <$transclude tiddler={{{ [<columnTemplateTiddler>get[edit-template]] }}}>
 
-(No visible options for story rivers of the type "<$transclude tiddler=<<columnTemplateTiddler>> field="caption"><$text text=<<columnTemplateTiddler>>/></$transclude>")
+<$let storyType="""<$transclude tiddler=<<columnTemplateTiddler>> field="caption"><$text text=<<columnTemplateTiddler>>/></$transclude>""">
+<<twpub-lingo Info/Column/NoOptions/Hint>>
+</$let>
 
 </$transclude>
 

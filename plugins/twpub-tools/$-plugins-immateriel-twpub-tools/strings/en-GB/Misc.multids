@@ -13,3 +13,21 @@ Tabs/Columns/Caption: Columns
 Tabs/Navigation/Caption: Navigation
 Tabs/Notes/Caption: Notes
 Tabs/Stories/Caption: Stories
+Info/Type/Caption: Type:
+Info/Create/Caption: Create
+Info/Notes/On/Caption: On:
+Info/Notes/Goto/Caption: goto
+Navigation/PrimaryDefaultStoryRiver/Heading: Primary Default Story River
+Navigation/PrimaryDefaultStoryRiver/Hint: Navigations will target the primary default story river if one is not explicitly targeted
+Navigation/SecondaryDefaultStoryRiver/Heading: Secondary Default Story River
+Navigation/SecondaryDefaultStoryRiver/Hint: Navigations will target the secondary default story river if the <kbd>alt</kbd> key is pressed and one is not explicitly targeted
+Info/Column/Enable/Caption: Enable
+Info/Column/Condition/Caption: Condition:
+Info/None/Caption: (none)
+Info/Column/NoOptions/Hint: (No visible options for story rivers of the type "<<storyType>>")
+Edit/Story/Caption/Caption: Caption:
+Edit/Story/StoryRiver/Caption: Story river:
+Edit/Story/ColumnCount/Caption: Column count:
+Edit/Story/Classic/DefaultTiddlers/Caption: Default tiddlers:
+Edit/Story/Classic/OpenTiddlers/Caption: Open tiddlers:
+Edit/Story/Classic/History/Caption: History:

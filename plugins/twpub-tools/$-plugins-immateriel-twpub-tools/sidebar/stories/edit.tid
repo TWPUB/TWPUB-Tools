@@ -25,7 +25,7 @@ code-body: yes
 </$list>
 \end
 
-Caption: <$edit-text tiddler=<<storyConfigurationTiddler>> field="caption" />
+<<twpub-lingo Edit/Story/Caption/Caption>> <$edit-text tiddler=<<storyConfigurationTiddler>> field="caption" />
 
 <$transclude tiddler={{{ [<storyDefinitionTiddler>get[edit-template]] }}}>
 

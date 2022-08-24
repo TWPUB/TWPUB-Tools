@@ -12,3 +12,21 @@ Tabs/Columns/Caption: Colonnes
 Tabs/Navigation/Caption: Navigation
 Tabs/Notes/Caption: Notes
 Tabs/Stories/Caption: Histoires
+Info/Type/Caption: Type:
+Info/Create/Caption: Create
+Info/Notes/On/Caption: Sur:
+Info/Notes/Goto/Caption: aller à
+Navigation/PrimaryDefaultStoryRiver/Heading: Rivière d'histoire principale par défaut
+Navigation/PrimaryDefaultStoryRiver/Hint: Les navigations cibleront la rivière d'histoires par défaut principale si l'une n'est pas explicitement ciblée
+Navigation/SecondaryDefaultStoryRiver/Heading: Rivière d'histoire secondaire par défaut
+Navigation/SecondaryDefaultStoryRiver/Hint: Les navigations cibleront la rivière d'histoire par défaut secondaire si la touche <kbd>alt</kbd> est enfoncée et qu'une n'est pas explicitement ciblée
+Info/Column/Enable/Caption: Activer
+Info/Column/Condition/Caption: Condition:
+Info/None/Caption: (aucune)
+Info/Column/NoOptions/Hint: (Aucune option visible pour les rivières d'histoires du type "<<storyType>>")
+Edit/Story/Caption/Caption: Légende:
+Edit/Story/StoryRiver/Caption: Rivière de l'histoire:
+Edit/Story/ColumnCount/Caption: Nombre de colonnes:
+Edit/Story/Classic/DefaultTiddlers/Caption: Tiddlers par défaut:
+Edit/Story/Classic/OpenTiddlers/Caption: Tiddlers ouverts:
+Edit/Story/Classic/History/Caption: Histoire:
