@@ -165,7 +165,10 @@ LinkWidget.prototype.handleClickEvent = function(event) {
 		ctrlKey: event.ctrlKey,
 		altKey: event.altKey,
 		shiftKey: event.shiftKey,
-		event: event
+		event: event,
+		paramObject: {
+			storyConfigurationTiddler: this.getVariable("targetStoryConfigurationTiddler"),
+		}
 	});
 	if(this.domNodes[0].hasAttribute("href")) {
 		event.preventDefault();
