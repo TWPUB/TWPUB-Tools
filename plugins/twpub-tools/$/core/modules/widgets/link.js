@@ -147,7 +147,7 @@ LinkWidget.prototype.renderLink = function(parent,nextSibling) {
 LinkWidget.prototype.handleClickEvent = function(event) {
 	// Send the click on its way as a navigate event
 	var bounds = this.domNodes[0].getBoundingClientRect();
-	this.dispatchEvent({
+	var outputEvent = {
 		type: "tm-navigate",
 		navigateTo: this.to,
 		navigateFromTitle: this.getVariable("storyTiddler"),
@@ -167,9 +167,13 @@ LinkWidget.prototype.handleClickEvent = function(event) {
 		shiftKey: event.shiftKey,
 		event: event,
 		paramObject: {
-			storyConfigurationTiddler: this.getVariable("targetStoryConfigurationTiddler"),
+			storyConfigurationTiddler: this.getVariable("targetStoryConfigurationTiddler")
 		}
-	});
+	}
+	if(this.getVariable("doNotTrap") === "yes") {
+		outputEvent.paramObject.doNotTrap = "yes";
+	}
+	this.dispatchEvent(outputEvent);
 	if(this.domNodes[0].hasAttribute("href")) {
 		event.preventDefault();
 	}

@@ -25,7 +25,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 		$message="tm-navigate"
 		navigateTo={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
 		var-anchor=<<event-paramObject-var-anchor>>
-		storyConfigurationTiddler=<<storyConfigurationTiddler>>
+		storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] :else[<storyConfigurationTiddler>] }}}
 		shiftKey={{{ [<event-shiftKey>!is[blank]else<event-paramObject-shiftKey>] }}}
 		navigateFromClientLeft=<<tv-selection-posx>>
 		navigateFromClientTop=<<tv-selection-posy>>
@@ -40,7 +40,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 		$message="tm-navigate"
 		navigateTo=<<twpubTitle>>
 		var-anchor={{{ [<event-navigateTo>!is[blank]else<event-paramObject-var-currentTiddler>] }}}
-		storyConfigurationTiddler=<<storyConfigurationTiddler>>
+		storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] :else[<storyConfigurationTiddler>] }}}
 		shiftKey="false"
 		navigateFromClientLeft=<<tv-selection-posx>>
 		navigateFromClientTop=<<tv-selection-posy>>
