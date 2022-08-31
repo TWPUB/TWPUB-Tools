@@ -4,29 +4,29 @@ Example: Ceci est une chaîne en français
 HelpPanel/HideButton/Caption: Masquer les instructions de démonstration
 HelpPanel/ShowButton/Caption: Explorer cette démonstration
 SiteTitle: TWPub
-SiteSubtitle: publications électroniques dans ~TiddlyWiki
+SiteSubtitle: publications électroniques en ~TiddlyWiki
 TWPubs/LoadButton/Caption: Charger à partir de ''<<target>>''
 DemoLibrary/Caption: Bibliothèque de démonstration TWPUB
-HelpPanel/Caption: Utiliser cette démonstration
+HelpPanel/Caption: Comment utiliser cette démonstration
 Tabs/Columns/Caption: Colonnes
 Tabs/Navigation/Caption: Navigation
 Tabs/Notes/Caption: Notes
 Tabs/Stories/Caption: Histoires
 Info/Type/Caption: Type:
-Info/Create/Caption: Create
+Info/Create/Caption: Créer
 Info/Notes/On/Caption: Sur:
 Info/Notes/Goto/Caption: aller à
-Navigation/PrimaryDefaultStoryRiver/Heading: Rivière d'histoire principale par défaut
-Navigation/PrimaryDefaultStoryRiver/Hint: Les navigations cibleront la rivière d'histoires par défaut principale si l'une n'est pas explicitement ciblée
-Navigation/SecondaryDefaultStoryRiver/Heading: Rivière d'histoire secondaire par défaut
-Navigation/SecondaryDefaultStoryRiver/Hint: Les navigations cibleront la rivière d'histoire par défaut secondaire si la touche <kbd>alt</kbd> est enfoncée et qu'une n'est pas explicitement ciblée
+Navigation/PrimaryDefaultStoryRiver/Heading: Déroulé par défaut principal
+Navigation/PrimaryDefaultStoryRiver/Hint: Les navigations cibleront le déroulé par défaut principal s'il n'est pas explicitement ciblé
+Navigation/SecondaryDefaultStoryRiver/Heading: Déroulé par défaut secondaire
+Navigation/SecondaryDefaultStoryRiver/Hint: Les navigations cibleront le déroulé par défaut secondaire si la touche <kbd>alt</kbd> est enfoncée et qu'il n'est pas explicitement ciblé
 Info/Column/Enable/Caption: Activer
 Info/Column/Condition/Caption: Condition:
-Info/None/Caption: (aucune)
-Info/Column/NoOptions/Hint: (Aucune option visible pour les rivières d'histoires du type "<<storyType>>")
+Info/None/Caption: (aucun)
+Info/Column/NoOptions/Hint: (Aucune option visible pour les déroulés de type "<<storyType>>")
 Edit/Story/Caption/Caption: Légende:
-Edit/Story/StoryRiver/Caption: Rivière de l'histoire:
+Edit/Story/StoryRiver/Caption: Déroulé:
 Edit/Story/ColumnCount/Caption: Nombre de colonnes:
 Edit/Story/Classic/DefaultTiddlers/Caption: Tiddlers par défaut:
 Edit/Story/Classic/OpenTiddlers/Caption: Tiddlers ouverts:
-Edit/Story/Classic/History/Caption: Histoire:
+Edit/Story/Classic/History/Caption: Historique:
