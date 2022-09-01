@@ -4,4 +4,4 @@ title: $:/plugins/immateriel/using-twpub/text/
 000000001: <p>Here we suggest some things to get you started.</p>
 000000002: <p>• Click ''Load from TWPUB Demo Library'' to load further TWPubs that have been converted from the EPUB files of [[Gutenberg's|https://www.gutenberg.org/]] top 100 English-language books</p>
 000000003: <p>• Shift-click on links to navigate into a specific story river</p>
-000000004: <p>• Explore [[images from currently loaded TWPubs|$:/TWPubs/Images]]</p>
+000000004: <p>• Explore <$let doNotTrap="yes" targetStoryConfigurationTiddler="$:/config/stories/main">[[images from currently loaded TWPubs|$:/TWPubs/Images]]</$let></p>
