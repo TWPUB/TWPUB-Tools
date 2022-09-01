@@ -568,7 +568,7 @@ code-body: yes
 }
 
 .twpub-help-button:hover {
-	transform: rotate(3.5deg) scale(1.1);
+	transform: rotate(3.5deg) scale(1.05);
 }
 
 /* Help Button */
