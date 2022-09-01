@@ -54,7 +54,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 
 \procedure twpub-toc()
 <$list filter="[<currentTiddler>has[cover-image]]" variable="ignore">
-	<span class="twpub-cover-thumbnail"><$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/></span>
+	<div class="twpub-cover-thumbnail"><$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/></div>
 </$list>
 <$vars state=<<qualify "$:/state/twpub/toc/open">>>
 	<h1>

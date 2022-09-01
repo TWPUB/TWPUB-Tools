@@ -3,7 +3,7 @@
 	"name": "UsingTWPub",
 	"description": "Using TWPub",
 	"list": "readme license",
-	"cover-image": "$:/plugins/immateriel/using-twpub/images/Motovun Jack.jpg",
+	"cover-image": "$:/plugins/immateriel/using-twpub/images/TWPubHelpLogo",
 	"epub-creator": "Immateriél",
 	"epub-title": "Using TWPub"
 }

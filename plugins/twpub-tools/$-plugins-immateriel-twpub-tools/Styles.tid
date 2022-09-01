@@ -545,6 +545,15 @@ code-body: yes
 	padding-left: 1em;
 }
 
+.tc-help-panel .twpub-cover-thumbnail {
+	text-align: center;
+	margin: 1em 0;
+}
+
+.tc-help-panel .twpub-cover-thumbnail img {
+	width: 33%;
+}
+
 /* Help Button Sidebar Segment */
 
 .twpub-help-button {
