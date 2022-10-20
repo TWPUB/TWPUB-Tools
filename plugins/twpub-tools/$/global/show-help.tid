@@ -1,9 +1,8 @@
 title: $:/global/show-help
-_is_procedure: yes
-_parameters: (target)
+tags: $:/tags/Macro
 code-body: yes
 
-\procedure actions()
+\procedure show-help-actions()
 <$action-setfield $tiddler="$:/state/TWPub/ShowHelp" $value="yes"/>
 <$action-sendmessage
 	$message="tm-navigate"
@@ -13,6 +12,8 @@ code-body: yes
 />
 \end
 
-<$button class={{{ tc-btn-invisible twpub-btn-show-help [{$:/state/TWPub/ShowHelp}!match[yes]then[tc-invisible]] +[join[ ]]}}}  actions=<<actions>> tooltip="Show popup help for this">
+\procedure show-help(target)
+<$button class={{{ tc-btn-invisible twpub-btn-show-help [{$:/state/TWPub/ShowHelp}!match[yes]then[tc-invisible]] +[join[ ]]}}}  actions=<<show-help-actions>> tooltip="Show popup help for this">
 {{$:/core/images/help}}
 </$button>
+\end

@@ -2,6 +2,8 @@ tags: $:/tags/StartupAction/Browser
 title: $:/plugins/immateriel/twpub-tools/startup-actions
 code-body: yes
 
+\import [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+
 \define tv-action-refresh-policy() always
 
 \define create-page-column(storyConfigurationTiddler)

@@ -1,7 +1,8 @@
 title: $:/global/.makeRectangle
-_is_function: yes
-_parameters: (x,y,w,h)
+tags: $:/tags/Macro
 code-body: yes
 description: Function to pack four coordinates into "(x,y,w,h)" string
 
+\function .makeRectangle(x,y,w,h)
 =[[(]] =[<x>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<y>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<w>addprefix[event-paramObject-]getvariable[]] =[[,]] =[<h>addprefix[event-paramObject-]getvariable[]] =[[)]] +[join[]]
+\end

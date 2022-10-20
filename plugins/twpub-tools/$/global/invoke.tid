@@ -1,8 +1,8 @@
 title: $:/global/$$invoke
-_is_widget: yes
-_parameters: (instanceTitle,methodName)
+tags: $:/tags/Macro
 code-body: yes
 
+\widget $$invoke(instanceTitle,methodName)
 <!--
 Transclude the text of a given method of a tiddler object instance.
 
@@ -12,7 +12,6 @@ The tiddler class definition should contain procedure definitions comprising the
 
 Any body provided to this widget is passed along to the transclusion
 -->
-
 <$let
 	classDefinition={{{ [<instanceTitle>get[story-definition]] }}}
 >
@@ -25,3 +24,4 @@ Any body provided to this widget is passed along to the transclusion
 		</$importvariables>
 	</$importvariables>
 </$let>
+\end

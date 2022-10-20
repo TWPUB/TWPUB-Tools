@@ -1,7 +1,8 @@
 title: $:/global/twpub-lingo
-_is_function: yes
-_parameters: (id)
+tags: $:/tags/Macro
 code-body: yes
 description: Function to return a TWPub translated string
 
+\function twpub-lingo(id)
 [.plugin-lingo<id>,[$:/plugins/immateriel/twpub-tools/strings/]]
+\end

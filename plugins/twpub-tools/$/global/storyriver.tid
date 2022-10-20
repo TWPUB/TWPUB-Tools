@@ -1,18 +1,10 @@
 title: $:/global/$$storyriver
-_is_widget: yes
-_parameters: (storyConfigurationTiddler)
+tags: $:/tags/Macro
 code-body: yes
-
-<!--
-Set the current story configuration tiddler for navigation.
-
-Traps the navigation messages to add the storyConfigurationTiddler parameter.
--->
-
 
 \whitespace trim
 
-\procedure generic-handler()
+\procedure story-river-generic-handler()
 <!--
 Generic message handler that passes the message on but adds the story configuration tiddler
 -->
@@ -34,7 +26,7 @@ Generic message handler that passes the message on but adds the story configurat
 <!--
 Handles clicks within the navigation popup menu
 -->
-\procedure navigation-popup-actions()
+\procedure story-river-navigation-popup-actions()
 <$let
 	storyConfigurationTiddler=<<currentTiddler>>
 >
@@ -45,7 +37,7 @@ Handles clicks within the navigation popup menu
 <!--
 Renders the navigation popup menu
 -->
-\procedure navigation-popup()
+\procedure story-river-navigation-popup()
 <$let
 	stateTitle={{{ [[$:/state/navigation-popup/]addsuffix<storyConfigurationTiddler>] }}}
 >
@@ -57,7 +49,7 @@ Renders the navigation popup menu
 			<div class="tc-drop-down">
 				Navigating to:<$text text=<<event-paramObject-var-currentTiddler>>/>
 				<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]sort[caption]]">
-					<$button class="tc-btn-invisible" actions=<<navigation-popup-actions>>>
+					<$button class="tc-btn-invisible" actions=<<story-river-navigation-popup-actions>>>
 						<$text text={{!!caption}}/>
 					</$button>
 				</$list>
@@ -73,23 +65,30 @@ Renders the navigation popup menu
 </$let>
 \end
 
+\widget $$storyriver(storyConfigurationTiddler)
+<!--
+Set the current story configuration tiddler for navigation.
+
+Traps the navigation messages to add the storyConfigurationTiddler parameter.
+-->
 <$let
 	storyDefinitionTiddler={{{ [<storyConfigurationTiddler>get[story-definition]] }}}
 >
 	<$importvariables filter={{{ [<storyDefinitionTiddler>get[imports]] }}}>
 		<$importvariables filter=<<storyDefinitionTiddler>>>
 			<$messagecatcher
-				$tm-navigate=<<generic-handler>>
-				$tm-close-tiddler=<<generic-handler>>
-				$tm-edit-tiddler=<<generic-handler>>
-				$tm-save-tiddler=<<generic-handler>>
-				$tm-cancel-tiddler=<<generic-handler>>
-				$tm-save-tiddler=<<generic-handler>>
+				$tm-navigate=<<story-river-generic-handler>>
+				$tm-close-tiddler=<<story-river-generic-handler>>
+				$tm-edit-tiddler=<<story-river-generic-handler>>
+				$tm-save-tiddler=<<story-river-generic-handler>>
+				$tm-cancel-tiddler=<<story-river-generic-handler>>
+				$tm-save-tiddler=<<story-river-generic-handler>>
 			>
 				<$slot $name="ts-raw"/>
-				<<navigation-popup>>
+				<<story-river-navigation-popup>>
 				<<story-river-content>>
 			</$messagecatcher>
 		</$importvariables>
 	</$importvariables>
 </$let>
+\end

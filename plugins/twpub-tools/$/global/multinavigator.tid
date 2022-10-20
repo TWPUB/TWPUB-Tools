@@ -1,15 +1,6 @@
 title: $:/global/$$multinavigator
-_is_widget: yes
+tags: $:/tags/Macro
 code-body: yes
-
-<!--
-Define the $$multinavigator widget.
-
-It handles tm-navigate and other storyriver-related messages by either dispatching the message to
-the appropriate storyriver or by displaying a popup for the user to choose the target storyriver.
--->
-
-\define tv-action-refresh-policy() always
 
 <!--
 Generic message handler that just passes messages onto the appropriate story river
@@ -68,6 +59,13 @@ Traps navigate events within the story river
 </$let>
 \end
 
+\widget $$multinavigator()
+<!--
+Define the $$multinavigator widget.
+
+It handles tm-navigate and other storyriver-related messages by either dispatching the message to
+the appropriate storyriver or by displaying a popup for the user to choose the target storyriver.
+-->
 <$let tv-action-refresh-policy="once">
 	<$messagecatcher
 		$tm-navigate=<<tm-navigate-handler>>
@@ -81,3 +79,4 @@ Traps navigate events within the story river
 		<$slot $name="ts-raw"/>
 	</$messagecatcher>
 </$let>
+\end
