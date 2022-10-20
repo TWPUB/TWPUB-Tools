@@ -1,4 +1,4 @@
-title: $:/global/twpub-lingo
+title: $:/plugins/immateriel/twpub-tools/globals/functions/twpub-lingo
 tags: $:/tags/Macro
 code-body: yes
 description: Function to return a TWPub translated string

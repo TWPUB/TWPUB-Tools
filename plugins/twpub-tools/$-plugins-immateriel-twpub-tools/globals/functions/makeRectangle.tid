@@ -1,4 +1,4 @@
-title: $:/global/.makeRectangle
+title: $:/plugins/immateriel/twpub-tools/globals/functions/.makeRectangle
 tags: $:/tags/Macro
 code-body: yes
 description: Function to pack four coordinates into "(x,y,w,h)" string

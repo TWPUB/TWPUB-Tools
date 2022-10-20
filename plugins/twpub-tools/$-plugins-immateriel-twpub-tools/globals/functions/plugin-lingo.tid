@@ -1,4 +1,4 @@
-title: $:/global/.plugin-lingo
+title: $:/plugins/immateriel/twpub-tools/globals/functions/.plugin-lingo
 tags: $:/tags/Macro
 code-body: yes
 description: Generic function to return translated string for a plugin prefix

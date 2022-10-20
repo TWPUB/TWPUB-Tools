@@ -1,4 +1,4 @@
-title: $:/global/.getMessageParam
+title: $:/plugins/immateriel/twpub-tools/globals/functions/.getMessageParam
 tags: $:/tags/Macro
 code-body: yes
 description: Function to get a message parameter, first looking on the event object and then on the paramObject
