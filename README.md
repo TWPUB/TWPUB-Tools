@@ -83,3 +83,7 @@ node epub2twpub --epub <path-to-input-epub-file> --output <path-to-output-twpub-
 ## Stitching TWPub files into wiki files
 
 The file `./bin/slice-and-stitch-wiki.sh` demonstrates how to stitch a TWPub file into an empty TiddlyWiki wiki file using simple string operations, without using any TiddlyWiki library code. The script invokes a JavaScript app `./bin/stitch-wiki.js` that does the actual stitching.
+
+## References
+
+* [Anatomy of an EPUB 3 file](https://www.edrlab.org/open-standards/anatomy-of-an-epub-3-file/) provides a good technical overview of the EPUB 3 format
