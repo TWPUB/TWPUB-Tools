@@ -15,7 +15,10 @@ This repository contains two tools:
 
 The repository also contains:
 
-* **wikis** - wikis for twpub-tools.org and immateriel.fr
+* **wikis** - wikis for TWPub editions:
+ * Edition for twpub-tools.org
+ * Edition for immateriel.fr
+ * Edition for iframe embedding
 * **bin** – scripts for working with the tools, including setting up a TiddlyWiki plugin library to contain the demo TWPUBs
 * **epubs** – demonstration EPUB files
 * **fixtures** – test fixtures for testing epub2twpub

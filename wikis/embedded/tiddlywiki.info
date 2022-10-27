@@ -1,5 +1,5 @@
 {
-	"description": "TWPUB Wiki for immateriel.fr",
+	"description": "TWPUB Wiki for embedded use",
 	"plugins": [
 		"tiddlywiki/dynannotate",
 		"tiddlywiki/highlight"

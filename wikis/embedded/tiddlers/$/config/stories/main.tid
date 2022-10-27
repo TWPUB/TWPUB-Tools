@@ -1,0 +1,5 @@
+caption: Main Story
+@default-tiddlers:
+story-definition: $:/core/ui/storyrivers/classic
+tags: $:/tags/Story
+title: $:/config/stories/main

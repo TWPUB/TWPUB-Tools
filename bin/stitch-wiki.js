@@ -17,8 +17,6 @@ const pathInputWiki = process.argv[2],
 	pathOutputWiki = process.argv[3],
 	arrayPathJson = process.argv.slice(4);
 
-	console.log(pathInputWiki,pathOutputWiki,arrayPathJson)
-
 // Check arguments are not missing/empty
 if(!arrayPathJson || !arrayPathJson[0] || !pathInputWiki || !pathOutputWiki) {
 	throw "Missing arguments";

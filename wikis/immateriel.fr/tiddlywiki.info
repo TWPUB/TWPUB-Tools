@@ -1,5 +1,5 @@
 {
-	"description": "TWPUB Wiki",
+	"description": "TWPUB Wiki for twpub-tools.org",
 	"plugins": [
 		"tiddlywiki/dynannotate",
 		"tiddlywiki/highlight"
