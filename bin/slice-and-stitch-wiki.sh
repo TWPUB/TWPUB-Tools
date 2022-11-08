@@ -2,7 +2,7 @@
 
 # Slice an epub into a twpub plugin and then stitch it into a prebuilt empty wiki file
 
-# ./bin/slice-and-stitch-wiki.sh <path-to-input-epub-file> <path-to-tiddlywiki-edition-template>
+# ./bin/slice-and-stitch-wiki.sh <path-to-input-epub-file> [<path-to-tiddlywiki-edition-template>]
 
 EPUB_FILEPATH=$1
 EDITION_FILEPATH=$2
