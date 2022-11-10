@@ -2,6 +2,33 @@ title: $:/plugins/immateriel/twpub-tools/macros
 tags: $:/tags/Macro
 code-body: yes
 
+\define tv-action-refresh-policy() always
+
+\procedure create-page-column(storyConfigurationTiddler)
+<$action-createtiddler $basetitle={{{ [[$:/config/PageColumns/]addsuffix{!!description}] }}} tags="$:/tags/PageLayout/MainColumn" caption={{!!description}} template="$:/core/ui/Columns/story" story-configuration=<<storyConfigurationTiddler>> flex-grow="2"/>
+\end
+
+\procedure check-page-column(storyConfigurationTiddler)
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageLayout/MainColumn]field:story-configuration<storyConfigurationTiddler>limit[1]]" variable="ignore" emptyMessage="""<$macrocall $name="create-page-column" storyConfigurationTiddler=<<storyConfigurationTiddler>>/>""">
+</$list>
+<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="init-actions"/>
+\end
+
+\procedure create-story-configuration-tiddler()
+<$action-createtiddler $basetitle={{{ [[$:/config/Stories/]addsuffix{!!description}] }}} tags="$:/tags/Story" caption={{!!description}} story-definition="$:/core/ui/storyrivers/single-tiddler" @default-tiddlers={{{ [<currentTiddler>format:titlelist[]] }}}>
+	<$macrocall $name="check-page-column" storyConfigurationTiddler=<<createTiddler-title>>/>
+</$action-createtiddler>
+\end
+
+\procedure open-twpub-in-new-column(twpubTitle)
+<$let currentTiddler=<<twpubTitle>>>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]field:story-definition[$:/plugins/immateriel/twpub-tools/twpub-story-definition]field:story-twpub<currentTiddler>limit[1]]" variable="storyConfigurationTiddler" emptyMessage="""<$macrocall $name="create-story-configuration-tiddler"/>""">
+	<$macrocall $name="check-page-column" storyConfigurationTiddler=<<storyConfigurationTiddler>>/>
+</$list>
+</$let>
+\end
+
+
 \define twpub-tiddler-fields(exclude)
 <table class="tc-view-field-table">
 <tbody>
