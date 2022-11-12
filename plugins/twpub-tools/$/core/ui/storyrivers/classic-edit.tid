@@ -41,7 +41,7 @@ $item$
 \end
 
 \define close-all-tiddlers-item(field)
-<$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> $field="$field$"/>close all</$button>
+<$button class="tc-btn-invisible tc-btn-mini"><$action-setfield $tiddler=<<storyConfigurationTiddler>> $field="$field$"/><<twpub-lingo "CloseAll">></$button>
 \end
 
 \define list-tiddlers(field,postfilter)
