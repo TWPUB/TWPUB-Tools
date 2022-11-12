@@ -21,13 +21,13 @@ title: $:/plugins/immateriel/twpub-tools/sidebar/notes
 
 <h2><$link><$view field="modified" format="date" template={{$:/language/Tiddler/DateFormat}}/></$link></h2>
 
-<<twpub-lingo Info/Notes/On/Caption>>&#20;
+<<twpub-lingo Info/Notes/On/Caption>>&#32;
 <$let twpub={{{ [<currentTiddler>get[twpub]] }}}>
 <$link to=<<twpub>>>
 <$text text={{{ [<twpub>get[epub-title]] }}}/>
 </$link>
 </$let>
-&#20;
+&#32;
 <$button actions=<<navigate-to-twpub>>>
 <<twpub-lingo Info/Notes/Goto/Caption>>
 </$button>
