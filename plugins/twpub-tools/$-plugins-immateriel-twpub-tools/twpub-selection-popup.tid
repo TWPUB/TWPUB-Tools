@@ -50,7 +50,7 @@ code-body: yes
 	<$let selectionTracker={{{ [<stateSelectionPopupTitle>get[selection-tracker]] }}}
 		selectionJSON={{{ [<selectionTracker>get[text]] }}}
 	>
-		<div class="tc-block-dropdown">
+		<div class="tc-block-dropdown" style="padding-inline: .5vw; padding-block:0vh;">
 			<p style="width:300px;white-space:normal;max-height:250px;overflow:scroll;">
 				<blockquote>
 					<$list filter="[<selectionJSON>jsonindexes[chunks]]">
@@ -64,17 +64,17 @@ code-body: yes
 				</blockquote>
 			</p>
 			<p>
-				<$edit-text tiddler=<<selectionTracker>> field="note" tag="textarea" placeholder="Type note here..." class="tc-width-100-percent"/>
+				<$edit-text tiddler=<<selectionTracker>> field="note" tag="textarea" placeholder=<<twpub-lingo "TypeNoteHere">> class="tc-width-100-percent"/>
 			</p>
 			<p>
 				<$edit-text tiddler=<<selectionTracker>> field="note-color" type="color" default="#ffff00"/>
 			</p>
 			<p style="width:300px;white-space:normal;">
 				<$button actions=<<create-annotation-actions>>>
-				Create Annotation
+				<<twpub-lingo "CreateAnnotation">>
 				</$button>
 				<$button actions=<<cancel-annotation-actions>>>
-				Cancel
+				<<twpub-lingo "Cancel">>
 				</$button>
 			</p>
 		</div>
