@@ -10,6 +10,7 @@ code-body: yes
 		flex-basis:` <$text text={{{ [<currentTiddler>get[flex-basis]addsuffix[px]else[0]] }}}/>`;
 		flex-grow:` <$text text={{{ [<currentTiddler>get[flex-grow]else[1]] }}}/>`;
 		flex-shrink:` <$text text={{{ [<currentTiddler>get[flex-shrink]else[0]] }}}/>`;
+		max-width:` <$text text={{{ [<currentTiddler>get[max-width]] }}}/>`;
 		overflow: scroll;
 		}`
 	</$list>

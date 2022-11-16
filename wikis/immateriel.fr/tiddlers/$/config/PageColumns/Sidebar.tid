@@ -3,3 +3,4 @@ template: $:/core/ui/Columns/sidebar
 title: $:/config/PageColumns/Sidebar
 caption: Sidebar
 list-after:
+max-width: 400px
