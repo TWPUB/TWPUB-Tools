@@ -27,7 +27,7 @@ mkdir -p tmp || exit 1
 
 npx tiddlywiki ++plugins/twpub-tools/ ++twpubs/using-twpub/ $EDITION_FILEPATH \
 	--output tmp \
-	--render dummy empty.html text/plain $:/core/templates/tiddlywiki5.html saveTiddlerFilter "$:/config/PageColumns/NewRiver $:/config/PageColumns/Sidebar $:/config/Search/AutoFocus $:/config/stories/main $:/config/TiddlerInfo/Mode $:/core $:/languages/fr-FR $:/plugins/immateriel/twpub-tools $:/plugins/immateriel/using-twpub $:/plugins/tiddlywiki/dynannotate $:/themes/tiddlywiki/snowwhite $:/themes/tiddlywiki/vanilla +[sort[title]]" || exit 1
+	--render dummy empty.html text/plain $:/core/templates/tiddlywiki5.html saveTiddlerFilter "[is[tiddler]] -[[$:/boot/boot.css]] -[type[application/javascript]library[yes]] -[[$:/boot/boot.js]] -[[$:/boot/bootprefix.js]] +[sort[title]]" || exit 1
 
 # Slice the epub to make a TWPub JSON file
 
