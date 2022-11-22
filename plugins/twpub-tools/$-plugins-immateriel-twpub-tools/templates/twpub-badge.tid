@@ -1,6 +1,7 @@
 title: $:/plugins/immateriel/twpub-tools/templates/twpub-badge
 code-body: yes
 
+<$draggable tiddler=<<currentTiddler>>>
 <$button popup=<<qualify "$:/state/popup/twpub-badge">> class="twpub-badge">
 <div class="twpub-badge-cover">
 <$list filter="[<currentTiddler>has[cover-image]]" variable="ignore" emptyMessage="{{$:/plugins/immateriel/twpub-tools/default-book-cover}}">
@@ -16,6 +17,7 @@ code-body: yes
 </div>
 </div>
 </$button>
+</$draggable>
 <$reveal state=<<qualify "$:/state/popup/twpub-badge">> type="popup" position="below" tag="div" class="twpub-badge-dropdown" animate="yes" retain="yes">
 <div class="tc-drop-down-wrapper">
 <div class="tc-drop-down">
