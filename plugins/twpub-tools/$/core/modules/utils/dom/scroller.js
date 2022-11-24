@@ -16,6 +16,7 @@ Module that creates a $tw.utils.Scroller object prototype that manages scrolling
 Event handler for when the `tm-scroll` event hits the document body
 */
 var PageScroller = function() {
+	this.currentlyScrollingTo = null;
 	this.idRequestFrame = null;
 	this.requestAnimationFrame = window.requestAnimationFrame ||
 		window.webkitRequestAnimationFrame ||
@@ -34,9 +35,14 @@ var PageScroller = function() {
 };
 
 PageScroller.prototype.isScrolling = function() {
+	return !!this.currentlyScrollingTo;
 }
 
 PageScroller.prototype.cancelScroll = function(srcWindow) {
+	if(this.currentlyScrollingTo) {
+		this.currentlyScrollingTo.scrollIntoView();
+		this.currentlyScrollingTo = null;
+	}
 };
 
 /*
@@ -58,11 +64,18 @@ PageScroller.prototype.handleEvent = function(event) {
 Handle a scroll event hitting the page document
 */
 PageScroller.prototype.scrollIntoView = function(element,callback) {
+console.log("Scrolling to",element)
+	this.cancelScroll();
+	this.currentlyScrollingTo = element;
 	element.scrollIntoView({behavior: "smooth"});
 	$tw.utils.addClass(element,"tc-navigating");
 	setTimeout(function() {
+		this.currentlyScrollingTo = null;
 		$tw.utils.removeClass(element,"tc-navigating");
-	},$tw.utils.getAnimationDuration() * 1);
+		if(callback) {
+			callback();
+		}
+	},300);
 };
 
 PageScroller.prototype.scrollSelectorIntoView = function(baseElement,selector,callback) {
