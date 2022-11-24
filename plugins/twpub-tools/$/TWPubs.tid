@@ -3,7 +3,7 @@ title: $:/TWPubs
 
 \whitespace trim
 <div class="twpub-badge-listing">
-<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub-badge" storyview="pop">
+<$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]!is[draft]sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub-badge" storyview="pop">
 </$list>
 <$list filter="[all[tiddlers+shadows]tag[$:/tags/PluginLibrary]library-type[twpub]]">
 <div>
