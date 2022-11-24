@@ -17,16 +17,18 @@ code-body: yes
 	storyviewTitle={{$:/view}}
 	languageTitle={{{ [{$:/language}get[name]] }}}
 >
-	<$$multinavigator>
-		<$dropzone enable=<<tv-enable-drag-and-drop>>>
-			<div class="tc-layout-flextemplate">
-				<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="flextemplateConfigurationTiddler">
-					<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
+	<$navigator story="$:/StoryList" history="$:/HistoryList">
+		<$$multinavigator>
+			<$dropzone enable=<<tv-enable-drag-and-drop>>>
+				<div class="tc-layout-flextemplate">
+					<$list filter="[all[shadows+tiddlers]tag[$:/tags/FlexTemplate/Component]!has[draft.of]]" variable="flextemplateConfigurationTiddler">
+						<$transclude tiddler=<<flextemplateConfigurationTiddler>> mode="inline"/>
+					</$list>
+				</div>
+				<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/story]] -[[$:/core/ui/PageTemplate/toprightbar]] -[[$:/core/ui/PageTemplate/topleftbar]]" variable="listItem">
+					<$transclude tiddler=<<listItem>>/>
 				</$list>
-			</div>
-			<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/story]] -[[$:/core/ui/PageTemplate/toprightbar]] -[[$:/core/ui/PageTemplate/topleftbar]]" variable="listItem">
-				<$transclude tiddler=<<listItem>>/>
-			</$list>
-		</$dropzone>
-	</$$multinavigator>
+			</$dropzone>
+		</$$multinavigator>
+	</$navigator>
 </$let>

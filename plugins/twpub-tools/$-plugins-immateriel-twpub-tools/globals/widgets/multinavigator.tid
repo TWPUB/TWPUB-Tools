@@ -59,6 +59,22 @@ Traps navigate events within the story river
 </$let>
 \end
 
+<!--
+When we get a tm-import-tiddlers message, pass it up the parent, and navigate to the import tiddler
+-->
+\procedure tm-import-tiddlers-handler()
+<$action-log message="In import-tiddlers-handler"/>
+<$action-log/>
+<$action-sendmessage $message="tm-import-tiddlers" $param=<<event-param>> importTitle=<<event-importTitle>>/>
+<$let
+	event-paramObject-var-currentTiddler={{{ [<event-importTitle>else[$:/Import]] }}}
+	storyConfigurationTiddler={{{ [<event-paramObject-var-currentTiddler>]  :cascade[all[shadows+tiddlers]tag[$:/tags/DefaultStoryFilter]get[text]] }}}
+>
+<$action-log/>
+	<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-navigate"/>
+</$let>
+\end
+
 \widget $$multinavigator()
 <!--
 Define the $$multinavigator widget.
@@ -75,6 +91,15 @@ the appropriate storyriver or by displaying a popup for the user to choose the t
 		$tm-cancel-tiddler=<<generic-message-handler>>
 		$tm-save-tiddler=<<generic-message-handler>>
 		$tm-fold-tiddler=<<generic-message-handler>>
+		$tm-delete-tiddler=<<generic-message-handler>>
+		$tm-close-all-tiddlers=<<generic-message-handler>>
+		$tm-close-other-tiddlers=<<generic-message-handler>>
+		$tm-new-tiddler=<<generic-message-handler>>
+		$tm-fold-tiddler=<<generic-message-handler>>
+		$tm-fold-other-tiddlers=<<generic-message-handler>>
+		$tm-fold-all-tiddlers=<<generic-message-handler>>
+		$tm-unfold-all-tiddlers=<<generic-message-handler>>
+		$tm-import-tiddlers=<<tm-import-tiddlers-handler>>
 	>
 		<$slot $name="ts-raw"/>
 	</$messagecatcher>
