@@ -67,7 +67,7 @@ When we get a tm-import-tiddlers message, pass it up the parent, and navigate to
 <$action-log/>
 <$action-sendmessage $message="tm-import-tiddlers" $param=<<event-param>> importTitle=<<event-importTitle>>/>
 <$let
-	event-paramObject-var-currentTiddler={{{ [<event-importTitle>else[$:/Import]] }}}
+	event-paramObject-var-currentTiddler={{{ [[event-importTitle]is[variable]then<event-importTitle>else[$:/Import]] }}}
 	storyConfigurationTiddler={{{ [<event-paramObject-var-currentTiddler>]  :cascade[all[shadows+tiddlers]tag[$:/tags/DefaultStoryFilter]get[text]] }}}
 >
 <$action-log/>
