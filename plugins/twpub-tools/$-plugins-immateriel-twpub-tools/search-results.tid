@@ -2,20 +2,32 @@ caption: TWPubs
 tags: $:/tags/SearchResults
 title: $:/plugins/immateriel/twpub-tools/search-results
 
+\procedure link-actions()
+<$action-log message="In link-actions"/>
+<$action-log/>
+<$action-sendmessage
+	$message="tm-navigate"
+	navigateTo=<<dom-href>>
+	var-anchor=<<dom-data-anchor>>
+/>
+\end
+
 <$list filter="[all[tiddlers]plugin-type[plugin]has[epub-title]sort[]]" variable="twpub">
-<div>
-<h3><$text text={{{ [<twpub>get[epub-title]] }}}/></h3>
-</div>
-<div class="twpub-search-results">
-<$list filter="[<userInput>minlength[1]]" variable="ignore">
-<$list filter="[<twpub>plugintiddlers[]field:role[text]search:text<userInput>sort[title]limit[250]]">
-<$link class={{{[<currentTiddler>addsuffix[-primaryList]] -[<searchListState>get[text]] +[then[]else[tc-list-item-selected]] twpub-search-result +[join[ ]]}}}>
-<$dynannotate
-	search=<<userInput>>
-	searchDisplay="snippet"
-><$transclude mode="block"/></$dynannotate>
-</$link>
-</$list>
-</$list>
-</div>
+	<$eventcatcher events="click" selector="a" actions-click=<<link-actions>> tag="div">
+		<div>
+			<h3><$text text={{{ [<twpub>get[epub-title]] }}}/></h3>
+		</div>
+		<div class="twpub-search-results">
+			<$list filter="[<userInput>minlength[1]]" variable="ignore">
+				<$list filter="[<twpub>plugintiddlers[]field:role[text]search:text<userInput>sort[title]limit[250]]">
+					<a href=<<twpub>> data-anchor=<<currentTiddler>> class={{{[<currentTiddler>addsuffix[-primaryList]] -[<searchListState>get[text]] +[then[]else[tc-list-item-selected]] twpub-search-result +[join[ ]]}}}>
+						<$dynannotate
+							search=<<userInput>>
+							searchDisplay="snippet"
+						><$transclude mode="block"/></$dynannotate>
+					</a>
+				</$list>
+			</$list>
+		</div>
+	</$eventcatcher>
 </$list>
