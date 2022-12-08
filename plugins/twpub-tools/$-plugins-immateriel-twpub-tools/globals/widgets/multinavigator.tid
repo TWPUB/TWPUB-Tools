@@ -8,7 +8,7 @@ Generic message handler that just passes messages onto the appropriate story riv
 \procedure generic-message-handler()
 <!-- Compute the story configuration tiddler -->
 <$let
-	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[all[shadows+tiddlers]tag[$:/tags/Story]] }}}
+	storyConfigurationTiddler={{{ [<event-paramObject-storyConfigurationTiddler>!is[blank]] ~[{$:/config/PrimaryDefaultStoryRiver}tag[$:/tags/Story]] ~[all[shadows+tiddlers]tag[$:/tags/Story]!tag[$:/tags/HiddenStory]] }}}
 >
 	<$action-log message="In navigator generic-message-handler"/>
 	<$action-log/>

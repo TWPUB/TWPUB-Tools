@@ -4,4 +4,4 @@ title: $:/plugins/immateriel/twpub-tools/config/help-panel/story
 @story-list:
 caption: Help Panel Story
 story-definition: $:/core/ui/storyrivers/single-tiddler
-tags: $:/tags/Story
+tags: $:/tags/Story $:/tags/HiddenStory

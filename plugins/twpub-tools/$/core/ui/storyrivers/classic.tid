@@ -49,6 +49,37 @@ event-paramObject-var-creationFields: optional JSON of field values for tiddlers
 </$let>
 \end
 
+\procedure tm-new-tiddler()
+<!--
+
+Create a new tiddler in draft mode and navigate to it
+
+storyConfigurationTiddler: title of tiddler containing story configuration
+event-paramObject-*: fields to be applied to the new tiddler
+
+-->
+<$action-log message="In classic tm-new-tiddler"/>
+<$action-log/>
+<!-- Create the new tiddler -->
+<$action-createtiddler
+	$basetitle="New Tiddler"
+	$timestamp="yes"
+>
+	<!-- Put it in edit mode -->
+	<$let
+		event-tiddlerTitle=<<createTiddler-title>>
+	>
+		<<tm-edit-tiddler>>
+	</$let>
+	<!-- Navigate to the draft-->
+	<$let
+		event-paramObject-var-currentTiddler=<<createTiddler-draftTitle>>
+	>
+		<<tm-navigate>>
+	</$let>
+</$action-createtiddler>
+\end tm-new-tiddler
+
 \define tm-close-tiddler()
 <!--
 
