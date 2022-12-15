@@ -75,6 +75,37 @@ When we get a tm-import-tiddlers message, pass it up the parent, and navigate to
 </$let>
 \end
 
+\procedure tm-delete-tiddler-handler()
+<!--
+
+Deletes the specified tiddler from all story rivers
+
+event-tiddlerTitle: title of tiddler that is to be deleted
+
+-->
+\procedure delete-draft-tiddler()
+<!-- Delete the draft tiddler -->
+<$action-deletetiddler $tiddler={{{ [<title>field[draft.of]else<title>] }}}/>
+\end delete-draft-tiddler
+<$let
+	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
+>
+	<$action-log msg="In multinavigator tm-delete-tiddler-handler"/>
+	<$action-log/>
+	<!-- Close the tiddler in all story rivers -->
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
+		<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-close-tiddler" event-tiddlerTitle=<<title>>/>
+	</$list>
+	<!-- Delete the original tiddler if this is a draft -->
+	<$list filter="[<title>get[draft.of]is[tiddler]]" variable="originalTitle">
+		<!-- Delete the original tiddler -->
+		<$action-deletetiddler $tiddler=<<originalTitle>>/>
+	</$list>
+	<!-- Delete the target tiddler -->
+	<$action-deletetiddler $tiddler=<<title>>/>
+</$let>
+\end
+
 \widget $$multinavigator()
 <!--
 Define the $$multinavigator widget.
@@ -91,7 +122,7 @@ the appropriate storyriver or by displaying a popup for the user to choose the t
 		$tm-cancel-tiddler=<<generic-message-handler>>
 		$tm-save-tiddler=<<generic-message-handler>>
 		$tm-fold-tiddler=<<generic-message-handler>>
-		$tm-delete-tiddler=<<generic-message-handler>>
+		$tm-delete-tiddler=<<tm-delete-tiddler-handler>>
 		$tm-close-all-tiddlers=<<generic-message-handler>>
 		$tm-close-other-tiddlers=<<generic-message-handler>>
 		$tm-new-tiddler=<<generic-message-handler>>
