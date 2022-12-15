@@ -56,7 +56,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 <$list filter="[<currentTiddler>has[cover-image]]" variable="ignore">
 	<div class="twpub-cover-thumbnail"><$transclude tiddler=<<currentTiddler>> subtiddler={{!!cover-image}}/></div>
 </$list>
-<$vars state=<<qualify "$:/state/twpub/toc/open">>>
+<$let state=<<qualify "$:/state/twpub/toc/open">>>
 	<h1>
 		<$reveal type="nomatch" state=<<state>> text="show">
 			<$button set=<<state>> setTo="show" class="tc-btn-invisible">{{$:/core/images/right-arrow}}</$button>
@@ -71,7 +71,7 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 			<$macrocall $name="toc" tag={{{ [<currentTiddler>addsuffix[/toc]] }}}/>
 		</div>
 	</$reveal>
-</$vars>
+</$let>
 \end
 
 \procedure twpub-controls()
@@ -113,9 +113,9 @@ title: $:/plugins/immateriel/twpub-tools/twpub-template
 								data-selection-actions-title="$:/plugins/immateriel/twpub-tools/SelectionTrackerActions"
 								data-selection-popup-title=<<stateSelectionPopupTitle>>
 							>
-								<$vars textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
+								<$let textPrefix={{{ [<currentTiddler>addsuffix[/text/]] }}}>
 									<$list filter="[all[tiddlers+shadows]prefix<textPrefix>sort[]]" template="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk"/>
-								</$vars>
+								</$let>
 							</div>
 						</$eventcatcher>
 						<$transclude tiddler="$:/plugins/immateriel/twpub-tools/twpub-selection-popup" mode="inline"/>

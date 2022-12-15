@@ -89,7 +89,7 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 event-tiddlerTitle: title of tiddler that is to be closed
 
 -->
-<$vars
+<$let
 	event-paramObject-tiddlerTitle={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
 <$action-log message="In classic tm-close-tiddler"/>
@@ -100,7 +100,7 @@ event-tiddlerTitle: title of tiddler that is to be closed
 			<$action-setfield $tiddler=<<storyConfigurationTiddler>> @story-list=<<value>>/>
 		</$set>
 	</$list>
-</$vars>
+</$let>
 \end
 
 \define tm-edit-tiddler()
@@ -112,7 +112,7 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 event-tiddlerTitle: title of tiddler that is to be edited
 
 -->
-<$vars
+<$let
 	title={{{ [<event-tiddlerTitle>!is[blank]else<event-paramObject-tiddlerTitle>] }}}
 >
 <$action-log msg="In classic tm-edit-tiddler"/>
@@ -127,7 +127,7 @@ event-tiddlerTitle: title of tiddler that is to be edited
 			</$action-createtiddler>
 		</$action-confirm>
 	</$wikify>
-</$vars>
+</$let>
 \end
 
 \define tm-save-tiddler()

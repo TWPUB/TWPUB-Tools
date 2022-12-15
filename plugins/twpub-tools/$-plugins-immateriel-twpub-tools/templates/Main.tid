@@ -13,11 +13,11 @@ code-body: yes
 		<$let conditionFilter="[<currentTiddler>!has[condition]] [<currentTiddler>filter{!!condition}]">
 			<$list filter="[all[tiddlers+shadows]tag[$:/tags/PageLayout/MainColumn]] :filter[<currentTiddler>lookup:show[$:/config/PageLayout/MainColumn/Visibility/]match[show]] +[filter<conditionFilter>]" variable="columnConfigurationTiddler">
 					<div class={{{ [<columnConfigurationTiddler>get[template]get[class]] }}}>
-						<$vars template={{{ [<columnConfigurationTiddler>get[template]] }}}>
+						<$let template={{{ [<columnConfigurationTiddler>get[template]] }}}>
 							<$tiddler tiddler={{{ [<columnConfigurationTiddler>get[tiddler]] }}}>
 								<$transclude tiddler=<<template>> mode="inline"/>
 							</$tiddler>
-						</$vars>
+						</$let>
 					</div>
 			</$list>
 		</$let>

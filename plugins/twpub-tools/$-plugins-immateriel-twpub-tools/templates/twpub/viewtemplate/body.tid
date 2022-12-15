@@ -31,8 +31,8 @@ more
 		</span>
 	</div>
 
-	<$vars currentChunkNumber={{{ [<currentTiddler>split[/]nth[6]else[0]] }}} numberOfContextChunks={{{ [<storyItemTiddler>get[var-numberOfContextChunks]else[0]] }}}>
-		<$vars startChunkNumber={{{ [<currentChunkNumber>subtract<numberOfContextChunks>max[0]] }}} endChunkNumber={{{ [<currentChunkNumber>subtract[1]] }}}>
+	<$let currentChunkNumber={{{ [<currentTiddler>split[/]nth[6]else[0]] }}} numberOfContextChunks={{{ [<storyItemTiddler>get[var-numberOfContextChunks]else[0]] }}}>
+		<$let startChunkNumber={{{ [<currentChunkNumber>subtract<numberOfContextChunks>max[0]] }}} endChunkNumber={{{ [<currentChunkNumber>subtract[1]] }}}>
 			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
 				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
 					<div style="border-bottom:1px solid black; padding: 1em 0;">
@@ -40,11 +40,11 @@ more
 					</div>
 				</$list>
 			</$list>
-		</$vars>
+		</$let>
 		<div style="padding: 1em 0; background-color:#e6e6ff;">
 			<$transclude tiddler="$:/plugins/immateriel/twpub-tools/templates/twpub/chunk" mode="inline"/>
 		</div>
-		<$vars startChunkNumber={{{ [<currentChunkNumber>add[1]] }}} endChunkNumber={{{ [<currentChunkNumber>add<numberOfContextChunks>] }}}>
+		<$let startChunkNumber={{{ [<currentChunkNumber>add[1]] }}} endChunkNumber={{{ [<currentChunkNumber>add<numberOfContextChunks>] }}}>
 			<$list filter="[<startChunkNumber>compare:number:lteq<endChunkNumber>]" variable="ignore">
 				<$list filter="[range<startChunkNumber>,<endChunkNumber>pad[9]addprefix[/text/]addprefix<twpub>]">
 					<div style="border-top:1px solid black; padding: 1em 0;">
@@ -52,8 +52,8 @@ more
 					</div>
 				</$list>
 			</$list>
-		</$vars>
-	</$vars>
+		</$let>
+	</$let>
 
 
 </$list>
