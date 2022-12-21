@@ -92,14 +92,18 @@ event-tiddlerTitle: title of tiddler that is to be deleted
 >
 	<$action-log msg="In multinavigator tm-delete-tiddler-handler"/>
 	<$action-log/>
-	<!-- Close the tiddler in all story rivers -->
-	<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
-		<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-close-tiddler" event-tiddlerTitle=<<title>>/>
-	</$list>
-	<!-- Delete the original tiddler if this is a draft -->
+	<!-- Check if the tiddler if this is a draft -->
 	<$list filter="[<title>get[draft.of]is[tiddler]]" variable="originalTitle">
+		<!-- If so, close the associated original tiddler in all story rivers -->
+		<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
+			<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-close-tiddler" event-tiddlerTitle=<<originalTitle>>/>
+		</$list>
 		<!-- Delete the original tiddler -->
 		<$action-deletetiddler $tiddler=<<originalTitle>>/>
+	</$list>
+	<!-- Close the target tiddler in all story rivers -->
+	<$list filter="[all[shadows+tiddlers]tag[$:/tags/Story]]" variable="storyConfigurationTiddler">
+		<$$invoke instanceTitle=<<storyConfigurationTiddler>> methodName="tm-close-tiddler" event-tiddlerTitle=<<title>>/>
 	</$list>
 	<!-- Delete the target tiddler -->
 	<$action-deletetiddler $tiddler=<<title>>/>
