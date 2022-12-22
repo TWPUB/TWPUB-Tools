@@ -30,3 +30,5 @@ event-paramObject-* other optional variables to be provided to the story entry
 	</$action-createtiddler>
 </$let>
 \end
+
+\define river-inner-classes() river-type-single-tiddler

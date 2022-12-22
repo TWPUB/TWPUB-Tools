@@ -238,9 +238,11 @@ storyConfigurationTiddler: title of tiddler containing story configuration
 </$list>
 \end
 
+\define river-inner-classes() river-type-classic
+
 \define story-river-content()
 \whitespace trim
-<div class="river-inner">
+<div class={{{ [<river-inner-classes>] river-inner +[join[ ]] }}}>
 	<section class="story-backdrop">
 		<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
 			<$transclude/>
