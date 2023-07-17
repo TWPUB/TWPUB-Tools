@@ -1,15 +1,16 @@
-/*
-This script is executed within the context of a web page loaded into Puppeteer to extract the text chunks and stylesheets from a page.
-
-Returns a structure: {chunks: [], stylsheets: [text]}
-
-Each chunk entry is: {nodes: [], anchorIds: [], href:} where nodes is a tree of objects representing DOM nodes and strings representing
-text nodes, and anchorIds is an array of anchor IDs associated with each chunk
-
-Each stylsheet entry is the text of the stylesheet
-
-*/
-
+/**
+ * An instance of an HTML document containing the doc.location.href (URL_PREFIX + filename) of the document.
+ * 
+ * To extract the text chunks and stylesheets from a page.
+ * 
+ * Each chunk entry is: {nodes: [], anchorIds: [], href:} where nodes is a tree of objects representing DOM nodes and strings representing
+ * text nodes, and anchorIds is an array of anchor IDs associated with each chunk
+ * 
+ * Each stylsheet entry is the text of the stylesheet
+ * @param {*} win The window instance that currently contains the DOM document
+ * @param {*} doc DOM model instance of the current document
+ * @returns Returns a structure: {chunks: [], stylsheets: [text]}
+ */
 exports.getPageStruct = function(win,doc) {
 	win = win || window;
 	doc = doc || document;
@@ -127,7 +128,11 @@ return {
 	expectedResults: expectedResults
 };
 
-// Node iterator
+/**
+ * Node iterator
+ * @param {*} e Document Element
+ * @param {*} options Options, the current main disableBlockProcessing?
+ */
 function visitNode(e,options) {
 	options = options || {};
 	var disableBlockProcessing = !!options.disableBlockProcessing;
@@ -156,6 +161,7 @@ function visitNode(e,options) {
 				parentListElement.private.count = count;
 			} else if(nodeInfo.tag === "img") {
 				if(e.hasAttribute("src")) {
+					// Only the file name is needed here.
 					nodeInfo.attributes.src = e.src.slice(URL_PREFIX.length);
 				}
 				if(e.hasAttribute("width")) {

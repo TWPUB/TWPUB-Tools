@@ -12,7 +12,7 @@ class TwpubPlugin {
 
 	constructor (app,options) {
 		this.app = app;
-		this.epubReader = options.epubReader;
+		this.epubReader = options.epubReader; // EpubReader object instance
 		this.fields = {}; // Fields of the plugin tiddler itself
 		this.tiddlers = {}; // Payload tiddlers
 		this.errors = []; // Array of conversion errors
@@ -50,9 +50,10 @@ class TwpubPlugin {
 		this.fields["count-images"] = Object.keys(this.epubReader.images).length.toString();
 		// Cover tab
 		if(this.epubReader.hasMetadataItem("cover")) {
+			// Use only the file name.
 			const href = this.epubReader.getManifestItem(this.epubReader.getMetadataItem("cover")).href;
 			if(href) {
-				this.fields["cover-image"] = this.titlePrefix + "/images/" + this.epubReader.getManifestItem(this.epubReader.getMetadataItem("cover")).href;
+				this.fields["cover-image"] = this.titlePrefix + "/images/" + href;
 				this.addTiddler({
 					title: this.titlePrefix + "/cover",
 					type: "text/vnd.tiddlywiki",
@@ -101,7 +102,10 @@ class TwpubPlugin {
 </$linkcatcher>`
 		});
 	}
-
+	
+	/**
+	 * Create an anchor to title map, chunk.href from the startChunk() function.
+	 */
 	createAnchorToTitleMapping() {
 		this.mapAnchorToTitle = Object.create(null);
 		this.epubReader.chunks.forEach((chunk,index) => {
@@ -119,6 +123,11 @@ class TwpubPlugin {
 		});
 	}
 
+	/**
+	 * Make text tiddler title
+	 * @param {*} index 0-n, integer
+	 * @returns Similar: '$:/plugins/twpub/id/text/000000001'
+	 */
 	makeTextTiddlerTitle(index) {
 		return this.titlePrefix + "/text/" + index.toString().padStart(9,"0");
 	}
@@ -208,6 +217,9 @@ class TwpubPlugin {
 		visitNodes(chunk.nodes);
 	}
 
+	/**
+	 * @description this.mapAnchorToTitle 来自 createAnchorToTitleMapping() 函数创建的映射。
+	 */
 	convertToc() {
 		const visitNodes = (nodes,tag) => {
 			const titles = [];
@@ -269,6 +281,9 @@ class TwpubPlugin {
 		});
 	}
 
+	/**
+	 * Convert book images to articles for easy reuse.
+	 */
 	convertImages() {
 		for(const imagePath in this.epubReader.images) {
 			const imageInfo = this.epubReader.images[imagePath];
@@ -285,9 +300,9 @@ class TwpubPlugin {
 		this.tiddlers[fields.title] = fields;
 	}
 
-	/*
-	Get the JSON of the entire plugin
-	*/
+	/**
+	 * Get the JSON of the entire plugin
+	 */
 	getPluginText() {
 		this.fields.text = JSON.stringify({tiddlers: this.tiddlers},null,4)
 		// Replace "<" with "\u003c" to avoid HTML parsing errors when the JSON is embedded in a script tag

@@ -1,6 +1,6 @@
-/*
-Reads an EPUB file and makes the content available via properties
-*/
+/**
+ * Reads an EPUB file and makes the content available via properties
+ */
 
 const fs = require("fs"),
 	path = require("path"),
@@ -40,9 +40,10 @@ class EpubReader {
 		this.errors.push(message);
 	}
 
-	/*
-	Load an EPUB from a file path
-	*/
+	/**
+	 * Load an EPUB from a file path
+	 * @param {*} epubFilepath Epub File path
+	 */
 	async load(epubFilepath) {
 		// Read the ZIP file
 		const epubFileData = await readFileAsync(epubFilepath);
@@ -107,16 +108,21 @@ class EpubReader {
 		await this.loadImages();
 	}
 
-	/*
-	Check for a metadata item
-	*/
+	/**
+	 * Check for a metadata item
+	 * @param {*} name 
+	 * @returns 
+	 */
 	hasMetadataItem(name) {
 		return name in this.metadata;
 	}
 
-	/*
-	Get a metadata item
-	*/
+	/**
+	 * Get a metadata item
+	 * @param {*} name 
+	 * @param {*} defaultValue 
+	 * @returns 
+	 */
 	getMetadataItem(name,defaultValue) {
 		if(name in this.metadata) {
 			return this.metadata[name];
@@ -125,16 +131,21 @@ class EpubReader {
 		}
 	}
 
-	/*
-	Get a manifest item
-	*/
+	/**
+	 * Get a manifest item
+	 * @param {*} id 
+	 * @param {*} defaultValue 
+	 * @returns 
+	 */
 	getManifestItem(id,defaultValue) {
 		return this.manifest[id] || defaultValue;
 	}
 
-	/*
-	Get the media type of a manifest item
-	*/
+	/**
+	 * Get the media type of a manifest item
+	 * @param {*} href 
+	 * @returns 
+	 */
 	getMediaTypeOfItem(href) {
 		var result;
 		for(const id of Object.keys(this.manifest)) {
@@ -146,10 +157,10 @@ class EpubReader {
 		return result;
 	}
 
-	/*
-	Load the table of contents
-	Returns a tree of {id:, text:, href:, children: {}}
-	*/
+	/**
+	 * Load the table of contents
+	 * @returns Returns a tree of {id:, text:, href:, children: {}}
+	 */
 	async loadToc() {
 		this.tocItem = this.manifest[this.nodeSpine.getAttribute("toc")].href;
 		// Get the TOC file
@@ -179,9 +190,9 @@ class EpubReader {
 		this.toc = visitNodes(navMap.childNodes);
 	}
 
-	/*
-	Load the text chunks and stylesheets
-	*/
+	/**
+	 * Load the text chunks and stylesheets
+	 */
 	async loadTextChunks() {
 		// Setup the text extractor
 		const textExtractor = new TextExtractor({
@@ -220,9 +231,9 @@ class EpubReader {
 		}
 	}
 
-	/*
-	Load all the images
-	*/
+	/**
+	 * Load all the images
+	 */
 	async loadImages() {
 		// Get the image manifest items
 		for(const id of Object.keys(this.manifest)) {
@@ -231,6 +242,7 @@ class EpubReader {
 				const file = this.zip.file(manifestItem.href),
 					encoding = BINARY_MEDIA_TYPES.includes(manifestItem["media-type"]) ? "base64" : "text";
 				if(file) {
+					// Use only picture file names.
 					this.images[manifestItem.href] = {
 						type: manifestItem["media-type"],
 						text: await file.async(encoding)
@@ -251,11 +263,12 @@ function findNodeAndGetAttribute(rootNode,selectors,attributeName) {
 	return null;
 }
 
-/*
-Find an XML node identified by a list of child tag names
-rootNode: reference to root node
-selectors: array of child tag names
-*/
+/**
+ * Find an XML node identified by a list of child tag names
+ * @param {*} rootNode reference to root node
+ * @param {*} selectors array of child tag names
+ * @returns {*} node
+ */
 function findNode(rootNode,selectors) {
 	let node = rootNode;
 	for(selector of selectors) {
