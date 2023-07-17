@@ -10,7 +10,7 @@ Each stylsheet entry is the text of the stylesheet
 
 */
 
-exports.getPageText = function(win,doc) {
+exports.getPageStruct = function(win,doc) {
 	win = win || window;
 	doc = doc || document;
 

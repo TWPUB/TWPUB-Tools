@@ -7,7 +7,7 @@ const fs = require("fs"),
 	{promisify} = require("util"),
 	readFileAsync = promisify(fs.readFile),
 	writeFileAsync = promisify(fs.writeFile),
-	{DOMParser,XMLSerializer} = require("xmldom"),
+	{DOMParser,XMLSerializer} = require("@xmldom/xmldom"),
 	JSZip = require("jszip"),
 	{TextExtractor} = require("./text-extractor"),
 	{hash,resolvePath} = require("./utils");
@@ -194,7 +194,6 @@ class EpubReader {
 			},
 			logError: this.logError.bind(this)
 		});
-		await textExtractor.initialise();
 		// Extract each HTML file listed in the spine
 		for(const spineItem of this.spine) {
 			const manifestItem = this.manifest[spineItem];
