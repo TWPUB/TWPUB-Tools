@@ -120,7 +120,7 @@ class TwpubPlugin {
 	}
 
 	makeTextTiddlerTitle(index) {
-		return this.titlePrefix + "/text/" + ("" + index).padStart(9,"0");
+		return this.titlePrefix + "/text/" + index.toString().padStart(9,"0");
 	}
 
 	convertText() {
