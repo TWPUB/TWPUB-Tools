@@ -10,7 +10,7 @@ Each stylsheet entry is the text of the stylesheet
 
 */
 
-exports.getPageText = function(win,doc) {
+exports.getPageStruct = function(win,doc) {
 	win = win || window;
 	doc = doc || document;
 
@@ -112,7 +112,7 @@ const nonBlankChunks = chunks.outputChunks.filter(chunk => {
 	return !(chunk.anchorIds.length === 0 && (chunk.nodes.length === 1) && (typeof (chunk.nodes[0]) === "string") && (!(/\S/.test(chunk.nodes[0]))));
 })
 // Get the expected test results if present
-const domExpectedResults = document.getElementsByTagName("script")[0];
+const domExpectedResults = doc.getElementsByTagName("script")[0];
 var expectedResults;
 if(domExpectedResults && domExpectedResults.id === "expectedResults") {
 	try {
