@@ -63,8 +63,7 @@ async function testPage(filepath) {
 			console.log("Text extractor error: " + msg)
 		}
 	});
-	await textExtractor.initialise();
-	// Get the text of the page
+	// Get the text of the page 
 	const results = await textExtractor.getPageText("index.html");
 	// Flatten the nodes of the results
 	for(const chunk of results.chunks) {
